@@ -10,7 +10,7 @@
 #import "SDSegmentedControl.h"
 #import "FirstTableViewController.h"
 
-@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FirstViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet SDSegmentedControl *segmentedControl;
 
