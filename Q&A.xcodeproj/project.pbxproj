@@ -12,12 +12,19 @@
 		090F13FD16807D220020EDC2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F13FC16807D220020EDC2 /* CoreGraphics.framework */; };
 		090F140316807D220020EDC2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 090F140116807D220020EDC2 /* InfoPlist.strings */; };
 		090F140516807D220020EDC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F140416807D220020EDC2 /* main.m */; };
-		090F140916807D220020EDC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F140816807D220020EDC2 /* AppDelegate.m */; };
 		090F140B16807D220020EDC2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 090F140A16807D220020EDC2 /* Default.png */; };
 		090F140D16807D220020EDC2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 090F140C16807D220020EDC2 /* Default@2x.png */; };
 		090F140F16807D220020EDC2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 090F140E16807D220020EDC2 /* Default-568h@2x.png */; };
-		090F141216807D230020EDC2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090F141016807D230020EDC2 /* MainStoryboard.storyboard */; };
-		090F141516807D230020EDC2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F141416807D230020EDC2 /* ViewController.m */; };
+		090F143016807E2A0020EDC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142216807E2A0020EDC2 /* AppDelegate.m */; };
+		090F143116807E2A0020EDC2 /* FirstDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142416807E2A0020EDC2 /* FirstDetailTableViewController.m */; };
+		090F143216807E2A0020EDC2 /* FirstTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142616807E2A0020EDC2 /* FirstTableCell.m */; };
+		090F143316807E2A0020EDC2 /* FirstTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142816807E2A0020EDC2 /* FirstTableViewController.m */; };
+		090F143416807E2A0020EDC2 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142A16807E2A0020EDC2 /* FirstViewController.m */; };
+		090F143516807E2A0020EDC2 /* SDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142D16807E2A0020EDC2 /* SDSegmentedControl.m */; };
+		090F143616807E2A0020EDC2 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142F16807E2A0020EDC2 /* TabBarViewController.m */; };
+		090F143E16807F260020EDC2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090F143D16807F260020EDC2 /* MainStoryboard.storyboard */; };
+		090F144116807F7F0020EDC2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F144016807F7F0020EDC2 /* QuartzCore.framework */; };
+		090F144316807FFE0020EDC2 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 090F144216807FFE0020EDC2 /* clock.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,14 +36,26 @@
 		090F140216807D220020EDC2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		090F140416807D220020EDC2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		090F140616807D220020EDC2 /* Q&A-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Q&A-Prefix.pch"; sourceTree = "<group>"; };
-		090F140716807D220020EDC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		090F140816807D220020EDC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		090F140A16807D220020EDC2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		090F140C16807D220020EDC2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		090F140E16807D220020EDC2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		090F141116807D230020EDC2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		090F141316807D230020EDC2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		090F141416807D230020EDC2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		090F142116807E2A0020EDC2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		090F142216807E2A0020EDC2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		090F142316807E2A0020EDC2 /* FirstDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstDetailTableViewController.h; sourceTree = "<group>"; };
+		090F142416807E2A0020EDC2 /* FirstDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstDetailTableViewController.m; sourceTree = "<group>"; };
+		090F142516807E2A0020EDC2 /* FirstTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstTableCell.h; sourceTree = "<group>"; };
+		090F142616807E2A0020EDC2 /* FirstTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstTableCell.m; sourceTree = "<group>"; };
+		090F142716807E2A0020EDC2 /* FirstTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstTableViewController.h; sourceTree = "<group>"; };
+		090F142816807E2A0020EDC2 /* FirstTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstTableViewController.m; sourceTree = "<group>"; };
+		090F142916807E2A0020EDC2 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		090F142A16807E2A0020EDC2 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		090F142C16807E2A0020EDC2 /* SDSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSegmentedControl.h; sourceTree = "<group>"; };
+		090F142D16807E2A0020EDC2 /* SDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSegmentedControl.m; sourceTree = "<group>"; };
+		090F142E16807E2A0020EDC2 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		090F142F16807E2A0020EDC2 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		090F143D16807F260020EDC2 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		090F144016807F7F0020EDC2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		090F144216807FFE0020EDC2 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clock.png; path = "../../../../例程/动态SegmentedControl/Example/Example/clock.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090F144116807F7F0020EDC2 /* QuartzCore.framework in Frameworks */,
 				090F13F916807D220020EDC2 /* UIKit.framework in Frameworks */,
 				090F13FB16807D220020EDC2 /* Foundation.framework in Frameworks */,
 				090F13FD16807D220020EDC2 /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +93,7 @@
 		090F13F716807D220020EDC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				090F144016807F7F0020EDC2 /* QuartzCore.framework */,
 				090F13F816807D220020EDC2 /* UIKit.framework */,
 				090F13FA16807D220020EDC2 /* Foundation.framework */,
 				090F13FC16807D220020EDC2 /* CoreGraphics.framework */,
@@ -83,11 +104,10 @@
 		090F13FE16807D220020EDC2 /* Q&A */ = {
 			isa = PBXGroup;
 			children = (
-				090F140716807D220020EDC2 /* AppDelegate.h */,
-				090F140816807D220020EDC2 /* AppDelegate.m */,
-				090F141016807D230020EDC2 /* MainStoryboard.storyboard */,
-				090F141316807D230020EDC2 /* ViewController.h */,
-				090F141416807D230020EDC2 /* ViewController.m */,
+				090F143C16807EF80020EDC2 /* Tab bar  */,
+				090F143B16807EEB0020EDC2 /* First view */,
+				090F143F16807F2C0020EDC2 /* Story board */,
+				090F143716807E330020EDC2 /* App Delegate */,
 				090F13FF16807D220020EDC2 /* Supporting Files */,
 			);
 			path = "Q&A";
@@ -105,6 +125,82 @@
 				090F140E16807D220020EDC2 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		090F142B16807E2A0020EDC2 /* SDSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				090F144216807FFE0020EDC2 /* clock.png */,
+				090F142C16807E2A0020EDC2 /* SDSegmentedControl.h */,
+				090F142D16807E2A0020EDC2 /* SDSegmentedControl.m */,
+			);
+			path = SDSegmentedControl;
+			sourceTree = "<group>";
+		};
+		090F143716807E330020EDC2 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				090F142116807E2A0020EDC2 /* AppDelegate.h */,
+				090F142216807E2A0020EDC2 /* AppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		090F143816807E670020EDC2 /* First detail table view */ = {
+			isa = PBXGroup;
+			children = (
+				090F142316807E2A0020EDC2 /* FirstDetailTableViewController.h */,
+				090F142416807E2A0020EDC2 /* FirstDetailTableViewController.m */,
+			);
+			name = "First detail table view";
+			sourceTree = "<group>";
+		};
+		090F143916807E970020EDC2 /* First table view */ = {
+			isa = PBXGroup;
+			children = (
+				090F143816807E670020EDC2 /* First detail table view */,
+				090F143A16807EC80020EDC2 /* First table cell */,
+				090F142716807E2A0020EDC2 /* FirstTableViewController.h */,
+				090F142816807E2A0020EDC2 /* FirstTableViewController.m */,
+			);
+			name = "First table view";
+			sourceTree = "<group>";
+		};
+		090F143A16807EC80020EDC2 /* First table cell */ = {
+			isa = PBXGroup;
+			children = (
+				090F142516807E2A0020EDC2 /* FirstTableCell.h */,
+				090F142616807E2A0020EDC2 /* FirstTableCell.m */,
+			);
+			name = "First table cell";
+			sourceTree = "<group>";
+		};
+		090F143B16807EEB0020EDC2 /* First view */ = {
+			isa = PBXGroup;
+			children = (
+				090F143916807E970020EDC2 /* First table view */,
+				090F142916807E2A0020EDC2 /* FirstViewController.h */,
+				090F142A16807E2A0020EDC2 /* FirstViewController.m */,
+				090F142B16807E2A0020EDC2 /* SDSegmentedControl */,
+			);
+			name = "First view";
+			sourceTree = "<group>";
+		};
+		090F143C16807EF80020EDC2 /* Tab bar  */ = {
+			isa = PBXGroup;
+			children = (
+				090F142E16807E2A0020EDC2 /* TabBarViewController.h */,
+				090F142F16807E2A0020EDC2 /* TabBarViewController.m */,
+			);
+			name = "Tab bar ";
+			sourceTree = "<group>";
+		};
+		090F143F16807F2C0020EDC2 /* Story board */ = {
+			isa = PBXGroup;
+			children = (
+				090F143D16807F260020EDC2 /* MainStoryboard.storyboard */,
+			);
+			name = "Story board";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,7 +258,8 @@
 				090F140B16807D220020EDC2 /* Default.png in Resources */,
 				090F140D16807D220020EDC2 /* Default@2x.png in Resources */,
 				090F140F16807D220020EDC2 /* Default-568h@2x.png in Resources */,
-				090F141216807D230020EDC2 /* MainStoryboard.storyboard in Resources */,
+				090F143E16807F260020EDC2 /* MainStoryboard.storyboard in Resources */,
+				090F144316807FFE0020EDC2 /* clock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,8 +271,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				090F140516807D220020EDC2 /* main.m in Sources */,
-				090F140916807D220020EDC2 /* AppDelegate.m in Sources */,
-				090F141516807D230020EDC2 /* ViewController.m in Sources */,
+				090F143016807E2A0020EDC2 /* AppDelegate.m in Sources */,
+				090F143116807E2A0020EDC2 /* FirstDetailTableViewController.m in Sources */,
+				090F143216807E2A0020EDC2 /* FirstTableCell.m in Sources */,
+				090F143316807E2A0020EDC2 /* FirstTableViewController.m in Sources */,
+				090F143416807E2A0020EDC2 /* FirstViewController.m in Sources */,
+				090F143516807E2A0020EDC2 /* SDSegmentedControl.m in Sources */,
+				090F143616807E2A0020EDC2 /* TabBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,14 +290,6 @@
 				090F140216807D220020EDC2 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		090F141016807D230020EDC2 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				090F141116807D230020EDC2 /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -223,7 +317,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -244,7 +338,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -257,6 +351,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Q&A/Q&A-Prefix.pch";
 				INFOPLIST_FILE = "Q&A/Q&A-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -268,6 +363,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Q&A/Q&A-Prefix.pch";
 				INFOPLIST_FILE = "Q&A/Q&A-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

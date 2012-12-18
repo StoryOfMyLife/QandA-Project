@@ -1,8 +1,8 @@
 //
 //  AppDelegate.m
-//  Q&A
+//  问答系统
 //
-//  Created by 刘廷勇 on 12-12-18.
+//  Created by 刘廷勇 on 12-12-17.
 //  Copyright (c) 2012年 刘廷勇. All rights reserved.
 //
 

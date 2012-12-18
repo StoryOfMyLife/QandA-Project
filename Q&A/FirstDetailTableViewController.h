@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  FirstDetailTableViewController.h
 //  问答系统
 //
 //  Created by 刘廷勇 on 12-12-17.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface FirstDetailTableViewController : UITableViewController
 
 @end
