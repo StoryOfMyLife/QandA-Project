@@ -28,7 +28,6 @@
     [super viewDidLoad];
 	
 	// Do any additional setup after loading the view.
-	NSLog(@"%@", [[self.tabBar.items objectAtIndex:0] description]);
 }
 
 - (void)didReceiveMemoryWarning

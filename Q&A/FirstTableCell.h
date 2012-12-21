@@ -10,7 +10,7 @@
 
 @interface FirstTableCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *questionNumber;
+@property (strong, nonatomic) IBOutlet UILabel *questionID;
 @property (strong, nonatomic) IBOutlet UILabel *questionTitle;
 @property (strong, nonatomic) IBOutlet UILabel *questionKeywords;
 @property (strong, nonatomic) IBOutlet UILabel *questionAskedFrom;

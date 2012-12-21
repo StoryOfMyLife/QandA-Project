@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090C2D111682EFC5008051F1 /* Question+Insert.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C2D101682EFC5008051F1 /* Question+Insert.m */; };
+		090C2D171682F313008051F1 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C2D161682F313008051F1 /* Question.m */; };
+		090C2D1A16830460008051F1 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C2D1916830460008051F1 /* CoreDataTableViewController.m */; };
 		090F13F916807D220020EDC2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F13F816807D220020EDC2 /* UIKit.framework */; };
 		090F13FB16807D220020EDC2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F13FA16807D220020EDC2 /* Foundation.framework */; };
 		090F13FD16807D220020EDC2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F13FC16807D220020EDC2 /* CoreGraphics.framework */; };
@@ -53,10 +56,16 @@
 		090F149D1680A92F0020EDC2 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F14811680A92F0020EDC2 /* MagicalRecord.m */; };
 		090F149F1680AA7F0020EDC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F149E1680AA7F0020EDC2 /* CoreData.framework */; };
 		090F14A21680AAF20020EDC2 /* Q&ADataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 090F14A01680AAF10020EDC2 /* Q&ADataModel.xcdatamodeld */; };
-		090F14A51680AD940020EDC2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F14A41680AD940020EDC2 /* Question.m */; };
+		090F14AE1680C0B20020EDC2 /* JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F14AD1680C0B20020EDC2 /* JSON.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		090C2D0F1682EFC5008051F1 /* Question+Insert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Question+Insert.h"; sourceTree = "<group>"; };
+		090C2D101682EFC5008051F1 /* Question+Insert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Question+Insert.m"; sourceTree = "<group>"; };
+		090C2D151682F313008051F1 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Question.h; path = ../Question.h; sourceTree = "<group>"; };
+		090C2D161682F313008051F1 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Question.m; path = ../Question.m; sourceTree = "<group>"; };
+		090C2D1816830460008051F1 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		090C2D1916830460008051F1 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		090F13F416807D220020EDC2 /* Q&A.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Q&A.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		090F13F816807D220020EDC2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		090F13FA16807D220020EDC2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -141,8 +150,8 @@
 		090F14831680A92F0020EDC2 /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
 		090F149E1680AA7F0020EDC2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		090F14A11680AAF20020EDC2 /* Q&ADataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Q&ADataModel.xcdatamodel"; sourceTree = "<group>"; };
-		090F14A31680AD940020EDC2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Question.h; path = ../Question.h; sourceTree = "<group>"; };
-		090F14A41680AD940020EDC2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Question.m; path = ../Question.m; sourceTree = "<group>"; };
+		090F14AC1680C0B20020EDC2 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		090F14AD1680C0B20020EDC2 /* JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSON.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +170,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		090C2D0D1682EF5A008051F1 /* QuestionEntity */ = {
+			isa = PBXGroup;
+			children = (
+				090C2D151682F313008051F1 /* Question.h */,
+				090C2D161682F313008051F1 /* Question.m */,
+				090C2D0F1682EFC5008051F1 /* Question+Insert.h */,
+				090C2D101682EFC5008051F1 /* Question+Insert.m */,
+			);
+			name = QuestionEntity;
+			sourceTree = "<group>";
+		};
 		090F13E916807D220020EDC2 = {
 			isa = PBXGroup;
 			children = (
@@ -193,10 +213,11 @@
 		090F13FE16807D220020EDC2 /* Q&A */ = {
 			isa = PBXGroup;
 			children = (
+				090F14A01680AAF10020EDC2 /* Q&ADataModel.xcdatamodeld */,
+				090F143F16807F2C0020EDC2 /* Story board */,
 				090F14481680A92F0020EDC2 /* MagicalRecord */,
 				090F143C16807EF80020EDC2 /* Tab bar  */,
 				090F143B16807EEB0020EDC2 /* First view */,
-				090F143F16807F2C0020EDC2 /* Story board */,
 				090F143716807E330020EDC2 /* App Delegate */,
 				090F13FF16807D220020EDC2 /* Supporting Files */,
 			);
@@ -253,6 +274,8 @@
 				090F143A16807EC80020EDC2 /* First table cell */,
 				090F142716807E2A0020EDC2 /* FirstTableViewController.h */,
 				090F142816807E2A0020EDC2 /* FirstTableViewController.m */,
+				090C2D1816830460008051F1 /* CoreDataTableViewController.h */,
+				090C2D1916830460008051F1 /* CoreDataTableViewController.m */,
 			);
 			name = "First table view";
 			sourceTree = "<group>";
@@ -300,7 +323,6 @@
 				090F14491680A92F0020EDC2 /* Categories */,
 				090F14731680A92F0020EDC2 /* Core */,
 				090F14831680A92F0020EDC2 /* CoreData+MagicalRecord.h */,
-				090F14A01680AAF10020EDC2 /* Q&ADataModel.xcdatamodeld */,
 			);
 			path = MagicalRecord;
 			sourceTree = "<group>";
@@ -399,10 +421,19 @@
 		090F14A61680ADF00020EDC2 /* First table view data */ = {
 			isa = PBXGroup;
 			children = (
-				090F14A31680AD940020EDC2 /* Question.h */,
-				090F14A41680AD940020EDC2 /* Question.m */,
+				090F14AB1680C0120020EDC2 /* JSON Data */,
+				090C2D0D1682EF5A008051F1 /* QuestionEntity */,
 			);
 			name = "First table view data";
+			sourceTree = "<group>";
+		};
+		090F14AB1680C0120020EDC2 /* JSON Data */ = {
+			isa = PBXGroup;
+			children = (
+				090F14AC1680C0B20020EDC2 /* JSON.h */,
+				090F14AD1680C0B20020EDC2 /* JSON.m */,
+			);
+			name = "JSON Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,7 +538,10 @@
 				090F149C1680A92F0020EDC2 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				090F149D1680A92F0020EDC2 /* MagicalRecord.m in Sources */,
 				090F14A21680AAF20020EDC2 /* Q&ADataModel.xcdatamodeld in Sources */,
-				090F14A51680AD940020EDC2 /* Question.m in Sources */,
+				090F14AE1680C0B20020EDC2 /* JSON.m in Sources */,
+				090C2D111682EFC5008051F1 /* Question+Insert.m in Sources */,
+				090C2D171682F313008051F1 /* Question.m in Sources */,
+				090C2D1A16830460008051F1 /* CoreDataTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +652,7 @@
 				090F141A16807D230020EDC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
@@ -628,8 +663,7 @@
 				090F14A11680AAF20020EDC2 /* Q&ADataModel.xcdatamodel */,
 			);
 			currentVersion = 090F14A11680AAF20020EDC2 /* Q&ADataModel.xcdatamodel */;
-			name = "Q&ADataModel.xcdatamodeld";
-			path = "../Q&ADataModel.xcdatamodeld";
+			path = "Q&ADataModel.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

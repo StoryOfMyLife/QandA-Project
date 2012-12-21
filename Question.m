@@ -1,8 +1,8 @@
 //
-//  FirstTableViewData.m
+//  Question.m
 //  Q&A
 //
-//  Created by 刘廷勇 on 12-12-18.
+//  Created by 刘廷勇 on 12-12-20.
 //  Copyright (c) 2012年 刘廷勇. All rights reserved.
 //
 
@@ -11,11 +11,11 @@
 
 @implementation Question
 
-@dynamic questionNumber;
-@dynamic questionTitle;
-@dynamic questionKeywords;
-@dynamic questionWhoAsked;
-@dynamic questionWhoAnswered;
 @dynamic answerCount;
+@dynamic questionKeywords;
+@dynamic questionID;
+@dynamic questionTitle;
+@dynamic questionWhoAnswered;
+@dynamic questionWhoAsked;
 
 @end

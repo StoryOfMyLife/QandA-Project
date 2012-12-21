@@ -157,18 +157,18 @@
         <scene sceneID="ycR-GM-nVO">
             <objects>
                 <tableViewController storyboardIdentifier="second table view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vf2-4A-UXf" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="r29-SD-p4l">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="r29-SD-p4l">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection id="GC7-W2-UcW">
+                            <tableViewSection id="UTF-Oo-tIo">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="43t-kI-oqP" detailTextLabel="tSr-wb-5R3" style="IBUITableViewCellStyleSubtitle" id="X0l-Mc-A9H">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="已解决1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="43t-kI-oqP">
@@ -190,10 +190,10 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ho6-TO-5Xo" detailTextLabel="nKu-Jn-W7Z" style="IBUITableViewCellStyleSubtitle" id="XVZ-by-cuu">
-                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="已解决2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ho6-TO-5Xo">
@@ -215,10 +215,10 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="u0g-Ef-gFa" detailTextLabel="Hef-pH-yoO" style="IBUITableViewCellStyleSubtitle" id="SjA-yw-sm4">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="已解决3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u0g-Ef-gFa">
@@ -287,7 +287,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="已解决"/>
-                                    <segment title="我的关注"/>
+                                    <segment title="全部问题"/>
                                     <segment title="未解决"/>
                                 </segments>
                                 <connections>
@@ -339,7 +339,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1010" contentMode="left" text="请问什么时候开学啊？" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dyg-IJ-IZg">
-                                            <rect key="frame" x="24" y="0.0" width="272" height="20"/>
+                                            <rect key="frame" x="35" y="0.0" width="272" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -373,8 +373,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="left" text="01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mdx-4o-NaE">
-                                            <rect key="frame" x="4" y="0.0" width="20" height="20"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="left" text="001" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mdx-4o-NaE">
+                                            <rect key="frame" x="4" y="0.0" width="29" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -387,8 +387,8 @@
                                     <outlet property="answerCount" destination="9Sx-zC-eso" id="1RT-ZW-xf0"/>
                                     <outlet property="questionAnsweredFrom" destination="Ox9-vx-aCp" id="v6M-ZN-o3v"/>
                                     <outlet property="questionAskedFrom" destination="YIQ-6u-s7i" id="wy0-6t-lAT"/>
+                                    <outlet property="questionID" destination="mdx-4o-NaE" id="xAM-kE-Qiq"/>
                                     <outlet property="questionKeywords" destination="GZI-p9-aZc" id="u5a-0X-xgb"/>
-                                    <outlet property="questionNumber" destination="mdx-4o-NaE" id="mGE-v1-5YN"/>
                                     <outlet property="questionTitle" destination="dyg-IJ-IZg" id="8HN-Dd-ew0"/>
                                     <segue destination="e0A-as-mwB" kind="push" identifier="push to detail" id="OcA-mW-Y6P"/>
                                 </connections>
@@ -406,12 +406,12 @@
             </objects>
             <point key="canvasLocation" x="-807" y="-1599"/>
         </scene>
-        <!--First Detail Table View Controller - 我的关注-->
+        <!--First Detail Table View Controller - 全部问题-->
         <scene sceneID="rGK-3D-kKl">
             <objects>
                 <tableViewController id="e0A-as-mwB" customClass="FirstDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" id="KMa-r4-w8H">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -467,7 +467,8 @@
                             <outlet property="delegate" destination="e0A-as-mwB" id="gGO-tJ-QaW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="我的关注" id="nbK-KM-cHb"/>
+                    <navigationItem key="navigationItem" title="全部问题" id="nbK-KM-cHb"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ew1-0h-QLr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -479,11 +480,11 @@
             <objects>
                 <viewController id="q8g-Kk-oCD" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xbV-7f-jrk">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Default-568h@2x.png" id="7hA-f8-uv0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -500,7 +501,7 @@
             <objects>
                 <viewController id="8IZ-Ue-weo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oGy-Ov-Vsl">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="详细内容" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fpe-8v-fKE">
