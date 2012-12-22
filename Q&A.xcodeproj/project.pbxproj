@@ -31,6 +31,10 @@
 		090F149F1680AA7F0020EDC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F149E1680AA7F0020EDC2 /* CoreData.framework */; };
 		090F14A21680AAF20020EDC2 /* Q&ADataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 090F14A01680AAF10020EDC2 /* Q&ADataModel.xcdatamodeld */; };
 		090F14AE1680C0B20020EDC2 /* JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F14AD1680C0B20020EDC2 /* JSON.m */; };
+		091DA6591685E55000BC4D11 /* SVStatusHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 091DA6551685E55000BC4D11 /* SVStatusHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		091DA65A1685E55000BC4D11 /* wifi_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DA6561685E55000BC4D11 /* wifi_@2x.png */; };
+		091DA65B1685E55000BC4D11 /* wifi_break.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DA6571685E55000BC4D11 /* wifi_break.png */; };
+		091DA65C1685E55000BC4D11 /* wifi_break@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DA6581685E55000BC4D11 /* wifi_break@2x.png */; };
 		09CEC91D1684DC6300CBC403 /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC8E51684DC6300CBC403 /* MagicalImportFunctions.m */; };
 		09CEC91E1684DC6300CBC403 /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC8E71684DC6300CBC403 /* NSAttributeDescription+MagicalDataImport.m */; };
 		09CEC91F1684DC6300CBC403 /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC8E91684DC6300CBC403 /* NSEntityDescription+MagicalDataImport.m */; };
@@ -98,6 +102,11 @@
 		090F14A11680AAF20020EDC2 /* Q&ADataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Q&ADataModel.xcdatamodel"; sourceTree = "<group>"; };
 		090F14AC1680C0B20020EDC2 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		090F14AD1680C0B20020EDC2 /* JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSON.m; sourceTree = "<group>"; };
+		091DA6541685E55000BC4D11 /* SVStatusHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVStatusHUD.h; sourceTree = "<group>"; };
+		091DA6551685E55000BC4D11 /* SVStatusHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVStatusHUD.m; sourceTree = "<group>"; };
+		091DA6561685E55000BC4D11 /* wifi_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifi_@2x.png"; sourceTree = "<group>"; };
+		091DA6571685E55000BC4D11 /* wifi_break.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wifi_break.png; sourceTree = "<group>"; };
+		091DA6581685E55000BC4D11 /* wifi_break@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifi_break@2x.png"; sourceTree = "<group>"; };
 		09CEC8E41684DC6300CBC403 /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		09CEC8E51684DC6300CBC403 /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		09CEC8E61684DC6300CBC403 /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -269,6 +278,7 @@
 		090F143916807E970020EDC2 /* First table view */ = {
 			isa = PBXGroup;
 			children = (
+				091DA6531685E55000BC4D11 /* SVStatusHUD */,
 				090F143816807E670020EDC2 /* First detail table view */,
 				090F14A61680ADF00020EDC2 /* First table view data */,
 				090F143A16807EC80020EDC2 /* First table cell */,
@@ -333,6 +343,18 @@
 				090F14AD1680C0B20020EDC2 /* JSON.m */,
 			);
 			name = "JSON Data";
+			sourceTree = "<group>";
+		};
+		091DA6531685E55000BC4D11 /* SVStatusHUD */ = {
+			isa = PBXGroup;
+			children = (
+				091DA6541685E55000BC4D11 /* SVStatusHUD.h */,
+				091DA6551685E55000BC4D11 /* SVStatusHUD.m */,
+				091DA6561685E55000BC4D11 /* wifi_@2x.png */,
+				091DA6571685E55000BC4D11 /* wifi_break.png */,
+				091DA6581685E55000BC4D11 /* wifi_break@2x.png */,
+			);
+			path = SVStatusHUD;
 			sourceTree = "<group>";
 		};
 		09CEC8E11684DC6300CBC403 /* MagicalRecord */ = {
@@ -493,6 +515,9 @@
 				090F140F16807D220020EDC2 /* Default-568h@2x.png in Resources */,
 				090F143E16807F260020EDC2 /* MainStoryboard.storyboard in Resources */,
 				090F144316807FFE0020EDC2 /* clock.png in Resources */,
+				091DA65A1685E55000BC4D11 /* wifi_@2x.png in Resources */,
+				091DA65B1685E55000BC4D11 /* wifi_break.png in Resources */,
+				091DA65C1685E55000BC4D11 /* wifi_break@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +567,7 @@
 				09CEC9341684DC6300CBC403 /* MagicalRecord+Setup.m in Sources */,
 				09CEC9351684DC6300CBC403 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				09CEC9361684DC6300CBC403 /* MagicalRecord.m in Sources */,
+				091DA6591685E55000BC4D11 /* SVStatusHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

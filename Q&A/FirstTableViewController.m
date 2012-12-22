@@ -10,6 +10,7 @@
 #import "FirstDetailTableViewController.h"
 #import "JSON.h"
 #import "Question.h"
+#import "SVStatusHUD.h"
 
 @interface FirstTableViewController () <MyJSONDelegate>
 
@@ -36,27 +37,35 @@
 	JSON *myJSON = [[JSON alloc] init];
 	myJSON.delegate = self;
 	[myJSON getJSONDataFromURL:kURL intoDocument:nil];
-
+	
 	NSLog(@"refreshed!");
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
+	//	self.parentViewController.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	self.debug = NO;
-	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(refresh:)];
+	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
 	self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
-	self.fetchedResultsController = [Question MR_fetchAllSortedBy:@"questionID" 
-                                                        ascending:YES 
-                                                    withPredicate:nil
-                                                          groupBy:nil
-                                                         delegate:self
-                                                        inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+	
+	[self setupFetchedResultsController];
+}
+
+- (void)setupFetchedResultsController
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Question"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"questionID" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+	
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
 }
 
 
@@ -119,6 +128,9 @@
 - (void)fetchJSONFailed
 {
 	NSLog(@"failed");
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[SVStatusHUD showWithImage:[UIImage imageNamed:@"wifi_"] withString1:@"加载失败" string2:@"请检查连接!" duration:1];
+	});	
 }
 
 - (void)fetchJSONDidFinished

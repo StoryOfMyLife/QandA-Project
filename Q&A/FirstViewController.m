@@ -23,8 +23,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	
 	//初始化segmentControl
 	self.segmentedControl.selectedSegmentIndex = 1;
+	
 	self.lastSelectedSegmentIndex = self.segmentedControl.selectedSegmentIndex;
 	for (int i = 0; i < 3; i++) {
 		[self.segmentedControl setImage:[UIImage imageNamed:@"clock"] forSegmentAtIndex:i];
@@ -32,6 +35,8 @@
 	//初始化待显示的子view
 	UIViewController *vc = [self viewControllerForSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self addChildViewController:vc];
+	//注意：添加手势一定要在addChildViewController后
+	[self addSwipeGestureIntoView:vc.view];
 	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
     vc.view.frame = rect;
     [self.view addSubview:vc.view];
@@ -76,14 +81,30 @@
 	}
 }
 
+- (void)addSwipeGestureIntoView:(UIView *)view
+{
+	//添加手势滑动
+	UISwipeGestureRecognizer *recognizerLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+	recognizerLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+	[view addGestureRecognizer:recognizerLeft];
+	
+	UISwipeGestureRecognizer *recognizerRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+	recognizerRight.direction = UISwipeGestureRecognizerDirectionRight;
+	[view addGestureRecognizer:recognizerRight];
+}
+
 #pragma mark - segmentedControl切换处理
-#warning 有bug，有时候视图会叠加
+#warning 有bug，点快的时候视图会叠加
 - (IBAction)didSegmentControlValueChange:(UISegmentedControl *)sender
 {
 	NSInteger currentSelectedSegmentIndex = sender.selectedSegmentIndex;
 	UIViewController *newVC = [self viewControllerForSegmentIndex:currentSelectedSegmentIndex];
+	
+	
+	
 	[self.currentViewController willMoveToParentViewController:nil];
     [self addChildViewController:newVC];
+	[self addSwipeGestureIntoView:newVC.view];
 	//以下是页面左右滑动切换效果的实现
 	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
 	CGPoint leftCenter = CGPointMake(rect.origin.x - rect.size.width / 2, rect.origin.y + rect.size.height / 2);
@@ -97,6 +118,7 @@
 	newVC.view.center = currentSelectedSegmentIndex > _lastSelectedSegmentIndex ? rightCenter :leftCenter;
 	//渐隐view来切换
 	newVC.view.alpha = 0;
+	
     [self transitionFromViewController:self.currentViewController toViewController:newVC duration:0.4 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		//这里添加改变view属性的代码来产生动画
 		newVC.view.center = currentSelectedSegmentIndex > _lastSelectedSegmentIndex ? lefterCenter : righterCenter;
@@ -112,6 +134,7 @@
 			[newVC didMoveToParentViewController:self];
 			self.currentViewController = newVC;
 			self.lastSelectedSegmentIndex = currentSelectedSegmentIndex;
+			//			[self.segmentedControl setEnabled:YES];
 		}];		
     }];	
 }
