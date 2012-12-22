@@ -13,8 +13,6 @@
 
 @interface FirstTableViewController () <MyJSONDelegate>
 
-//@property (nonatomic, strong) NSArray *questions;
-
 @end
 
 @implementation FirstTableViewController
@@ -28,95 +26,39 @@
     return self;
 }
 
-- (void)setQuestionDatabase:(UIManagedDocument *)questionDatabase
-{
-	if (_questionDatabase != questionDatabase) {
-		_questionDatabase = questionDatabase;
-		[self useDocument];
-	}
-}
-
-
-
-- (void)useDocument
-{
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.questionDatabase.fileURL path]]) {
-        // does not exist on disk, so create it
-        [self.questionDatabase saveToURL:self.questionDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-			if (success) {
-				[self setupFetchedResultsController];
-				JSON *myJSON = [[JSON alloc] init];
-				myJSON.delegate = self;
-				[myJSON getJSONDataFromURL:kURL intoDocument:self.questionDatabase];
-			} else {
-				NSLog(@"保存失败 at Path : %@", [self.questionDatabase.fileURL path]);
-			}
-            
-        }];
-    } else if (self.questionDatabase.documentState == UIDocumentStateClosed) {
-        // exists on disk, but we need to open it
-        [self.questionDatabase openWithCompletionHandler:^(BOOL success) {
-			if (success) {
-				[self setupFetchedResultsController];
-				JSON *myJSON = [[JSON alloc] init];
-				myJSON.delegate = self;
-				[myJSON getJSONDataFromURL:kURL intoDocument:self.questionDatabase];
-			} else {
-				NSLog(@"打开失败 at Path : %@", [self.questionDatabase.fileURL path]);
-			}
-            
-        }];
-    } else if (self.questionDatabase.documentState == UIDocumentStateNormal) {
-        // already open and ready to use
-        [self setupFetchedResultsController];
-    }
-}
-
-- (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
-{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Question"];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"questionID" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-    // no predicate because we want ALL the Photographers
-	
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]
-                                                                          sectionNameKeyPath:nil
-                                                                                   cacheName:nil];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-	[self setupFetchedResultsController];
-	
-	if (!self.questionDatabase) {  // for demo purposes, we'll create a default database if none is set
-        NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-        url = [url URLByAppendingPathComponent:@"Question Database"];
-//        // url is now "<Documents Directory>/Default Photo Database"
-        //self.questionDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // setter will create this for us on disk
-    }
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(documentStateChanged:) 
-												 name:UIDocumentStateChangedNotification 
-											   object:self.questionDatabase];
+}
+
+- (IBAction)refresh:(id)sender
+{
+	JSON *myJSON = [[JSON alloc] init];
+	myJSON.delegate = self;
+	[myJSON getJSONDataFromURL:kURL intoDocument:nil];
+
+	NSLog(@"refreshed!");
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super viewWillDisappear:animated];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.debug = YES;
+	self.debug = NO;
+	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(refresh:)];
+	self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
+	self.fetchedResultsController = [Question MR_fetchAllSortedBy:@"questionID" 
+                                                        ascending:YES 
+                                                    withPredicate:nil
+                                                          groupBy:nil
+                                                         delegate:self
+                                                        inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
 }
 
-- (void)documentStateChanged:(NSNotification *)notification
-{
-	NSLog(@"document state changed!");
-}
 
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{
@@ -154,45 +96,6 @@
 	cell.answerCount.text = question.answerCount;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -206,23 +109,21 @@
      */
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload 
+{
+	self.fetchedResultsController = nil;
 	[super viewDidUnload]; 
 }
 
 #pragma mark - JSON delegate
 - (void)fetchJSONFailed
 {
-	NSLog(@"path:%@, context:%@", [self.questionDatabase.fileURL path], self.questionDatabase.managedObjectContext);
 	NSLog(@"failed");
-	NSLog(@"%@", [self.fetchedResultsController description]);
 }
 
 - (void)fetchJSONDidFinished
 {
 	NSLog(@"success");
-	NSLog(@"%@", [self.fetchedResultsController description]);
 }
-
 
 @end

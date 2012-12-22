@@ -77,6 +77,7 @@
 }
 
 #pragma mark - segmentedControl切换处理
+#warning 有bug，有时候视图会叠加
 - (IBAction)didSegmentControlValueChange:(UISegmentedControl *)sender
 {
 	NSInteger currentSelectedSegmentIndex = sender.selectedSegmentIndex;

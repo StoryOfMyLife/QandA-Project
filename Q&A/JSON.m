@@ -21,34 +21,24 @@
 			//获取数据为空，报错
 			[self.delegate fetchJSONFailed];
 		} else {
-			[self saveData:jsonData intoDocument:document];
+			[self saveData:jsonData];
 		}
 	});	
 	dispatch_release(getJSONQ);
 }
 #pragma mark - 将数据存入数据库，并发出保存结束的消息
-- (void)saveData:(NSData *)jsonData intoDocument:(UIManagedDocument *)document
+- (void)saveData:(NSData *)jsonData
 {
-//	dispatch_queue_t saveQ = dispatch_queue_create("save data", NULL);
-//    dispatch_async(saveQ, ^{
-		
-        NSArray *questions = [self fetchData:jsonData];
-		NSAssert(questions != nil, @"没有获取数据...");
-	
+	NSArray *questions = [self fetchData:jsonData];
+	NSAssert(questions != nil, @"没有获取数据...");
+
 	NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
 
-		NSLog(@"%@", [document.fileURL path]);
-		for (NSDictionary *question in questions) {	
-			NSDictionary * newQuestion = [self extractDataFromData:question];
-			[Question insertNewQuestion:newQuestion inManagedObjectContext:context];
-			NSLog(@"%@", [question description]);
-		}
-//		[document saveToURL:document.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success) {
-//		}];
+	for (NSDictionary *question in questions) {	
+		NSDictionary * newQuestion = [self extractDataFromData:question];
+		[Question insertNewQuestion:newQuestion inManagedObjectContext:context];
+	}
 	[self.delegate fetchJSONDidFinished];
-
-//	});
-//    dispatch_release(saveQ);
 }
 
 //解析JSON数据
@@ -57,7 +47,6 @@
 	NSError *error = nil;
 	
     NSArray *results = jsonData ? [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:&error] : nil;
-//	NSLog(@"%d", [results count]);
     if (error) NSLog(@"[%@ %@] JSON error: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), error.localizedDescription);
 	
 	return results;

@@ -26,13 +26,17 @@
         // handle error
 		NSLog(@"ERROR: 出现重复数据!!!!");
     } else if ([matches count] == 0) {
-        question = [NSEntityDescription insertNewObjectForEntityForName:@"Question" inManagedObjectContext:context];
+		
+        question = [NSEntityDescription insertNewObjectForEntityForName:@"Question" inManagedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+//		question = [Question MR_createInContext:[NSManagedObjectContext MR_contextForCurrentThread]];
         question.questionTitle = [newQuestion objectForKey:@"title"];
 		question.questionKeywords = [newQuestion objectForKey:@"keywords"];
 		question.questionWhoAsked = [newQuestion objectForKey:@"whoAsked"];
 		question.questionWhoAnswered = [newQuestion objectForKey:@"whoAnswered"];
 		question.answerCount = [newQuestion objectForKey:@"answerCount"];
 		question.questionID = [newQuestion objectForKey:@"videoID"];
+		
+		[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
     } else {
         question = [matches lastObject];
     }

@@ -13,7 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-	[MagicalRecord setupCoreDataStackWithStoreNamed:@"QustionDatabase.sqlite"];
+	[MagicalRecord setupCoreDataStackWithStoreNamed:@"QuestionDatabase.sqlite"];
 	
     return YES;
 }

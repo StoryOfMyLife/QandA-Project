@@ -13,8 +13,6 @@
 
 @interface FirstTableViewController : CoreDataTableViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UIManagedDocument *questionDatabase;
-
 @property (nonatomic) NSInteger flag;
 
 @end
