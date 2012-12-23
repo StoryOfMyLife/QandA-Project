@@ -41,10 +41,15 @@
 	NSLog(@"refreshed!");
 }
 
+- (void)addQuestion
+{
+	
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	//	self.parentViewController.navigationItem.rightBarButtonItem.enabled = NO;
+	self.parentViewController.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)viewDidLoad
@@ -53,6 +58,7 @@
 	self.debug = NO;
 	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
 	self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
+	
 	
 	[self setupFetchedResultsController];
 }

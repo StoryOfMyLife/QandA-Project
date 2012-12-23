@@ -76,7 +76,7 @@
 	if (0 == indexPath.row) {
 		return 100;
 	} else {
-		return 44;
+		return 86;
 	}
 }
 

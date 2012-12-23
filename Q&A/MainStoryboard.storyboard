@@ -258,7 +258,7 @@
         <scene sceneID="LIo-Qd-xfJ">
             <objects>
                 <navigationController id="SRB-OB-vbJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的关注" id="jsc-HU-6cY"/>
+                    <tabBarItem key="tabBarItem" title="我的关注" image="first.png" id="jsc-HU-6cY"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
@@ -280,7 +280,7 @@
             <objects>
                 <viewController id="x54-9B-S83" customClass="FirstViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="leh-ec-RRN">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="LZL-pK-kdS" customClass="SDSegmentedControl">
@@ -298,30 +298,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="BYc-g4-3Pd" appends="YES" id="L9Z-Mt-IxJ"/>
-                            <outletCollection property="gestureRecognizers" destination="HOW-IW-eqW" appends="YES" id="Kwf-pC-gUQ"/>
-                        </connections>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="我的关注" id="tad-sa-wN0"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" title="我的关注" id="tad-sa-wN0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="5x9-co-oQr">
+                            <connections>
+                                <segue destination="vGN-IE-9Ob" kind="modal" id="oT4-Bq-S1X"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="segmentedControl" destination="LZL-pK-kdS" id="6sx-YP-YyI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaU-PE-rzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="BYc-g4-3Pd">
-                    <connections>
-                        <action selector="handleSwipe:" destination="x54-9B-S83" id="ZIl-r6-8fM"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="HOW-IW-eqW">
-                    <connections>
-                        <action selector="handleSwipe:" destination="x54-9B-S83" id="29n-VV-DGD"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1252" y="-1599"/>
         </scene>
@@ -479,6 +470,82 @@
             </objects>
             <point key="canvasLocation" x="-344" y="-1599"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NF2-G8-mlx">
+            <objects>
+                <navigationController storyboardIdentifier="new question" definesPresentationContext="YES" id="vGN-IE-9Ob" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="hnx-gs-X3j">
+                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tyd-MH-Y5v" kind="relationship" relationship="rootViewController" id="lWu-EN-nuf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="po1-lx-kRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-344" y="-2947"/>
+        </scene>
+        <!--New Question View Controller - 我要提问-->
+        <scene sceneID="WFx-Qh-qBX">
+            <objects>
+                <viewController id="tyd-MH-Y5v" customClass="NewQuestionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cdh-iO-aUv">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1mc-Cw-p5n">
+                                <rect key="frame" x="118" y="229" width="85" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="录制视频">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="videoRecord:" destination="tyd-MH-Y5v" eventType="touchUpInside" id="0pg-RX-uxf"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="问题：" id="CJc-AZ-Us9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="221"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tyd-MH-Y5v" id="HpG-9i-0OP"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="我要提问" id="e3S-Yq-rgg">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="uur-dg-8C8">
+                            <color key="tintColor" red="1" green="0.071701527439999996" blue="0.036325049540000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancel:" destination="tyd-MH-Y5v" id="uHc-bN-PmV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="提交" id="FLs-UB-x25">
+                            <color key="tintColor" red="0.0" green="0.61960786580000005" blue="0.81176477670000002" alpha="1" colorSpace="deviceRGB"/>
+                            <connections>
+                                <action selector="done:" destination="tyd-MH-Y5v" id="mIR-8c-48Z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="questionTextView" destination="CJc-AZ-Us9" id="XbH-Ga-U5P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o2Y-EN-KXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="-2947"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="fYK-XL-CYP">
             <objects>
@@ -528,7 +595,7 @@
         <scene sceneID="dzP-d6-W0i">
             <objects>
                 <navigationController id="0Tz-0u-Ndo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="全站搜索" id="epk-C4-daj"/>
+                    <tabBarItem key="tabBarItem" title="全站搜索" image="second2.png" id="epk-C4-daj"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="VfH-Qa-bTg">
@@ -548,7 +615,7 @@
         <scene sceneID="NPL-Sj-NFf">
             <objects>
                 <navigationController id="94s-IH-9B3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的问答" id="r7d-LC-GWQ"/>
+                    <tabBarItem key="tabBarItem" title="我的问答" image="third.png" id="r7d-LC-GWQ"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="QfO-L6-uEq">
@@ -568,6 +635,9 @@
     <resources>
         <image name="Default-568h@2x.png" width="640" height="1136"/>
         <image name="clock.png" width="25" height="25"/>
+        <image name="first.png" width="28" height="28"/>
+        <image name="second2.png" width="26" height="26"/>
+        <image name="third.png" width="24" height="24"/>
     </resources>
     <classes>
         <class className="CoreDataTableViewController" superclassName="UITableViewController">
@@ -599,6 +669,15 @@
                 <relationship kind="action" name="didSegmentControlValueChange:" candidateClass="UISegmentedControl"/>
                 <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="NewQuestionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQuestionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="videoRecord:"/>
+                <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
             </relationships>
         </class>
         <class className="SDSegmentedControl" superclassName="UISegmentedControl">
