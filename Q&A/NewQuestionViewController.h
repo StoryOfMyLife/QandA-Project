@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
 @interface NewQuestionViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextView *questionTextView;
+
+@property (nonatomic, strong) UIBarButtonItem *saveButton;
 
 @end

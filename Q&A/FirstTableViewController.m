@@ -30,6 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	self.parentViewController.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (IBAction)refresh:(id)sender
@@ -38,12 +39,8 @@
 	myJSON.delegate = self;
 	[myJSON getJSONDataFromURL:kURL intoDocument:nil];
 	
-	NSLog(@"refreshed!");
-}
-
-- (void)addQuestion
-{
 	
+	NSLog(@"refreshed!");
 }
 
 - (void)viewWillDisappear:(BOOL)animated

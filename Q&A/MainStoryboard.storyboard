@@ -252,7 +252,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jh3-3m-MaY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-807" y="-2237"/>
+            <point key="canvasLocation" x="-1252" y="-2835"/>
         </scene>
         <!--Navigation Controller - 我的关注-->
         <scene sceneID="LIo-Qd-xfJ">
@@ -268,53 +268,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="x54-9B-S83" kind="relationship" relationship="rootViewController" id="7kn-fb-SGU"/>
+                        <segue destination="LHP-tC-tQM" kind="relationship" relationship="rootViewController" id="DF4-le-ejH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xju-Ce-gA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1688" y="-1599"/>
-        </scene>
-        <!--First View Controller - 我的关注-->
-        <scene sceneID="3vm-IQ-bkX">
-            <objects>
-                <viewController id="x54-9B-S83" customClass="FirstViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="leh-ec-RRN">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="LZL-pK-kdS" customClass="SDSegmentedControl">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="已解决"/>
-                                    <segment title="全部问题"/>
-                                    <segment title="未解决"/>
-                                </segments>
-                                <connections>
-                                    <action selector="didSegmentControlValueChange:" destination="x54-9B-S83" eventType="valueChanged" id="E3t-2i-i01"/>
-                                </connections>
-                            </segmentedControl>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="我的关注" id="tad-sa-wN0">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="5x9-co-oQr">
-                            <connections>
-                                <segue destination="vGN-IE-9Ob" kind="modal" id="oT4-Bq-S1X"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="segmentedControl" destination="LZL-pK-kdS" id="6sx-YP-YyI"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aaU-PE-rzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1252" y="-1599"/>
         </scene>
         <!--First Table View Controller - 我的关注-->
         <scene sceneID="7J7-v8-bof">
@@ -486,7 +445,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="po1-lx-kRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-344" y="-2947"/>
+            <point key="canvasLocation" x="-807" y="-2227"/>
         </scene>
         <!--New Question View Controller - 我要提问-->
         <scene sceneID="WFx-Qh-qBX">
@@ -496,21 +455,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1mc-Cw-p5n">
-                                <rect key="frame" x="118" y="229" width="85" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="录制视频">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="videoRecord:" destination="tyd-MH-Y5v" eventType="touchUpInside" id="0pg-RX-uxf"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="问题：" id="CJc-AZ-Us9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="221"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -544,7 +488,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o2Y-EN-KXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-2947"/>
+            <point key="canvasLocation" x="-344" y="-2227"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fYK-XL-CYP">
@@ -565,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8V-Ky-206" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="-2237"/>
+            <point key="canvasLocation" x="118" y="-2227"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="uYz-27-t2K">
@@ -589,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FMc-16-3ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="-1599"/>
+            <point key="canvasLocation" x="118" y="-1589"/>
         </scene>
         <!--Navigation Controller - 全站搜索-->
         <scene sceneID="dzP-d6-W0i">
@@ -631,6 +575,48 @@
             </objects>
             <point key="canvasLocation" x="-1688" y="-327"/>
         </scene>
+        <!--First View Controller - 我的关注-->
+        <scene sceneID="0g4-VE-1FD">
+            <objects>
+                <viewController id="LHP-tC-tQM" customClass="FirstViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SGm-Hv-ahf">
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="XgA-k5-mPn" customClass="SDSegmentedControl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="已解决"/>
+                                    <segment title="全部问题"/>
+                                    <segment title="未解决"/>
+                                </segments>
+                                <connections>
+                                    <action selector="didSegmentControlValueChange:" destination="LHP-tC-tQM" eventType="valueChanged" id="r9i-e9-ZAn"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="我的关注" id="73M-oR-ywU">
+                        <barButtonItem key="leftBarButtonItem" title="提问" id="oiL-f0-ugw">
+                            <connections>
+                                <segue destination="vGN-IE-9Ob" kind="modal" id="NRo-UN-7EE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="XgA-k5-mPn" id="A4m-f6-yNm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DjR-LT-opA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1252" y="-1599"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Default-568h@2x.png" width="640" height="1136"/>
@@ -659,15 +645,10 @@
         </class>
         <class className="FirstTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refresh:"/>
-            </relationships>
         </class>
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
-                <relationship kind="action" name="didSegmentControlValueChange:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
             </relationships>
         </class>

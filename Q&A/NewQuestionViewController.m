@@ -8,10 +8,10 @@
 
 #import "NewQuestionViewController.h"
 #import "Question+Insert.h"
+#import "NewQuestionViewController+KeyboardMethods.h"
+#import "NewQuestionViewController+CameraDelegateMethods.h"
 
 @interface NewQuestionViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
-@property (nonatomic, strong) UIBarButtonItem *saveButton;
 
 @end
 
@@ -22,21 +22,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
-	//自定义键盘
-	UIToolbar * topView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];  
-    [topView setBarStyle:UIBarStyleBlackTranslucent];
-    
-    UIBarButtonItem *btnSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];    
-    
-    [topView setItems:@[btnSpace, doneButton]];
-    [self.questionTextView setInputAccessoryView:topView];
-	
-	[self.questionTextView becomeFirstResponder];
+	[self customizeKeyboard];
 }
 
 - (IBAction)cancel:(id)sender {
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)done:(id)sender {
@@ -50,30 +40,13 @@
 	question.questionID = @"000";
 	
 	[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
-	
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+
+	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)videoRecord:(id)sender 
 {
-	UIImagePickerController *myImagePicker = [[UIImagePickerController alloc] init];
-	myImagePicker.delegate = self;
-	myImagePicker.allowsEditing = YES;
-	[self presentModalViewController:myImagePicker animated:YES];
-}
-
-- (void)dismissKeyBoard
-{
-	[self.questionTextView resignFirstResponder];
-	self.navigationItem.rightBarButtonItem = self.saveButton;
-}
-
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-	self.saveButton = self.navigationItem.rightBarButtonItem;
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)]; 
-	self.navigationItem.rightBarButtonItem = doneButton;
-	return YES;
+	[self startCameraControllerFromViewController:self usingDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
