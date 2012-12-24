@@ -1,22 +1,23 @@
 //
-//  FirstTableViewController.m
-//  问答系统
+//  SecondTableViewController.m
+//  Q&A
 //
-//  Created by 刘廷勇 on 12-12-17.
+//  Created by 刘廷勇 on 12-12-24.
 //  Copyright (c) 2012年 刘廷勇. All rights reserved.
 //
 
-#import "FirstTableViewController.h"
+#import "SecondTableViewController.h"
 #import "FirstDetailTableViewController.h"
 #import "JSON.h"
 #import "Question.h"
 #import "SVStatusHUD.h"
 
-@interface FirstTableViewController () <MyJSONDelegate>
+@interface SecondTableViewController () <MyJSONDelegate>
 
 @end
 
-@implementation FirstTableViewController
+@implementation SecondTableViewController
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,7 +39,8 @@
 	JSON *myJSON = [[JSON alloc] init];
 	myJSON.delegate = self;
 	[myJSON getJSONDataFromURL:kURL intoDocument:nil];
-		
+	
+	
 	NSLog(@"refreshed!");
 }
 
@@ -54,7 +56,7 @@
 	self.debug = NO;
 	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
 	self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
-		
+	
 	[self setupFetchedResultsController];
 }
 
@@ -62,13 +64,14 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Question"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"questionID" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+	request.predicate = [NSPredicate predicateWithFormat:@"%K like %@", @"answerCount", @"(0)"];
 	request.fetchLimit = 10;
+
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]
                                                                           sectionNameKeyPath:nil
                                                                                    cacheName:nil];
 }
-
 
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{

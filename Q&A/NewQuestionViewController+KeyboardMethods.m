@@ -10,20 +10,23 @@
 
 @implementation NewQuestionViewController (KeyboardMethods)
 
-- (void)customizeKeyboard
+- (void)customizeKeyboardOfTextView:(UITextView *)textView
 {
 	//自定义键盘
 	UIToolbar * topView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];  
     [topView setBarStyle:UIBarStyleBlackTranslucent];
+	topView.alpha = 0;
     
     UIBarButtonItem *btnSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-	UIBarButtonItem *videoButton = [[UIBarButtonItem alloc] initWithTitle:@"录视频" style:UIBarButtonItemStyleBordered target:self action:@selector(videoRecord:)];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];    
-    
-    [topView setItems:@[videoButton, btnSpace, doneButton]];
-    [self.questionTextView setInputAccessoryView:topView];
+//	UIBarButtonItem *videoButton = [[UIBarButtonItem alloc] initWithTitle:@"录视频" style:UIBarButtonItemStyleBordered target:self action:@selector(videoRecord:)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"隐藏键盘" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];    
 	
-	[self.questionTextView becomeFirstResponder];
+	UIBarButtonItem *videoBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(videoRecord:)];
+	
+    [topView setItems:@[videoBtn, btnSpace, doneButton] animated:YES];
+    [textView setInputAccessoryView:topView];
+	
+	[textView becomeFirstResponder];
 }
 
 - (void)dismissKeyBoard

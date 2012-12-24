@@ -48,6 +48,8 @@
 		091DA69216876B4E00BC4D11 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091DA69116876B4E00BC4D11 /* MobileCoreServices.framework */; };
 		091DA69516876E9A00BC4D11 /* NewQuestionViewController+CameraDelegateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 091DA69416876E9A00BC4D11 /* NewQuestionViewController+CameraDelegateMethods.m */; };
 		091DA69B16877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 091DA69A16877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.m */; };
+		095900A916888E790027D1E8 /* SecondTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 095900A816888E790027D1E8 /* SecondTableViewController.m */; };
+		095900AD16888E900027D1E8 /* ThirdTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 095900AC16888E900027D1E8 /* ThirdTableViewController.m */; };
 		09CEC91D1684DC6300CBC403 /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC8E51684DC6300CBC403 /* MagicalImportFunctions.m */; };
 		09CEC91E1684DC6300CBC403 /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC8E71684DC6300CBC403 /* NSAttributeDescription+MagicalDataImport.m */; };
 		09CEC91F1684DC6300CBC403 /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC8E91684DC6300CBC403 /* NSEntityDescription+MagicalDataImport.m */; };
@@ -136,6 +138,10 @@
 		091DA69416876E9A00BC4D11 /* NewQuestionViewController+CameraDelegateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewQuestionViewController+CameraDelegateMethods.m"; sourceTree = "<group>"; };
 		091DA69916877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewQuestionViewController+KeyboardMethods.h"; sourceTree = "<group>"; };
 		091DA69A16877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewQuestionViewController+KeyboardMethods.m"; sourceTree = "<group>"; };
+		095900A716888E790027D1E8 /* SecondTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondTableViewController.h; sourceTree = "<group>"; };
+		095900A816888E790027D1E8 /* SecondTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondTableViewController.m; sourceTree = "<group>"; };
+		095900AB16888E900027D1E8 /* ThirdTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdTableViewController.h; sourceTree = "<group>"; };
+		095900AC16888E900027D1E8 /* ThirdTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdTableViewController.m; sourceTree = "<group>"; };
 		09CEC8E41684DC6300CBC403 /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		09CEC8E51684DC6300CBC403 /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		09CEC8E61684DC6300CBC403 /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -321,6 +327,10 @@
 				090F143A16807EC80020EDC2 /* First table cell */,
 				090F142716807E2A0020EDC2 /* FirstTableViewController.h */,
 				090F142816807E2A0020EDC2 /* FirstTableViewController.m */,
+				095900A716888E790027D1E8 /* SecondTableViewController.h */,
+				095900A816888E790027D1E8 /* SecondTableViewController.m */,
+				095900AB16888E900027D1E8 /* ThirdTableViewController.h */,
+				095900AC16888E900027D1E8 /* ThirdTableViewController.m */,
 				090C2D1816830460008051F1 /* CoreDataTableViewController.h */,
 				090C2D1916830460008051F1 /* CoreDataTableViewController.m */,
 			);
@@ -634,6 +644,8 @@
 				091DA68216873DD100BC4D11 /* NewQuestionViewController.m in Sources */,
 				091DA69516876E9A00BC4D11 /* NewQuestionViewController+CameraDelegateMethods.m in Sources */,
 				091DA69B16877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.m in Sources */,
+				095900A916888E790027D1E8 /* SecondTableViewController.m in Sources */,
+				095900AD16888E900027D1E8 /* ThirdTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,6 @@
 
 @interface NewQuestionViewController (KeyboardMethods)
 
-- (void)customizeKeyboard;
+- (void)customizeKeyboardOfTextView:(UITextView *)textView;
 
 @end

@@ -56,8 +56,7 @@
     UIImage *originalImage, *editedImage, *imageToSave;
 	
     // Handle a still image capture
-    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
-		== kCFCompareEqualTo) {
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo) {
 		
         editedImage = (UIImage *) [info objectForKey:
 								   UIImagePickerControllerEditedImage];
@@ -75,8 +74,7 @@
     }
 	
     // Handle a movie capture
-    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0)
-		== kCFCompareEqualTo) {
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
 		
         NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
 		

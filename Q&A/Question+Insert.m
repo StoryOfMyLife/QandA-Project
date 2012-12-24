@@ -16,6 +16,7 @@
 	
 	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Question"];
     request.predicate = [NSPredicate predicateWithFormat:@"%K like %@", @"questionID", [newQuestion objectForKey:@"videoID"]];
+	request.fetchLimit = 10;
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"questionID" ascending:YES];	
 	request.sortDescriptors = @[sortDescriptor];
 						 
