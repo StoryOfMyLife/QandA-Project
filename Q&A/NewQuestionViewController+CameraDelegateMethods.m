@@ -39,13 +39,70 @@
     return YES;
 }
 
+- (BOOL)startPhotoControllerFromViewController: (UIViewController*) controller
+								  usingDelegate: (id <UIImagePickerControllerDelegate,
+												  UINavigationControllerDelegate>) delegate 
+{	
+    if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO) ||
+		(delegate == nil) ||
+		(controller == nil)) {
+		return NO;
+	}
+	
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+	
+    // Displays a control that allows the user to choose picture or
+    // movie capture, if both are available:
+    cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+	
+    // Hides the controls for moving & scaling pictures, or for
+    // trimming movies. To instead show the controls, use YES.
+    cameraUI.allowsEditing = NO;
+	
+	cameraUI.mediaTypes = @[(NSString *)kUTTypeImage];
+	
+    cameraUI.delegate = delegate;
+	
+	[controller presentViewController:cameraUI animated:YES completion:nil];
+    return YES;
+}
+
+- (BOOL)startVideoControllerFromViewController: (UIViewController*) controller
+								  usingDelegate: (id <UIImagePickerControllerDelegate,
+												  UINavigationControllerDelegate>) delegate 
+{	
+    if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO) ||
+		(delegate == nil) ||
+		(controller == nil)) {
+		return NO;
+	}
+	
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+	
+    // Displays a control that allows the user to choose picture or
+    // movie capture, if both are available:
+    cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+	
+    // Hides the controls for moving & scaling pictures, or for
+    // trimming movies. To instead show the controls, use YES.
+    cameraUI.allowsEditing = NO;
+	
+	cameraUI.mediaTypes = @[(NSString *)kUTTypeMovie];
+	
+    cameraUI.delegate = delegate;
+	
+	[controller presentViewController:cameraUI animated:YES completion:nil];
+    return YES;
+}
+
+
+
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
 	
-	[self dismissViewControllerAnimated:YES completion:^{
-		NSLog(@"%@", self);
-		NSLog(@"%@", [picker parentViewController]);
-	}];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // For responding to the user accepting a newly-captured picture or movie

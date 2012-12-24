@@ -12,13 +12,11 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="page3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jmJ-9n-EVy">
-                                <rect key="frame" x="139" y="326" width="48" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <webView contentMode="scaleToFill" id="4nW-dC-Yb9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -37,20 +35,33 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="page2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="woR-eZ-kMv">
-                                <rect key="frame" x="139" y="173" width="48" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" placeholder="搜索问题" id="Nfn-s9-HqD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Jgh-wa-cUD" id="mFe-md-gqj"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="全站搜索" id="Jem-11-dzA"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="n0m-I7-8xu" id="H0p-lT-c6V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a1v-9G-NQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="n0m-I7-8xu">
+                    <connections>
+                        <outlet property="delegate" destination="Jgh-wa-cUD" id="OfT-ru-wjl"/>
+                        <outlet property="searchBar" destination="Nfn-s9-HqD" id="LjP-E1-wKh"/>
+                        <outlet property="searchContentsController" destination="Jgh-wa-cUD" id="BUj-Q8-r7i"/>
+                        <outlet property="searchResultsDataSource" destination="Jgh-wa-cUD" id="IiR-Se-Bp9"/>
+                        <outlet property="searchResultsDelegate" destination="Jgh-wa-cUD" id="Yzb-LL-GS0"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-4340" y="-1933"/>
         </scene>
@@ -454,18 +465,6 @@
                                     <outlet property="delegate" destination="tyd-MH-Y5v" id="HpG-9i-0OP"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gpD-X9-sNh">
-                                <rect key="frame" x="124" y="199" width="73" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -476,7 +475,7 @@
                                 <action selector="cancel:" destination="tyd-MH-Y5v" id="uHc-bN-PmV"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="提交" id="FLs-UB-x25">
+                        <barButtonItem key="rightBarButtonItem" title="发送" id="FLs-UB-x25">
                             <color key="tintColor" red="0.0" green="0.61960786580000005" blue="0.81176477670000002" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <action selector="done:" destination="tyd-MH-Y5v" id="mIR-8c-48Z"/>
@@ -646,16 +645,23 @@
         </class>
         <class className="FirstTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh:"/>
+            </relationships>
         </class>
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
+                <relationship kind="action" name="didSegmentControlValueChange:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
             </relationships>
         </class>
         <class className="NewQuestionViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQuestionViewController.h"/>
             <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="videoRecord:"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
             </relationships>
         </class>
@@ -664,6 +670,9 @@
         </class>
         <class className="SecondTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh:"/>
+            </relationships>
         </class>
         <class className="TabBarViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarViewController.h"/>

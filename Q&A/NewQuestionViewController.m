@@ -11,8 +11,7 @@
 #import "NewQuestionViewController+KeyboardMethods.h"
 #import "NewQuestionViewController+CameraDelegateMethods.h"
 
-@interface NewQuestionViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
+@interface NewQuestionViewController ()
 @end
 
 @implementation NewQuestionViewController
@@ -22,6 +21,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[self customizeKeyboardOfTextView:self.questionTextView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self.questionTextView becomeFirstResponder];
 }
 
 - (IBAction)cancel:(id)sender {

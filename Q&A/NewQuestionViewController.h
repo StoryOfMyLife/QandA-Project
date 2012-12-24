@@ -10,7 +10,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 
-@interface NewQuestionViewController : UIViewController
+@interface NewQuestionViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+
 
 @property (strong, nonatomic) IBOutlet UITextView *questionTextView;
 

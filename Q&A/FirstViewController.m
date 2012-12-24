@@ -36,7 +36,7 @@
 	UIViewController *vc = [self viewControllerForSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self addChildViewController:vc];
 	//注意：添加手势一定要在addChildViewController后
-	[self addSwipeGestureIntoView:vc.view];
+	//[self addSwipeGestureIntoView:vc.view];
 	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
     vc.view.frame = rect;
     [self.view addSubview:vc.view];
@@ -104,7 +104,7 @@
 	
 	[self.currentViewController willMoveToParentViewController:nil];
     [self addChildViewController:newVC];
-	[self addSwipeGestureIntoView:newVC.view];
+	//[self addSwipeGestureIntoView:newVC.view];
 	//以下是页面左右滑动切换效果的实现
 	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
 	CGPoint leftCenter = CGPointMake(rect.origin.x - rect.size.width / 2, rect.origin.y + rect.size.height / 2);
