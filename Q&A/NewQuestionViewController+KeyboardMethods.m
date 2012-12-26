@@ -19,7 +19,6 @@
 	topView.alpha = 0;
     
     UIBarButtonItem *btnSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-//	UIBarButtonItem *videoButton = [[UIBarButtonItem alloc] initWithTitle:@"录视频" style:UIBarButtonItemStyleBordered target:self action:@selector(videoRecord:)];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"隐藏键盘" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];    
 	
 	UIBarButtonItem *videoBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(showVideoSytleChooseAction)];
@@ -33,19 +32,17 @@
 - (void)showVideoSytleChooseAction
 {
 	[self.questionTextView resignFirstResponder];
-	UIActionSheet *videoAction = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"录视频", nil];
+	UIActionSheet *videoAction = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"录新视频", @"从相册中选取", nil];
 	videoAction.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 	
 	[videoAction showInView:self.view];
 }
 
-- (void)actionSheetCancel:(UIActionSheet *)actionSheet{
-	[self.questionTextView becomeFirstResponder];
-}
-- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-	if (buttonIndex == 0) {
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 1) {
 		[self startPhotoControllerFromViewController:self usingDelegate:self];
-	} else if (buttonIndex == 1) {
+	} else if (buttonIndex == 0) {
 		[self startVideoControllerFromViewController:self usingDelegate:self];
 	} else if (buttonIndex == 2) {
 		[self.questionTextView becomeFirstResponder];
@@ -57,7 +54,6 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex{
     //
 }
-
 
 - (void)dismissKeyBoard
 {

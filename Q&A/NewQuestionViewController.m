@@ -20,6 +20,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+	self.questionTextView.placeholder = NSLocalizedString(@"请输入问题:",);
 	[self customizeKeyboardOfTextView:self.questionTextView];
 }
 

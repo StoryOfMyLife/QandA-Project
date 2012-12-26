@@ -10,9 +10,8 @@
 
 @implementation NewQuestionViewController (CameraDelegateMethods)
 
-- (BOOL)startCameraControllerFromViewController: (UIViewController*) controller
-								  usingDelegate: (id <UIImagePickerControllerDelegate,
-												  UINavigationControllerDelegate>) delegate 
+- (BOOL)startCameraControllerFromViewController:(UIViewController *) controller
+								  usingDelegate:(id <UIImagePickerControllerDelegate,UINavigationControllerDelegate>)delegate 
 {	
     if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO) ||
 		(delegate == nil) ||
@@ -29,9 +28,7 @@
 	
     // Hides the controls for moving & scaling pictures, or for
     // trimming movies. To instead show the controls, use YES.
-    cameraUI.allowsEditing = NO;
-	
-	//	cameraUI.mediaTypes = @[(NSString *)kUTTypeMovie];
+    cameraUI.allowsEditing = YES;	
 	
     cameraUI.delegate = delegate;
 	
@@ -39,9 +36,8 @@
     return YES;
 }
 
-- (BOOL)startPhotoControllerFromViewController: (UIViewController*) controller
-								  usingDelegate: (id <UIImagePickerControllerDelegate,
-												  UINavigationControllerDelegate>) delegate 
+- (BOOL)startPhotoControllerFromViewController:(UIViewController *) controller
+								 usingDelegate:(id <UIImagePickerControllerDelegate,UINavigationControllerDelegate>)delegate 
 {	
     if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO) ||
 		(delegate == nil) ||
@@ -50,15 +46,11 @@
 	}
 	
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
-	
-    // Displays a control that allows the user to choose picture or
-    // movie capture, if both are available:
-    cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-	
+    cameraUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+		
     // Hides the controls for moving & scaling pictures, or for
     // trimming movies. To instead show the controls, use YES.
-    cameraUI.allowsEditing = NO;
+    cameraUI.allowsEditing = YES;
 	
 	cameraUI.mediaTypes = @[(NSString *)kUTTypeImage];
 	
@@ -68,9 +60,8 @@
     return YES;
 }
 
-- (BOOL)startVideoControllerFromViewController: (UIViewController*) controller
-								  usingDelegate: (id <UIImagePickerControllerDelegate,
-												  UINavigationControllerDelegate>) delegate 
+- (BOOL)startVideoControllerFromViewController:(UIViewController*) controller
+								 usingDelegate:(id<UIImagePickerControllerDelegate,UINavigationControllerDelegate>)delegate 
 {	
     if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO) ||
 		(delegate == nil) ||
@@ -80,19 +71,18 @@
 	
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
     cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
-	
-    // Displays a control that allows the user to choose picture or
-    // movie capture, if both are available:
-    cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+	cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+	cameraUI.videoQuality = UIImagePickerControllerQualityTypeLow;
+	cameraUI.videoMaximumDuration = 60;
 	
     // Hides the controls for moving & scaling pictures, or for
     // trimming movies. To instead show the controls, use YES.
-    cameraUI.allowsEditing = NO;
+    cameraUI.allowsEditing = YES;
 	
 	cameraUI.mediaTypes = @[(NSString *)kUTTypeMovie];
 	
     cameraUI.delegate = delegate;
-	
+		
 	[controller presentViewController:cameraUI animated:YES completion:nil];
     return YES;
 }
@@ -100,15 +90,14 @@
 
 
 // For responding to the user tapping Cancel.
-- (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-	
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{	
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // For responding to the user accepting a newly-captured picture or movie
-- (void) imagePickerController: (UIImagePickerController *) picker
- didFinishPickingMediaWithInfo: (NSDictionary *) info {
-	
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{	
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
     UIImage *originalImage, *editedImage, *imageToSave;
 	
@@ -142,5 +131,6 @@
 	
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 @end

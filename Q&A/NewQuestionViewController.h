@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/UTCoreTypes.h>
+#import "GCPlaceholderTextView.h"
 
 @interface NewQuestionViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 
-@property (strong, nonatomic) IBOutlet UITextView *questionTextView;
+@property (strong, nonatomic) IBOutlet GCPlaceholderTextView *questionTextView;
 
 @property (nonatomic, strong) UIBarButtonItem *saveButton;
 

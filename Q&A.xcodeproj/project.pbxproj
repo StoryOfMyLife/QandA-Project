@@ -76,6 +76,8 @@
 		09CEC9341684DC6300CBC403 /* MagicalRecord+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC9161684DC6300CBC403 /* MagicalRecord+Setup.m */; };
 		09CEC9351684DC6300CBC403 /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC9181684DC6300CBC403 /* MagicalRecord+ShorthandSupport.m */; };
 		09CEC9361684DC6300CBC403 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC91A1684DC6300CBC403 /* MagicalRecord.m */; };
+		09E189DF168945E000E262CD /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E189DE168945E000E262CD /* icon.png */; };
+		09E189F3168B45B700E262CD /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E189F2168B45B700E262CD /* GCPlaceholderTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,7 +92,6 @@
 		090F13FA16807D220020EDC2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		090F13FC16807D220020EDC2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		090F140016807D220020EDC2 /* Q&A-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Q&A-Info.plist"; sourceTree = "<group>"; };
-		090F140216807D220020EDC2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		090F140416807D220020EDC2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		090F140616807D220020EDC2 /* Q&A-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Q&A-Prefix.pch"; sourceTree = "<group>"; };
 		090F140A16807D220020EDC2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -196,6 +197,10 @@
 		09CEC91A1684DC6300CBC403 /* MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalRecord.m; sourceTree = "<group>"; };
 		09CEC91B1684DC6300CBC403 /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		09CEC91C1684DC6300CBC403 /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
+		09E189DE168945E000E262CD /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		09E189E6168A000300E262CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		09E189F1168B45B700E262CD /* GCPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlaceholderTextView.h; sourceTree = "<group>"; };
+		09E189F2168B45B700E262CD /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +237,7 @@
 		090F13E916807D220020EDC2 = {
 			isa = PBXGroup;
 			children = (
+				09E189DE168945E000E262CD /* icon.png */,
 				090F13FE16807D220020EDC2 /* Q&A */,
 				090F13F716807D220020EDC2 /* Frameworks */,
 				090F13F516807D220020EDC2 /* Products */,
@@ -414,6 +420,7 @@
 		091DA67B16873D6400BC4D11 /* New Question View */ = {
 			isa = PBXGroup;
 			children = (
+				09E189EF168B459500E262CD /* textView with placeholder */,
 				091DA68016873DD100BC4D11 /* NewQuestionViewController.h */,
 				091DA68116873DD100BC4D11 /* NewQuestionViewController.m */,
 				091DA69316876E9A00BC4D11 /* NewQuestionViewController+CameraDelegateMethods.h */,
@@ -525,6 +532,15 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		09E189EF168B459500E262CD /* textView with placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				09E189F1168B45B700E262CD /* GCPlaceholderTextView.h */,
+				09E189F2168B45B700E262CD /* GCPlaceholderTextView.m */,
+			);
+			name = "textView with placeholder";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -560,6 +576,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 090F13E916807D220020EDC2;
 			productRefGroup = 090F13F516807D220020EDC2 /* Products */;
@@ -591,6 +608,7 @@
 				091DA66C1685F27100BC4D11 /* second2@2x.png in Resources */,
 				091DA66D1685F27100BC4D11 /* third.png in Resources */,
 				091DA66E1685F27100BC4D11 /* third@2x.png in Resources */,
+				09E189DF168945E000E262CD /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +664,7 @@
 				091DA69B16877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.m in Sources */,
 				095900A916888E790027D1E8 /* SecondTableViewController.m in Sources */,
 				095900AD16888E900027D1E8 /* ThirdTableViewController.m in Sources */,
+				09E189F3168B45B700E262CD /* GCPlaceholderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,7 +674,7 @@
 		090F140116807D220020EDC2 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				090F140216807D220020EDC2 /* en */,
+				09E189E6168A000300E262CD /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

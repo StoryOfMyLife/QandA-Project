@@ -10,13 +10,13 @@
 
 @interface NewQuestionViewController (CameraDelegateMethods)
 
-- (BOOL)startCameraControllerFromViewController: (UIViewController*) controller
+- (BOOL)startCameraControllerFromViewController: (UIViewController *) controller
 								  usingDelegate: (id <UIImagePickerControllerDelegate,
 												  UINavigationControllerDelegate>) delegate;
-- (BOOL)startPhotoControllerFromViewController: (UIViewController*) controller
+- (BOOL)startPhotoControllerFromViewController: (UIViewController *) controller
 								 usingDelegate: (id <UIImagePickerControllerDelegate,
 												 UINavigationControllerDelegate>) delegate;
-- (BOOL)startVideoControllerFromViewController: (UIViewController*) controller
+- (BOOL)startVideoControllerFromViewController: (UIViewController *) controller
 								 usingDelegate: (id <UIImagePickerControllerDelegate,
 												 UINavigationControllerDelegate>) delegate;
 

@@ -55,7 +55,7 @@
 	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
 	self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
 		
-	[self setupFetchedResultsController];
+	[self setupFetchedResultsController];	
 }
 
 - (void)setupFetchedResultsController
@@ -117,6 +117,19 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) 
+    {
+        Question *selectedPerson  = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        // Remove the person
+        [selectedPerson MR_deleteInContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+        
+        [[NSManagedObjectContext MR_contextForCurrentThread] MR_save];		
+    }
 }
 
 - (void)viewDidUnload 
