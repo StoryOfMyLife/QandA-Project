@@ -31,15 +31,17 @@
 }
 
 - (IBAction)cancel:(id)sender {
-	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)done:(id)sender {
 	Question *question = [NSEntityDescription insertNewObjectForEntityForName:@"Question" inManagedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]];
 	//		question = [Question MR_createInContext:[NSManagedObjectContext MR_contextForCurrentThread]];
 	question.questionTitle = self.questionTextView.text;
-	question.questionKeywords = @"【词1,词2,词3】";
-	NSString *date = (NSString *)[NSDate date];
+	question.questionKeywords = @"【关键词1,关键词2,关键词3】";
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	NSString *date = [dateFormatter stringFromDate:[NSDate date]];
 	question.questionWhoAsked = [NSString stringWithFormat:@"发布人：刘廷勇  %@", date];
 	question.questionWhoAnswered = @"最后回答：还没人回答";
 	question.answerCount = @"(0)";
@@ -47,7 +49,7 @@
 	
 	[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
 
-	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)videoRecord:(id)sender 

@@ -7,6 +7,8 @@
 //
 
 #import "NewQuestionViewController+CameraDelegateMethods.h"
+#import "AFHTTPClient.h"
+#import "AFHTTPRequestOperation.h"
 
 @implementation NewQuestionViewController (CameraDelegateMethods)
 
@@ -122,11 +124,50 @@
     // Handle a movie capture
     if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
 		
-        NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+//        NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+		NSURL *movieURL = [info objectForKey:UIImagePickerControllerMediaURL];
+		NSData *videoData = [NSData dataWithContentsOfURL:movieURL];
 		
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(moviePath)) {
-            UISaveVideoAtPathToSavedPhotosAlbum(moviePath, nil, nil, nil);
-        }
+		NSString *cameraInfo;
+		if(picker.cameraDevice == UIImagePickerControllerCameraDeviceFront) {
+			cameraInfo = @"ios.front";
+		} else {
+			cameraInfo = @"behind";
+		}
+		
+		NSString *uploadURLString = @"http://218.249.255.29:9080/nesdu-webapp/api/video/upload";
+		NSString *paramString = @"?duration=30s&encode=h.264&fileType=mov&cameraInfo=ios.front";
+		NSURL *uploadURL = [NSURL URLWithString:[uploadURLString stringByAppendingString:paramString]];
+				
+		AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:uploadURL];
+		NSMutableURLRequest *request = [Client multipartFormRequestWithMethod:@"POST" path:paramString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+			[formData appendPartWithFileData:videoData name:@"file" fileName:@"iosVideo.mov" mimeType:@"video/quickTime"];
+		}];
+		
+		AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+		//上传进度
+		[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+			NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+		}];
+		//上传信息反馈
+		[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+			NSLog(@"上传成功");
+			NSLog(@"response is : %@", operation.responseString);
+		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+			NSLog(@"%@", error);
+		}];
+		[operation start];
+
+		//保存到本地路径
+//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, nil);
+//		NSString *documentPath = paths[0];
+//		documentPath = [documentPath stringByAppendingPathComponent:@"recordVideo"];
+//		[videoData writeToFile:documentPath atomically:YES];
+		
+//		//保存到相册
+//        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(moviePath)) {
+//            UISaveVideoAtPathToSavedPhotosAlbum(moviePath, nil, nil, nil);
+//        }
     }
 	
     [self dismissViewControllerAnimated:YES completion:nil];

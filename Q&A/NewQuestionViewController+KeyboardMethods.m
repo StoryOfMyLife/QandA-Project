@@ -38,7 +38,7 @@
 	[videoAction showInView:self.view];
 }
 
-- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if (buttonIndex == 1) {
 		[self startPhotoControllerFromViewController:self usingDelegate:self];

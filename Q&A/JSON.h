@@ -28,4 +28,6 @@
 */
 - (void)getJSONDataFromURL:(NSString *)url intoDocument:(UIManagedDocument *)document;
 
+- (void)getJSONDataFromURL:(NSString *)urlString;
+
 @end

@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
-#import "FirstTableCell.h"
+#import "QuestionCell.h"
 
 @interface FirstTableViewController : CoreDataTableViewController <UITableViewDataSource, UITableViewDelegate>
 

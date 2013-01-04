@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 刘廷勇. All rights reserved.
 //
 
-#import "FirstTableCell.h"
+#import "QuestionCell.h"
 
-@implementation FirstTableCell
+@implementation QuestionCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

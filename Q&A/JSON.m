@@ -26,6 +26,30 @@
 	});	
 	dispatch_release(getJSONQ);
 }
+//用NSURLRequest可以设置超时
+- (void)getJSONDataFromURL:(NSString *)urlString
+{	
+	urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSURL *url = [NSURL URLWithString:urlString];
+
+	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
+	[NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+		if ([data length] >0 && error == nil) {
+			[self saveData:data];
+		}
+		else if ([data length] == 0 && error == nil) {
+			//获取数据为空，报错
+//			[self.delegate fetchJSONFailed];
+			NSLog(@"数据为空");
+		}
+		else if (error != nil) {
+			NSLog(@"Error happened : %@", error.localizedDescription);
+
+			[self.delegate fetchJSONFailed];
+		}
+	}];
+}
+
 #pragma mark - 将数据存入数据库，并发出保存结束的消息
 - (void)saveData:(NSData *)jsonData
 {

@@ -91,12 +91,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"first cell";
-    FirstTableCell *cell = (FirstTableCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	[self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-- (void)configureCell:(FirstTableCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(QuestionCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
 	// Configure the cell...
 	Question *question = [self.fetchedResultsController objectAtIndexPath:indexPath];

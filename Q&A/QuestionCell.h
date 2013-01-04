@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstTableCell : UITableViewCell
+@interface QuestionCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *questionID;
 @property (strong, nonatomic) IBOutlet UILabel *questionTitle;

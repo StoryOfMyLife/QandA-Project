@@ -11,7 +11,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "GCPlaceholderTextView.h"
 
-@interface NewQuestionViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+@interface NewQuestionViewController : UITableViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 
 @property (strong, nonatomic) IBOutlet GCPlaceholderTextView *questionTextView;
