@@ -101,11 +101,11 @@
 	// Configure the cell...
 	Question *question = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//	NSLog(@"%@", question);
-	cell.questionTitle.text = question.questionTitle;
+	cell.questionTitle.text = question.title;
 	cell.questionID.text = question.questionID;
-	cell.questionKeywords.text = question.questionKeywords;
-	cell.questionAnsweredFrom.text = question.questionWhoAnswered;
-	cell.questionAskedFrom.text = question.questionWhoAsked;
+	cell.questionKeywords.text = question.tags;
+	cell.questionAnsweredFrom.text = question.lastAnswerAuthor;
+	cell.questionAskedFrom.text = question.author;
 	cell.answerCount.text = question.answerCount;
 }
 

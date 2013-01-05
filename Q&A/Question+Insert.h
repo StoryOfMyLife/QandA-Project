@@ -10,6 +10,6 @@
 
 @interface Question (Insert)
 
-+ (Question *)insertNewQuestion:(NSDictionary *)newQuestion inManagedObjectContext:(NSManagedObjectContext *)context;
++ (Question *)questionWithInfo:(NSDictionary *)newQuestion inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

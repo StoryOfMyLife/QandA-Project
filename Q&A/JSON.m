@@ -8,6 +8,8 @@
 
 #import "JSON.h"
 #import "Question+Insert.h"
+#import "Video+Insert.h"
+#import "Answer+Insert.h"
 
 @implementation JSON
 
@@ -59,8 +61,7 @@
 	NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
 
 	for (NSDictionary *question in questions) {	
-		NSDictionary * newQuestion = [self extractDataFromData:question];
-		[Question insertNewQuestion:newQuestion inManagedObjectContext:context];
+		[Question questionWithInfo:question inManagedObjectContext:context];
 	}
 	[self.delegate fetchJSONDidFinished];
 }
@@ -70,42 +71,12 @@
 {
 	NSError *error = nil;
 	
-    NSArray *results = jsonData ? [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:&error] : nil;
+    NSDictionary *results = jsonData ? [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:&error] : nil;
     if (error) NSLog(@"[%@ %@] JSON error: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), error.localizedDescription);
 	
-	return results;
-}
-
-//数据处理
-- (NSDictionary *)extractDataFromData:(NSDictionary *)data
-{	
-	NSString *title = [data valueForKey:@"title"];
+	NSArray *questions = (NSArray *)[results objectForKey:@"content"];
 	
-	NSString *tag0 = [data valueForKey:@"tag0"];
-	NSString *tag1 = [data valueForKey:@"tag1"];
-	NSString *tag2 = [data valueForKey:@"tag2"];
-	NSString *keywords = [[NSString alloc] initWithFormat:@"【%@, %@, %@】", tag0, tag1, tag2];
-	
-	NSString *create_cnName = [data valueForKey:@"create_cnName"];
-	NSString *createTime = [data valueForKey:@"createTime"];
-	NSString *askedFrom = [[NSString alloc] initWithFormat:@"发布人:%@ 学生 %@", create_cnName, createTime];
-	
-	NSString *lastAnswer_cnName = [data valueForKey:@"lastAnswer_cnName"];
-	NSString *lastAnswerTime = [data valueForKey:@"lastAnswerTime"];
-	NSString *answeredFrom = [[NSString alloc] initWithFormat:@"最后回答:%@ 教师 %@", lastAnswer_cnName, lastAnswerTime];
-	
-	NSString *countAnswer = [data valueForKey:@"countAnswer"];
-	NSString *answerCount = [[NSString alloc] initWithFormat:@"(%@)", countAnswer];
-	
-	NSString *videoID = [data valueForKey:@"videoId"];
-	
-	NSDictionary *dataDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:title, @"title", 
-																				keywords, @"keywords",
-																				askedFrom, @"whoAsked",
-																				answeredFrom, @"whoAnswered",
-																				answerCount, @"answerCount",
-																				videoID, @"videoID", nil];
-	return dataDictionary;	
+	return questions;
 }
 
 @end

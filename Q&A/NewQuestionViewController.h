@@ -18,4 +18,6 @@
 
 @property (nonatomic, strong) UIBarButtonItem *saveButton;
 
+@property (nonatomic, copy) NSString *videoID;
+
 @end

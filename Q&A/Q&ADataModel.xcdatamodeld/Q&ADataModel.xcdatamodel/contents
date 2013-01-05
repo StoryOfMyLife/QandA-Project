@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11E53" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Answer" representedClassName="Answer" syncable="YES">
+        <attribute name="answerID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="answerVideo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Video" inverseName="tookFromAnswer" inverseEntity="Video" syncable="YES"/>
+        <relationship name="toQuestion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="answers" inverseEntity="Question" syncable="YES"/>
+    </entity>
     <entity name="Question" representedClassName="Question" syncable="YES">
-        <attribute name="answerCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="answerCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="answerTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastAnswerAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="questionID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="questionKeywords" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="questionTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="questionWhoAnswered" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="questionWhoAsked" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="toQuestion" inverseEntity="Answer" syncable="YES"/>
+        <relationship name="questionVideo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Video" inverseName="tookFromQuestion" inverseEntity="Video" syncable="YES"/>
+    </entity>
+    <entity name="Video" representedClassName="Video" syncable="YES">
+        <attribute name="cameraInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="encode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="fileType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mimeType" optional="YES" attributeType="String" defaultValueString=" " syncable="YES"/>
+        <attribute name="videoID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tookFromAnswer" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Answer" inverseName="answerVideo" inverseEntity="Answer" syncable="YES"/>
+        <relationship name="tookFromQuestion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="questionVideo" inverseEntity="Question" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Question" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Question" positionX="-351" positionY="-306" width="128" height="210"/>
+        <element name="Video" positionX="9" positionY="-279" width="128" height="180"/>
+        <element name="Answer" positionX="-164" positionY="-306" width="128" height="135"/>
     </elements>
 </model>

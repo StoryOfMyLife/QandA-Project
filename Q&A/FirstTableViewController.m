@@ -98,12 +98,18 @@
 	// Configure the cell...
 	Question *question = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//	NSLog(@"%@", question);
-	cell.questionTitle.text = question.questionTitle;
-	cell.questionID.text = question.questionID;
-	cell.questionKeywords.text = question.questionKeywords;
-	cell.questionAnsweredFrom.text = question.questionWhoAnswered;
-	cell.questionAskedFrom.text = question.questionWhoAsked;
-	cell.answerCount.text = question.answerCount;
+	cell.questionTitle.text = question.title;
+	cell.questionID.text = [NSString stringWithFormat:@"%d", indexPath.row];
+	cell.questionKeywords.text = question.tags;
+	
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	NSString *createDate = [dateFormatter stringFromDate:question.createTime];
+	cell.questionAskedFrom.text = [NSString stringWithFormat:@"提问者：%@ %@", question.author, createDate];
+	
+	NSString *answerDate = [dateFormatter stringFromDate:question.answerTime];
+	cell.questionAnsweredFrom.text = [NSString stringWithFormat:@"回答者：%@ %@", question.lastAnswerAuthor, answerDate];
+	cell.answerCount.text = [NSString stringWithFormat:@"%d", [question.answerCount intValue]];
 }
 
 #pragma mark - Table view delegate

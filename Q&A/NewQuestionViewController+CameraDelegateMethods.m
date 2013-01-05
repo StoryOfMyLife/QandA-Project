@@ -137,26 +137,9 @@
 		
 		NSString *uploadURLString = @"http://218.249.255.29:9080/nesdu-webapp/api/video/upload";
 		NSString *paramString = @"?duration=30s&encode=h.264&fileType=mov&cameraInfo=ios.front";
-		NSURL *uploadURL = [NSURL URLWithString:[uploadURLString stringByAppendingString:paramString]];
+		NSURL *uploadURL = [NSURL URLWithString:uploadURLString];
 				
-		AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:uploadURL];
-		NSMutableURLRequest *request = [Client multipartFormRequestWithMethod:@"POST" path:paramString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-			[formData appendPartWithFileData:videoData name:@"file" fileName:@"iosVideo.mov" mimeType:@"video/quickTime"];
-		}];
-		
-		AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-		//上传进度
-		[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-			NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-		}];
-		//上传信息反馈
-		[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-			NSLog(@"上传成功");
-			NSLog(@"response is : %@", operation.responseString);
-		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			NSLog(@"%@", error);
-		}];
-		[operation start];
+		[self uploadVideo:videoData toServerURL:uploadURL withParameterPath:paramString];
 
 		//保存到本地路径
 //		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, nil);
@@ -171,6 +154,30 @@
     }
 	
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)uploadVideo:(NSData *)videoData toServerURL:(NSURL *)serverURL withParameterPath:(NSString *)paramString
+{
+	AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:serverURL];
+	NSMutableURLRequest *request = [Client multipartFormRequestWithMethod:@"POST" path:paramString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+		[formData appendPartWithFileData:videoData name:@"file" fileName:@"iosVideo.mov" mimeType:@"video/quickTime"];
+	}];
+	
+	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+	//上传进度
+	[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+		NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+	}];
+	//上传信息反馈
+	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		NSLog(@"上传成功");
+		//返回videoId
+		NSLog(@"response is : %@", operation.responseString);
+		self.videoID = operation.responseString;
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		NSLog(@"%@", error);
+	}];
+	[operation start];
 }
 
 

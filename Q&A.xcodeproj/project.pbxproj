@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		090C2D111682EFC5008051F1 /* Question+Insert.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C2D101682EFC5008051F1 /* Question+Insert.m */; };
-		090C2D171682F313008051F1 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C2D161682F313008051F1 /* Question.m */; };
 		090C2D1A16830460008051F1 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C2D1916830460008051F1 /* CoreDataTableViewController.m */; };
 		090F13F916807D220020EDC2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F13F816807D220020EDC2 /* UIKit.framework */; };
 		090F13FB16807D220020EDC2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F13FA16807D220020EDC2 /* Foundation.framework */; };
@@ -48,6 +47,11 @@
 		091DA69216876B4E00BC4D11 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091DA69116876B4E00BC4D11 /* MobileCoreServices.framework */; };
 		091DA69516876E9A00BC4D11 /* NewQuestionViewController+CameraDelegateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 091DA69416876E9A00BC4D11 /* NewQuestionViewController+CameraDelegateMethods.m */; };
 		091DA69B16877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 091DA69A16877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.m */; };
+		091FB2E0169823C000E9B997 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FB2DF169823C000E9B997 /* Video.m */; };
+		091FB2E3169823C000E9B997 /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FB2E2169823C000E9B997 /* Answer.m */; };
+		091FB2E6169823C100E9B997 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FB2E5169823C100E9B997 /* Question.m */; };
+		091FB2E916989A8D00E9B997 /* Video+Insert.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FB2E816989A8D00E9B997 /* Video+Insert.m */; };
+		091FB2EC16989B3A00E9B997 /* Answer+Insert.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FB2EB16989B3900E9B997 /* Answer+Insert.m */; };
 		094A825E16933C3800208A29 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 094A824C16933C3800208A29 /* AFHTTPClient.m */; };
 		094A825F16933C3800208A29 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 094A824E16933C3800208A29 /* AFHTTPRequestOperation.m */; };
 		094A826016933C3800208A29 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 094A825016933C3800208A29 /* AFImageRequestOperation.m */; };
@@ -93,8 +97,6 @@
 /* Begin PBXFileReference section */
 		090C2D0F1682EFC5008051F1 /* Question+Insert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Question+Insert.h"; sourceTree = "<group>"; };
 		090C2D101682EFC5008051F1 /* Question+Insert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Question+Insert.m"; sourceTree = "<group>"; };
-		090C2D151682F313008051F1 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Question.h; path = ../Question.h; sourceTree = "<group>"; };
-		090C2D161682F313008051F1 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Question.m; path = ../Question.m; sourceTree = "<group>"; };
 		090C2D1816830460008051F1 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		090C2D1916830460008051F1 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		090F13F416807D220020EDC2 /* Q&A.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Q&A.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +151,16 @@
 		091DA69416876E9A00BC4D11 /* NewQuestionViewController+CameraDelegateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewQuestionViewController+CameraDelegateMethods.m"; sourceTree = "<group>"; };
 		091DA69916877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewQuestionViewController+KeyboardMethods.h"; sourceTree = "<group>"; };
 		091DA69A16877CE100BC4D11 /* NewQuestionViewController+KeyboardMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewQuestionViewController+KeyboardMethods.m"; sourceTree = "<group>"; };
+		091FB2DE169823C000E9B997 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		091FB2DF169823C000E9B997 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
+		091FB2E1169823C000E9B997 /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
+		091FB2E2169823C000E9B997 /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
+		091FB2E4169823C100E9B997 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		091FB2E5169823C100E9B997 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		091FB2E716989A8C00E9B997 /* Video+Insert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Video+Insert.h"; sourceTree = "<group>"; };
+		091FB2E816989A8D00E9B997 /* Video+Insert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Video+Insert.m"; sourceTree = "<group>"; };
+		091FB2EA16989B3900E9B997 /* Answer+Insert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Answer+Insert.h"; sourceTree = "<group>"; };
+		091FB2EB16989B3900E9B997 /* Answer+Insert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Answer+Insert.m"; sourceTree = "<group>"; };
 		094A824B16933C3800208A29 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		094A824C16933C3800208A29 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		094A824D16933C3800208A29 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -254,17 +266,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		090C2D0D1682EF5A008051F1 /* QuestionEntity */ = {
-			isa = PBXGroup;
-			children = (
-				090C2D151682F313008051F1 /* Question.h */,
-				090C2D161682F313008051F1 /* Question.m */,
-				090C2D0F1682EFC5008051F1 /* Question+Insert.h */,
-				090C2D101682EFC5008051F1 /* Question+Insert.m */,
-			);
-			name = QuestionEntity;
-			sourceTree = "<group>";
-		};
 		090F13E916807D220020EDC2 = {
 			isa = PBXGroup;
 			children = (
@@ -304,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				09CEC8E11684DC6300CBC403 /* MagicalRecord */,
-				090F14A01680AAF10020EDC2 /* Q&ADataModel.xcdatamodeld */,
 				090F143F16807F2C0020EDC2 /* Story board */,
 				090F143C16807EF80020EDC2 /* Tab bar  */,
 				090F143B16807EEB0020EDC2 /* First view */,
@@ -422,8 +422,20 @@
 		090F14A61680ADF00020EDC2 /* First table view data */ = {
 			isa = PBXGroup;
 			children = (
+				091FB2DE169823C000E9B997 /* Video.h */,
+				091FB2DF169823C000E9B997 /* Video.m */,
+				091FB2E716989A8C00E9B997 /* Video+Insert.h */,
+				091FB2E816989A8D00E9B997 /* Video+Insert.m */,
+				091FB2E4169823C100E9B997 /* Question.h */,
+				091FB2E5169823C100E9B997 /* Question.m */,
+				090C2D0F1682EFC5008051F1 /* Question+Insert.h */,
+				090C2D101682EFC5008051F1 /* Question+Insert.m */,
+				091FB2E1169823C000E9B997 /* Answer.h */,
+				091FB2E2169823C000E9B997 /* Answer.m */,
+				091FB2EA16989B3900E9B997 /* Answer+Insert.h */,
+				091FB2EB16989B3900E9B997 /* Answer+Insert.m */,
+				090F14A01680AAF10020EDC2 /* Q&ADataModel.xcdatamodeld */,
 				090F14AB1680C0120020EDC2 /* JSON Data */,
-				090C2D0D1682EF5A008051F1 /* QuestionEntity */,
 			);
 			name = "First table view data";
 			sourceTree = "<group>";
@@ -697,7 +709,6 @@
 				090F14A21680AAF20020EDC2 /* Q&ADataModel.xcdatamodeld in Sources */,
 				090F14AE1680C0B20020EDC2 /* JSON.m in Sources */,
 				090C2D111682EFC5008051F1 /* Question+Insert.m in Sources */,
-				090C2D171682F313008051F1 /* Question.m in Sources */,
 				090C2D1A16830460008051F1 /* CoreDataTableViewController.m in Sources */,
 				09CEC91D1684DC6300CBC403 /* MagicalImportFunctions.m in Sources */,
 				09CEC91E1684DC6300CBC403 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
@@ -741,6 +752,11 @@
 				094A826416933C3800208A29 /* AFURLConnectionOperation.m in Sources */,
 				094A826516933C3800208A29 /* AFXMLRequestOperation.m in Sources */,
 				094A826616933C3800208A29 /* UIImageView+AFNetworking.m in Sources */,
+				091FB2E0169823C000E9B997 /* Video.m in Sources */,
+				091FB2E3169823C000E9B997 /* Answer.m in Sources */,
+				091FB2E6169823C100E9B997 /* Question.m in Sources */,
+				091FB2E916989A8D00E9B997 /* Video+Insert.m in Sources */,
+				091FB2EC16989B3A00E9B997 /* Answer+Insert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
