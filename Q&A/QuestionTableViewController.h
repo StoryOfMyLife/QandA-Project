@@ -11,7 +11,7 @@
 #import "CoreDataTableViewController.h"
 #import "QuestionCell.h"
 
-@interface FirstTableViewController : CoreDataTableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface QuestionTableViewController : CoreDataTableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSInteger flag;
 

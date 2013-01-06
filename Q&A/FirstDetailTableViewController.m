@@ -7,6 +7,11 @@
 //
 
 #import "FirstDetailTableViewController.h"
+#import "AnswerCell.h"
+#import "QuestionDetailCell.h"
+#import "Answer+Insert.h"
+#import "Video+Insert.h"
+#import "Question+Insert.h"
 
 @interface FirstDetailTableViewController ()
 
@@ -23,6 +28,14 @@
     return self;
 }
 
+- (void)setQuestion:(Question *)question
+{
+	if (_question != question) {
+		_question = question;
+		[self setupFetchedResultsController];
+	}
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,6 +45,19 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)setupFetchedResultsController
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Answer"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createTime" 
+																					 ascending:NO 
+																					  selector:nil]];
+	request.predicate = [NSPredicate predicateWithFormat:@"toQuestion.questionID = %@", self.question.questionID];
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,32 +77,53 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 10;
+    return [self.question.answers count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *topCellIdentifier = @"top cell";
 	NSString *CellIdentifier = @"detail cell";
-	UITableViewCell *cell;
 	if (0 == indexPath.row) {
-		cell = [tableView dequeueReusableCellWithIdentifier:topCellIdentifier];
+		QuestionDetailCell *topCell = [tableView dequeueReusableCellWithIdentifier:topCellIdentifier];
+		[self configureCell:topCell atIndexPath:indexPath];
+		return topCell;
 	} else {
-		cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+		AnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+		[self configureCell:cell atIndexPath:indexPath];
+		return cell;
 	}
-    
-    
-    // Configure the cell...
-    
-    return cell;
+}
+
+- (void)configureCell:(id)cell atIndexPath:(NSIndexPath *)indexPath
+{
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	
+	if ([cell isKindOfClass:[QuestionDetailCell class]]) {
+		QuestionDetailCell *questionDetailCell = (QuestionDetailCell *)cell;
+		questionDetailCell.title.text = [questionDetailCell.title.text stringByAppendingString:self.question.title];
+		questionDetailCell.author.text = [questionDetailCell.author.text stringByAppendingString:self.question.author];
+		questionDetailCell.createTime.text = [questionDetailCell.createTime.text stringByAppendingString:[dateFormatter stringFromDate:self.question.createTime]];
+		questionDetailCell.videoDuration.text = [questionDetailCell.videoDuration.text stringByAppendingString:self.question.questionVideo.duration];
+	} else if ([cell isKindOfClass:[AnswerCell class]]) {
+		AnswerCell *answerCell = (AnswerCell *)cell;
+		NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
+		Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
+		answerCell.author.text = [answerCell.author.text stringByAppendingString:answer.author];
+
+		answerCell.createTime.text = [answerCell.createTime.text stringByAppendingString:[dateFormatter stringFromDate:answer.createTime]];
+		
+		answerCell.videoDuration.text = [answerCell.videoDuration.text stringByAppendingString:answer.answerVideo.duration];
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (0 == indexPath.row) {
-		return 100;
+		return 155;
 	} else {
-		return 86;
+		return 80;
 	}
 }
 

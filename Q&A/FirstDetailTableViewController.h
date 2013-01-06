@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
+#import "Question+Insert.h"
 
-@interface FirstDetailTableViewController : UITableViewController
+@interface FirstDetailTableViewController : CoreDataTableViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) Question *question;
 
 @end

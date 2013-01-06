@@ -140,16 +140,16 @@
 }
 
 - (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {
-    UIViewController *vc;
+    QuestionTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"first table view"];
     switch (index) {
         case 1:
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"first table view"];
+            vc.flag = 1;
             break;
         case 0:
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"second table view"];
+            vc.flag = 0;
             break;
 		case 2:
-			vc = [self.storyboard instantiateViewControllerWithIdentifier:@"third table view"];
+			vc.flag = 2;
 		default:
 			break;
     }

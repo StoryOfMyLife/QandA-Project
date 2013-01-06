@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SDSegmentedControl.h"
-#import "FirstTableViewController.h"
+#import "QuestionTableViewController.h"
 
 @interface FirstViewController : UIViewController
 
