@@ -11,6 +11,7 @@
 #import "JSON.h"
 #import "Question.h"
 #import "SVStatusHUD.h"
+#import "Defines.h"
 
 @interface QuestionTableViewController () <MyJSONDelegate>
 
@@ -37,7 +38,7 @@
 {
 	JSON *myJSON = [[JSON alloc] init];
 	myJSON.delegate = self;
-	[myJSON getJSONDataFromURL:kURL];
+	[myJSON getJSONDataFromURL:kGetQuestionURL];
 		
 	NSLog(@"refreshed!");
 }

@@ -11,9 +11,11 @@
 #import "QuestionDetailCell.h"
 #import "Answer+Insert.h"
 #import "Video+Insert.h"
-#import "Question+Insert.h"
+#import "Defines.h"
 
 @interface FirstDetailTableViewController ()
+
+@property (nonatomic, strong) MPMoviePlayerViewController *movieView;
 
 @end
 
@@ -127,56 +129,43 @@
 	}
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	NSString *videoID;
+	if (indexPath.row == 0) {
+		videoID = self.question.questionVideo.videoID;
+	} else {
+		NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
+		Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
+		videoID = answer.answerVideo.videoID;
+	}
+	[self playVideoWithID:videoID];	
+}
+#warning 此处视频无法在线播放
+- (void)playVideoWithID:(NSString *)videoID
+{
+	NSString *videoURL = [kGetVideoURL stringByAppendingString:videoID];
+	self.movieView = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:videoURL]];
+	[self presentMoviePlayerViewControllerAnimated:self.movieView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(movieDidFinish:) 
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification 
+                                               object:self.movieView.moviePlayer];
+}
+
+- (void)movieDidFinish:(NSNotification *)aNotification
+{
+    NSLog(@"finish!");   
+    MPMoviePlayerController *moviePlayer = [aNotification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification 
+                                                  object:moviePlayer];
+    [moviePlayer stop];
+    [self dismissMoviePlayerViewControllerAnimated];
 }
 
 @end

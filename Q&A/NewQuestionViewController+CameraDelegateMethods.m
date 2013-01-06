@@ -9,6 +9,7 @@
 #import "NewQuestionViewController+CameraDelegateMethods.h"
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
+#import "Defines.h"
 
 @implementation NewQuestionViewController (CameraDelegateMethods)
 
@@ -127,17 +128,20 @@
 //        NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
 		NSURL *movieURL = [info objectForKey:UIImagePickerControllerMediaURL];
 		NSData *videoData = [NSData dataWithContentsOfURL:movieURL];
+#warning 这里好像只能获取url在document文件夹或服务器的movie
+		MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+		NSString *duration = [NSString stringWithFormat:@"%1.0fs", moviePlayer.duration];
+		NSLog(@"%f", moviePlayer.duration);
 		
 		NSString *cameraInfo;
 		if(picker.cameraDevice == UIImagePickerControllerCameraDeviceFront) {
 			cameraInfo = @"ios.front";
 		} else {
-			cameraInfo = @"behind";
+			cameraInfo = @"ios.behind";
 		}
 		
-		NSString *uploadURLString = @"http://218.249.255.29:9080/nesdu-webapp/api/video/upload";
-		NSString *paramString = @"?duration=30s&encode=h.264&fileType=mov&cameraInfo=ios.front";
-		NSURL *uploadURL = [NSURL URLWithString:uploadURLString];
+		NSString *paramString = [NSString stringWithFormat:@"?duration=%@&encode=h.264&fileType=mov&cameraInfo=%@", duration, cameraInfo];
+		NSURL *uploadURL = [NSURL URLWithString:kUpLoadVideoURL];
 				
 		[self uploadVideo:videoData toServerURL:uploadURL withParameterPath:paramString];
 

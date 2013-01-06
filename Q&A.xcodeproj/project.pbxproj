@@ -184,6 +184,7 @@
 		09A727F816995A6E00088017 /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
 		09A727FB16995CF800088017 /* QuestionDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionDetailCell.h; sourceTree = "<group>"; };
 		09A727FC16995CF800088017 /* QuestionDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionDetailCell.m; sourceTree = "<group>"; };
+		09A7280D1699BB5300088017 /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 		09C16C211696BF2F00647ED7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		09CEC8E41684DC6300CBC403 /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		09CEC8E51684DC6300CBC403 /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -250,11 +251,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				091DA68C1687533400BC4D11 /* MediaPlayer.framework in Frameworks */,
 				09C16C221696BF2F00647ED7 /* SystemConfiguration.framework in Frameworks */,
 				091DA69216876B4E00BC4D11 /* MobileCoreServices.framework in Frameworks */,
 				091DA6901687534600BC4D11 /* CoreAudio.framework in Frameworks */,
 				091DA68E1687533F00BC4D11 /* CoreMedia.framework in Frameworks */,
-				091DA68C1687533400BC4D11 /* MediaPlayer.framework in Frameworks */,
 				090F149F1680AA7F0020EDC2 /* CoreData.framework in Frameworks */,
 				090F144116807F7F0020EDC2 /* QuartzCore.framework in Frameworks */,
 				090F13F916807D220020EDC2 /* UIKit.framework in Frameworks */,
@@ -308,6 +309,7 @@
 				090F143F16807F2C0020EDC2 /* Story board */,
 				090F143C16807EF80020EDC2 /* Tab bar  */,
 				090F143B16807EEB0020EDC2 /* First view */,
+				091DA67B16873D6400BC4D11 /* New Question View */,
 				090F143716807E330020EDC2 /* App Delegate */,
 				090F13FF16807D220020EDC2 /* Supporting Files */,
 			);
@@ -317,6 +319,7 @@
 		090F13FF16807D220020EDC2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				09A728081699B79500088017 /* Defines */,
 				090F140016807D220020EDC2 /* Q&A-Info.plist */,
 				090F140116807D220020EDC2 /* InfoPlist.strings */,
 				090F140416807D220020EDC2 /* main.m */,
@@ -347,7 +350,7 @@
 			name = "App Delegate";
 			sourceTree = "<group>";
 		};
-		090F143816807E670020EDC2 /* First detail table view */ = {
+		090F143816807E670020EDC2 /* Answers table view */ = {
 			isa = PBXGroup;
 			children = (
 				09A727FA16995CE000088017 /* QuestionDetail cell */,
@@ -355,20 +358,18 @@
 				090F142316807E2A0020EDC2 /* FirstDetailTableViewController.h */,
 				090F142416807E2A0020EDC2 /* FirstDetailTableViewController.m */,
 			);
-			name = "First detail table view";
+			name = "Answers table view";
 			sourceTree = "<group>";
 		};
 		090F143916807E970020EDC2 /* First table view */ = {
 			isa = PBXGroup;
 			children = (
-				091DA6531685E55000BC4D11 /* SVStatusHUD */,
-				090F143816807E670020EDC2 /* First detail table view */,
-				090F14A61680ADF00020EDC2 /* First table view data */,
-				090F143A16807EC80020EDC2 /* Question cell */,
 				090F142716807E2A0020EDC2 /* QuestionTableViewController.h */,
 				090F142816807E2A0020EDC2 /* QuestionTableViewController.m */,
-				090C2D1816830460008051F1 /* CoreDataTableViewController.h */,
-				090C2D1916830460008051F1 /* CoreDataTableViewController.m */,
+				090F143A16807EC80020EDC2 /* Question cell */,
+				091DA6531685E55000BC4D11 /* SVStatusHUD */,
+				090F143816807E670020EDC2 /* Answers table view */,
+				090F14A61680ADF00020EDC2 /* First table view data */,
 			);
 			name = "First table view";
 			sourceTree = "<group>";
@@ -387,7 +388,6 @@
 			children = (
 				090F142916807E2A0020EDC2 /* FirstViewController.h */,
 				090F142A16807E2A0020EDC2 /* FirstViewController.m */,
-				091DA67B16873D6400BC4D11 /* New Question View */,
 				090F143916807E970020EDC2 /* First table view */,
 				090F142B16807E2A0020EDC2 /* SDSegmentedControl */,
 			);
@@ -432,6 +432,8 @@
 				091FB2E2169823C000E9B997 /* Answer.m */,
 				091FB2EA16989B3900E9B997 /* Answer+Insert.h */,
 				091FB2EB16989B3900E9B997 /* Answer+Insert.m */,
+				090C2D1816830460008051F1 /* CoreDataTableViewController.h */,
+				090C2D1916830460008051F1 /* CoreDataTableViewController.m */,
 				090F14A01680AAF10020EDC2 /* Q&ADataModel.xcdatamodeld */,
 				090F14AB1680C0120020EDC2 /* JSON Data */,
 			);
@@ -524,6 +526,14 @@
 				09A727FC16995CF800088017 /* QuestionDetailCell.m */,
 			);
 			name = "QuestionDetail cell";
+			sourceTree = "<group>";
+		};
+		09A728081699B79500088017 /* Defines */ = {
+			isa = PBXGroup;
+			children = (
+				09A7280D1699BB5300088017 /* Defines.h */,
+			);
+			name = Defines;
 			sourceTree = "<group>";
 		};
 		09CEC8E11684DC6300CBC403 /* MagicalRecord */ = {
