@@ -12,6 +12,7 @@
 #import "Answer+Insert.h"
 #import "Video+Insert.h"
 #import "Defines.h"
+#import "AFHTTPRequestOperation.h"
 
 @interface FirstDetailTableViewController ()
 
@@ -142,30 +143,66 @@
 		Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
 		videoID = answer.answerVideo.videoID;
 	}
-	[self playVideoWithID:videoID];	
+	[self playVideoWithVideoID:@"50eaf271b7606b18aca8888b"];
 }
-#warning 此处视频无法在线播放
-- (void)playVideoWithID:(NSString *)videoID
+#pragma mark - 视频下载以及播放
+#warning 此处视频无法在线播放,只能暂时用先下载,在本地播放的方式,后续需要改进
+- (void)playVideoFromPath:(NSString *)videoPath
 {
-	NSString *videoURL = [kGetVideoURL stringByAppendingString:videoID];
-	self.movieView = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:videoURL]];
-	[self presentMoviePlayerViewControllerAnimated:self.movieView];
-    
+	self.movieView = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
+	self.movieView.moviePlayer.repeatMode = MPMovieRepeatModeOne;
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(movieDidFinish:) 
                                                  name:MPMoviePlayerPlaybackDidFinishNotification 
                                                object:self.movieView.moviePlayer];
+	[self presentMoviePlayerViewControllerAnimated:self.movieView];
 }
-
+//对已经下载过的视频则直接播放，不重复下载
+- (void)playVideoWithVideoID:(NSString *)videoID
+{
+	NSString *fileName = [videoID stringByAppendingString:@".mp4"];
+	NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+		NSLog(@"此视频下载过了！");
+		[self playVideoFromPath:path];
+	} else {
+		[self downLoadVideoWithVideoID:videoID];
+	}
+}
+//视频播放结束处理
 - (void)movieDidFinish:(NSNotification *)aNotification
 {
-    NSLog(@"finish!");   
+    NSLog(@"播放结束!");   
     MPMoviePlayerController *moviePlayer = [aNotification object];
     [[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:MPMoviePlayerPlaybackDidFinishNotification 
                                                   object:moviePlayer];
     [moviePlayer stop];
     [self dismissMoviePlayerViewControllerAnimated];
+}
+//将视频下载至temp目录，下载完成后开始播放
+- (void)downLoadVideoWithVideoID:(NSString *)videoID
+{
+	NSString *videoURL = [kGetVideoURL stringByAppendingString:videoID];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:videoURL]];
+	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+	
+	NSString *fileName = [videoID stringByAppendingString:@".mp4"];
+	NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];	
+	operation.outputStream = [NSOutputStream outputStreamToFileAtPath:path append:NO];
+	
+	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		NSLog(@"成功下载视频至目录：%@", path);
+		[self playVideoFromPath:path];
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		NSLog(@"视频下载出错: %@", error);
+	}];
+	
+	[operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+		NSLog(@"视频下载进度：%1.0f%%", (double)totalBytesRead / (double)totalBytesExpectedToRead * 100);
+	}];
+	
+	[operation start];
 }
 
 @end

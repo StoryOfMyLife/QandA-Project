@@ -170,16 +170,16 @@
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	//上传进度
 	[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-		NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+		NSLog(@"视频上传进度：%1.0f%%", (double)totalBytesWritten / (double)totalBytesExpectedToWrite * 100);
 	}];
 	//上传信息反馈
 	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-		NSLog(@"上传成功");
+		NSLog(@"视频上传成功");
 		//返回videoId
-		NSLog(@"response is : %@", operation.responseString);
+		NSLog(@"返回的videoID为: %@", operation.responseString);
 		self.videoID = operation.responseString;
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		NSLog(@"%@", error);
+		NSLog(@"上传出错: %@", error);
 	}];
 	[operation start];
 }

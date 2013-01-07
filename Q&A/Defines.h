@@ -9,7 +9,7 @@
 #ifndef Q_A_Defines_h
 #define Q_A_Defines_h
 
-#define kGetQuestionURL @"http://218.249.255.29:9080/nesdu-webapp/api/question/page/0?size=10"
+#define kGetQuestionURL @"http://218.249.255.29:9080/nesdu-webapp/api/question/page/0"
 #define kUpLoadVideoURL @"http://218.249.255.29:9080/nesdu-webapp/api/video/upload"
 #define kGetVideoURL @"http://218.249.255.29:9080/nesdu-webapp/api/video/download?videoId="
 
