@@ -7,7 +7,7 @@
 //
 
 #import "QuestionTableViewController.h"
-#import "FirstDetailTableViewController.h"
+#import "AnswersTableViewController.h"
 #import "JSON.h"
 #import "Question.h"
 #import "SVStatusHUD.h"
@@ -84,7 +84,7 @@
 	Question *question = [self.fetchedResultsController objectAtIndexPath:index];
 	if ([segue.identifier isEqualToString:@"push to detail"])
 	{
-		FirstDetailTableViewController *detailView = segue.destinationViewController;
+		AnswersTableViewController *detailView = segue.destinationViewController;
 		detailView.question = question;
 	}
 }
@@ -151,7 +151,7 @@
 #pragma mark - JSON delegate
 - (void)fetchJSONFailed
 {
-	NSLog(@"failed");
+	NSLog(@"获取JSON数据失败!");
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[SVStatusHUD showWithImage:[UIImage imageNamed:@"wifi_"] withString1:@"加载失败" string2:@"请检查连接!" duration:1];
 	});	
@@ -159,7 +159,7 @@
 
 - (void)fetchJSONDidFinished
 {
-	NSLog(@"success");
+	NSLog(@"获取JSON数据成功");
 }
 
 @end

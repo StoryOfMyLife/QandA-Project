@@ -36,7 +36,7 @@
 	UIViewController *vc = [self viewControllerForSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self addChildViewController:vc];
 	//注意：添加手势一定要在addChildViewController后
-	//[self addSwipeGestureIntoView:vc.view];
+	[self addSwipeGestureIntoView:vc.view];
 	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
     vc.view.frame = rect;
     [self.view addSubview:vc.view];
@@ -100,11 +100,9 @@
 	NSInteger currentSelectedSegmentIndex = sender.selectedSegmentIndex;
 	UIViewController *newVC = [self viewControllerForSegmentIndex:currentSelectedSegmentIndex];
 	
-	
-	
 	[self.currentViewController willMoveToParentViewController:nil];
     [self addChildViewController:newVC];
-	//[self addSwipeGestureIntoView:newVC.view];
+	[self addSwipeGestureIntoView:newVC.view];
 	//以下是页面左右滑动切换效果的实现
 	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
 	CGPoint leftCenter = CGPointMake(rect.origin.x - rect.size.width / 2, rect.origin.y + rect.size.height / 2);
@@ -119,23 +117,26 @@
 	//渐隐view来切换
 	newVC.view.alpha = 0;
 	
-    [self transitionFromViewController:self.currentViewController toViewController:newVC duration:0.4 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [self transitionFromViewController:self.currentViewController toViewController:newVC duration:0.4 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
 		//这里添加改变view属性的代码来产生动画
 		newVC.view.center = currentSelectedSegmentIndex > _lastSelectedSegmentIndex ? lefterCenter : righterCenter;
 		newVC.view.alpha = 1;
 		self.currentViewController.view.alpha = 0;
 		self.currentViewController.view.center = currentSelectedSegmentIndex > _lastSelectedSegmentIndex ? leftCenter : rightCenter;
     } completion:^(BOOL finished) {
-		[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-			newVC.view.center = middleCenter;
-		} completion:^(BOOL finished){
-			self.currentViewController.view.alpha = 1;
-			[self.currentViewController removeFromParentViewController];
-			[newVC didMoveToParentViewController:self];
-			self.currentViewController = newVC;
-			self.lastSelectedSegmentIndex = currentSelectedSegmentIndex;
-			//			[self.segmentedControl setEnabled:YES];
-		}];		
+		if (finished) {
+			[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+				newVC.view.center = middleCenter;
+			} completion:^(BOOL finished){
+				if (finished) {
+					self.currentViewController.view.alpha = 1;
+					[self.currentViewController removeFromParentViewController];
+					[newVC didMoveToParentViewController:self];
+					self.currentViewController = newVC;
+					self.lastSelectedSegmentIndex = currentSelectedSegmentIndex;
+				}	
+			}];	
+		}
     }];	
 }
 

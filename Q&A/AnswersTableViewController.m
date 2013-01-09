@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 刘廷勇. All rights reserved.
 //
 
-#import "FirstDetailTableViewController.h"
+#import "AnswersTableViewController.h"
 #import "AnswerCell.h"
 #import "QuestionDetailCell.h"
 #import "Answer+Insert.h"
@@ -14,13 +14,15 @@
 #import "Defines.h"
 #import "AFHTTPRequestOperation.h"
 
-@interface FirstDetailTableViewController ()
+@interface AnswersTableViewController ()
 
 @property (nonatomic, strong) MPMoviePlayerViewController *movieView;
 
+@property (nonatomic, weak) UIActivityIndicatorView *downloadingIndicator;
+
 @end
 
-@implementation FirstDetailTableViewController
+@implementation AnswersTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,17 +33,11 @@
     return self;
 }
 
-- (void)setQuestion:(Question *)question
-{
-	if (_question != question) {
-		_question = question;
-		[self setupFetchedResultsController];
-	}
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	//若在此之前进行setup，则会改变navigationItem的title
+	[self setupFetchedResultsController];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -61,6 +57,11 @@
                                                                         managedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]
                                                                           sectionNameKeyPath:nil
                                                                                    cacheName:nil];
+}
+
+- (IBAction)swipeBack:(id)sender
+{
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,14 +136,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	[self.tableView setAllowsSelection:NO];
 	NSString *videoID;
 	if (indexPath.row == 0) {
+		QuestionDetailCell *cell = (QuestionDetailCell *)[tableView cellForRowAtIndexPath:indexPath];
+		self.downloadingIndicator = cell.loadingIndicator;
+		[self.downloadingIndicator startAnimating];
 		videoID = self.question.questionVideo.videoID;
 	} else {
+		AnswerCell *cell = (AnswerCell *)[tableView cellForRowAtIndexPath:indexPath];
+		self.downloadingIndicator = cell.loadingIndicator;
+		[self.downloadingIndicator startAnimating];
 		NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
 		Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
 		videoID = answer.answerVideo.videoID;
 	}
+	
 	[self playVideoWithVideoID:@"50eaf271b7606b18aca8888b"];
 }
 #pragma mark - 视频下载以及播放
@@ -172,6 +181,8 @@
 //视频播放结束处理
 - (void)movieDidFinish:(NSNotification *)aNotification
 {
+	[self.downloadingIndicator stopAnimating];
+	[self.tableView setAllowsSelection:YES];
     NSLog(@"播放结束!");   
     MPMoviePlayerController *moviePlayer = [aNotification object];
     [[NSNotificationCenter defaultCenter] removeObserver:self 
@@ -205,4 +216,7 @@
 	[operation start];
 }
 
+- (void)viewDidUnload {
+	[super viewDidUnload];
+}
 @end

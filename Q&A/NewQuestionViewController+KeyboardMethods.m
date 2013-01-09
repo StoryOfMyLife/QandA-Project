@@ -9,7 +9,7 @@
 #import "NewQuestionViewController+KeyboardMethods.h"
 #import "NewQuestionViewController+CameraDelegateMethods.h"
 
-@implementation NewQuestionViewController (KeyboardMethods) 
+@implementation NewQuestionViewController (KeyboardMethods)
 
 - (void)customizeKeyboardOfTextView:(UITextView *)textView
 {
@@ -59,6 +59,11 @@
 {
 	[self.questionTextView resignFirstResponder];
 	self.navigationItem.rightBarButtonItem = self.saveButton;
+	if ([self.questionTextView.text isEqualToString:@""] && [self.navigationItem.rightBarButtonItem.title isEqualToString:@"发送"]) {
+		[self.navigationItem.rightBarButtonItem setEnabled:NO];
+	} else {
+		[self.navigationItem.rightBarButtonItem setEnabled:YES];
+	}
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -67,9 +72,18 @@
 		self.saveButton = self.navigationItem.rightBarButtonItem;
 	}
 	
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)]; 
+	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];
 	self.navigationItem.rightBarButtonItem = doneButton;
 	return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+	if ([self.questionTextView.text isEqualToString:@""] && [self.navigationItem.rightBarButtonItem.title isEqualToString:@"发送"]) {
+		[self.navigationItem.rightBarButtonItem setEnabled:NO];
+	} else {
+		[self.navigationItem.rightBarButtonItem setEnabled:YES];
+	}
 }
 
 @end

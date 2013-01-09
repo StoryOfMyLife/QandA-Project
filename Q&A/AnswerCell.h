@@ -18,4 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *videoPreview;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+
 @end

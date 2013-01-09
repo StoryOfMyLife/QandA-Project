@@ -180,7 +180,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="first cell" rowHeight="86" id="bTb-ZN-C1g" customClass="QuestionCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="first cell" rowHeight="86" id="bTb-ZN-C1g" customClass="QuestionCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="86"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -240,7 +240,7 @@
                                     <outlet property="questionID" destination="mdx-4o-NaE" id="xAM-kE-Qiq"/>
                                     <outlet property="questionKeywords" destination="GZI-p9-aZc" id="u5a-0X-xgb"/>
                                     <outlet property="questionTitle" destination="dyg-IJ-IZg" id="8HN-Dd-ew0"/>
-                                    <segue destination="e0A-as-mwB" kind="push" identifier="push to detail" id="l1a-aU-XIE"/>
+                                    <segue destination="V4x-2J-qPi" kind="push" identifier="push to detail" id="S0N-wv-edc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -257,118 +257,134 @@
             </objects>
             <point key="canvasLocation" x="-4340" y="-3167"/>
         </scene>
-        <!--First Detail Table View Controller - 全部问题-->
-        <scene sceneID="rGK-3D-kKl">
+        <!--Answers Table View Controller - 相关回答-->
+        <scene sceneID="0wp-6r-mf2">
             <objects>
-                <tableViewController id="e0A-as-mwB" customClass="FirstDetailTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" id="KMa-r4-w8H">
+                <tableViewController id="V4x-2J-qPi" customClass="AnswersTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pb7-xw-MZH">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="top cell" rowHeight="155" id="zN1-zN-CJq" customClass="QuestionDetailCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="top cell" rowHeight="155" id="dRl-yO-f9q" customClass="QuestionDetailCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="155"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView contentMode="scaleToFill" image="Default-568h@2x.png" highlightedImage="clock.png" id="VdW-0p-bkz">
+                                        <imageView contentMode="scaleToFill" image="Default-568h@2x.png" highlightedImage="clock.png" id="P0d-7X-nmV">
                                             <rect key="frame" x="80" y="28" width="160" height="96"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="问题：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="THm-F2-Tj4">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="问题：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RRt-Ac-L2b">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="作者：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OXj-HH-by6">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="作者：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yve-Fs-9FR">
                                             <rect key="frame" x="0.0" y="130" width="97" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="日期：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ew1-DD-oIw">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="日期：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dw8-3U-Xku">
                                             <rect key="frame" x="124" y="130" width="186" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="时长：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PUd-Gd-33M">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="时长：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zzn-62-a8k">
                                             <rect key="frame" x="244" y="107" width="76" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="4Nq-cL-oTA">
+                                            <rect key="frame" x="142" y="58" width="37" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="author" destination="OXj-HH-by6" id="1pY-Ql-NsO"/>
-                                    <outlet property="createTime" destination="Ew1-DD-oIw" id="Uwh-y3-juh"/>
-                                    <outlet property="title" destination="THm-F2-Tj4" id="2lD-QJ-Lq1"/>
-                                    <outlet property="videoDuration" destination="PUd-Gd-33M" id="GuS-X2-RIJ"/>
-                                    <outlet property="videoPreview" destination="VdW-0p-bkz" id="UT6-Rn-tVF"/>
+                                    <outlet property="author" destination="yve-Fs-9FR" id="RJi-Pc-KF3"/>
+                                    <outlet property="createTime" destination="dw8-3U-Xku" id="Fmy-Hk-1MQ"/>
+                                    <outlet property="loadingIndicator" destination="4Nq-cL-oTA" id="ON4-02-uUb"/>
+                                    <outlet property="title" destination="RRt-Ac-L2b" id="NMn-Ry-mtT"/>
+                                    <outlet property="videoDuration" destination="Zzn-62-a8k" id="1bQ-Sw-0Yk"/>
+                                    <outlet property="videoPreview" destination="P0d-7X-nmV" id="iDW-wH-aZr"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="detail cell" rowHeight="80" id="Lkg-EI-YeV" customClass="AnswerCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="detail cell" rowHeight="80" id="KGR-oy-AsA" customClass="AnswerCell">
                                 <rect key="frame" x="0.0" y="177" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView contentMode="scaleToFill" image="Default.png" id="MrR-AZ-wIj">
+                                        <imageView contentMode="scaleToFill" image="Default.png" id="qAP-KT-MBZ">
                                             <rect key="frame" x="0.0" y="0.0" width="116" height="79"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="作者：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f0U-k9-UKz">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="作者：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Iau-3o-opP">
                                             <rect key="frame" x="124" y="5" width="176" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="日期：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6qa-Zc-V1d">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="日期：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wtc-LN-4ZL">
                                             <rect key="frame" x="124" y="27" width="176" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="时长：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xx5-qb-ABY">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="时长：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FVi-TP-753">
                                             <rect key="frame" x="124" y="49" width="176" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="syi-UF-NMJ">
+                                            <rect key="frame" x="40" y="21" width="37" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="author" destination="f0U-k9-UKz" id="QpD-AR-HEr"/>
-                                    <outlet property="createTime" destination="6qa-Zc-V1d" id="4hu-dQ-TGq"/>
-                                    <outlet property="videoDuration" destination="xx5-qb-ABY" id="70s-4J-Upt"/>
-                                    <outlet property="videoPreview" destination="MrR-AZ-wIj" id="hbm-IH-Zl0"/>
+                                    <outlet property="author" destination="Iau-3o-opP" id="x1a-ZW-09m"/>
+                                    <outlet property="createTime" destination="Wtc-LN-4ZL" id="cD9-Ra-TOR"/>
+                                    <outlet property="loadingIndicator" destination="syi-UF-NMJ" id="6gH-aN-0GC"/>
+                                    <outlet property="videoDuration" destination="FVi-TP-753" id="85w-mJ-Y4i"/>
+                                    <outlet property="videoPreview" destination="qAP-KT-MBZ" id="Yzz-kh-lB4"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="e0A-as-mwB" id="5bZ-0P-0xZ"/>
-                            <outlet property="delegate" destination="e0A-as-mwB" id="gGO-tJ-QaW"/>
+                            <outlet property="dataSource" destination="V4x-2J-qPi" id="IH7-VE-xrZ"/>
+                            <outlet property="delegate" destination="V4x-2J-qPi" id="cVf-20-Yiu"/>
+                            <outletCollection property="gestureRecognizers" destination="hBx-pX-Ilw" appends="YES" id="nEy-We-v1A"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="全部问题" id="nbK-KM-cHb"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationItem key="navigationItem" title="相关回答" id="r47-Zh-7iZ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ew1-0h-QLr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7eN-oD-3PJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="hBx-pX-Ilw">
+                    <connections>
+                        <action selector="swipeBack:" destination="V4x-2J-qPi" id="phk-0H-JJs"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3849" y="-3167"/>
         </scene>
@@ -550,15 +566,19 @@
             <relationships>
                 <relationship kind="outlet" name="author" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="videoDuration" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="videoPreview" candidateClass="UIImageView"/>
             </relationships>
         </class>
+        <class className="AnswersTableViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="swipeBack:"/>
+            </relationships>
+        </class>
         <class className="CoreDataTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="FirstDetailTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstDetailTableViewController.h"/>
         </class>
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
@@ -572,9 +592,6 @@
         <class className="NewQuestionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQuestionViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="videoRecord:"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
             </relationships>
         </class>
@@ -594,6 +611,7 @@
             <relationships>
                 <relationship kind="outlet" name="author" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="title" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="videoDuration" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="videoPreview" candidateClass="UIImageView"/>

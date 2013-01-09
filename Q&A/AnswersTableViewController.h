@@ -11,7 +11,7 @@
 #import "CoreDataTableViewController.h"
 #import "Question+Insert.h"
 
-@interface FirstDetailTableViewController : CoreDataTableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface AnswersTableViewController : CoreDataTableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) Question *question;
 

@@ -18,7 +18,7 @@
 		090F140D16807D220020EDC2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 090F140C16807D220020EDC2 /* Default@2x.png */; };
 		090F140F16807D220020EDC2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 090F140E16807D220020EDC2 /* Default-568h@2x.png */; };
 		090F143016807E2A0020EDC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142216807E2A0020EDC2 /* AppDelegate.m */; };
-		090F143116807E2A0020EDC2 /* FirstDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142416807E2A0020EDC2 /* FirstDetailTableViewController.m */; };
+		090F143116807E2A0020EDC2 /* AnswersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142416807E2A0020EDC2 /* AnswersTableViewController.m */; };
 		090F143216807E2A0020EDC2 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142616807E2A0020EDC2 /* QuestionCell.m */; };
 		090F143316807E2A0020EDC2 /* QuestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142816807E2A0020EDC2 /* QuestionTableViewController.m */; };
 		090F143416807E2A0020EDC2 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F142A16807E2A0020EDC2 /* FirstViewController.m */; };
@@ -111,8 +111,8 @@
 		090F140E16807D220020EDC2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		090F142116807E2A0020EDC2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		090F142216807E2A0020EDC2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		090F142316807E2A0020EDC2 /* FirstDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstDetailTableViewController.h; sourceTree = "<group>"; };
-		090F142416807E2A0020EDC2 /* FirstDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstDetailTableViewController.m; sourceTree = "<group>"; };
+		090F142316807E2A0020EDC2 /* AnswersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswersTableViewController.h; sourceTree = "<group>"; };
+		090F142416807E2A0020EDC2 /* AnswersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswersTableViewController.m; sourceTree = "<group>"; };
 		090F142516807E2A0020EDC2 /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
 		090F142616807E2A0020EDC2 /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
 		090F142716807E2A0020EDC2 /* QuestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTableViewController.h; sourceTree = "<group>"; };
@@ -355,8 +355,8 @@
 			children = (
 				09A727FA16995CE000088017 /* QuestionDetail cell */,
 				09A727F516995A4700088017 /* Answer cell */,
-				090F142316807E2A0020EDC2 /* FirstDetailTableViewController.h */,
-				090F142416807E2A0020EDC2 /* FirstDetailTableViewController.m */,
+				090F142316807E2A0020EDC2 /* AnswersTableViewController.h */,
+				090F142416807E2A0020EDC2 /* AnswersTableViewController.m */,
 			);
 			name = "Answers table view";
 			sourceTree = "<group>";
@@ -726,7 +726,7 @@
 			files = (
 				090F140516807D220020EDC2 /* main.m in Sources */,
 				090F143016807E2A0020EDC2 /* AppDelegate.m in Sources */,
-				090F143116807E2A0020EDC2 /* FirstDetailTableViewController.m in Sources */,
+				090F143116807E2A0020EDC2 /* AnswersTableViewController.m in Sources */,
 				090F143216807E2A0020EDC2 /* QuestionCell.m in Sources */,
 				090F143316807E2A0020EDC2 /* QuestionTableViewController.m in Sources */,
 				090F143416807E2A0020EDC2 /* FirstViewController.m in Sources */,
