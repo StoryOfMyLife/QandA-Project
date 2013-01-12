@@ -10,6 +10,10 @@
 #import "Question+Insert.h"
 #import "NewQuestionViewController+KeyboardMethods.h"
 #import "NewQuestionViewController+CameraDelegateMethods.h"
+#import "AFHTTPClient.h"
+#import "AFHTTPRequestOperation.h"
+#import "AFJSONRequestOperation.h"
+#import "Defines.h"
 
 @interface NewQuestionViewController ()
 
@@ -36,21 +40,59 @@
 }
 
 - (IBAction)done:(id)sender {
-	Question *question = [NSEntityDescription insertNewObjectForEntityForName:@"Question" inManagedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-	//		question = [Question MR_createInContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-	question.title = self.questionTextView.text;
-	question.tags = @"【关键词1,关键词2,关键词3】";
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-	NSString *date = [dateFormatter stringFromDate:[NSDate date]];
-	question.author = [NSString stringWithFormat:@"发布人：刘廷勇  %@", date];
-	question.lastAnswerAuthor = @"最后回答：还没人回答";
-	question.answerCount = 0;
-	question.questionID = @"000";
-	
-	[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
+//	Question *question = [NSEntityDescription insertNewObjectForEntityForName:@"Question" inManagedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+//	//		question = [Question MR_createInContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+//	question.title = self.questionTextView.text;
+//	question.tags = @"【关键词1,关键词2,关键词3】";
+//	question.author = [NSString stringWithFormat:@"发布人：刘廷勇  %@", date];
+//	question.lastAnswerAuthor = @"最后回答：还没人回答";
+//	question.answerCount = 0;
+//	question.questionID = @"000";
+//	
+//	[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
 
+	NSString *createTime = [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970] * 1000];
+	
+	NSDictionary *questionDic = @{@"title" : self.questionTextView.text, 
+	@"video" : @{@"id" : @"videoID"}, 
+	@"authorName" : @"刘廷勇", 
+	@"createTime" : createTime,	
+	@"updateTime" : createTime, 
+	@"tags" : @[@"开学", @"时间", @"学费"], 
+	@"countAnswers" : @"0"};
+	NSLog(@"原始数据 ：%@", questionDic);
+	NSError *err = nil;
+	NSData *newQuestion = [NSJSONSerialization dataWithJSONObject:questionDic options:NSJSONWritingPrettyPrinted error:&err];
+	NSString *str = [[NSString alloc] initWithData:newQuestion encoding:NSUTF8StringEncoding];
+	NSLog(@"序列化后的JSON数据 ：%@", str);
+	
+	[self postNewQuestion:newQuestion toServerURL:[NSURL URLWithString:kUpLoadQuestionURL]];
+	
 	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)postNewQuestion:(NSData *)questionData toServerURL:(NSURL *)serverURL
+{
+	AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:serverURL];
+	NSMutableURLRequest *request = [Client multipartFormRequestWithMethod:@"POST" path:nil parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+		[formData appendPartWithFormData:questionData name:@"question.json"];
+	}];
+	
+	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+	//上传进度
+	[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+		NSLog(@"问题发布进度：%1.0f%%", (double)totalBytesWritten / (double)totalBytesExpectedToWrite * 100);
+	}];
+	//上传信息反馈
+	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		NSLog(@"问题发布成功");
+		//返回videoId
+		NSLog(@"返回的questionID为: %@", operation.responseString);
+		self.videoID = operation.responseString;
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		NSLog(@"上传出错: %@", error);
+	}];
+	[operation start];
 }
 
 - (IBAction)videoRecord:(id)sender 
