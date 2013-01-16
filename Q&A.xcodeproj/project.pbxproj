@@ -99,7 +99,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09065BB416A1B17D0000B256 /* 头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "头像.png"; sourceTree = "<group>"; };
+		09065BB416A1B17D0000B256 /* 头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "头像.png"; path = "../头像.png"; sourceTree = "<group>"; };
 		09065BB816A1B3960000B256 /* ThirdTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdTableViewController.h; sourceTree = "<group>"; };
 		09065BB916A1B3960000B256 /* ThirdTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdTableViewController.m; sourceTree = "<group>"; };
 		09065BC916A1CC370000B256 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 		09CEC91A1684DC6300CBC403 /* MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalRecord.m; sourceTree = "<group>"; };
 		09CEC91B1684DC6300CBC403 /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		09CEC91C1684DC6300CBC403 /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
-		09E189DE168945E000E262CD /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		09E189DE168945E000E262CD /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		09E189E6168A000300E262CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		09E189F1168B45B700E262CD /* GCPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlaceholderTextView.h; sourceTree = "<group>"; };
 		09E189F2168B45B700E262CD /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
@@ -307,8 +307,6 @@
 		090F13E916807D220020EDC2 = {
 			isa = PBXGroup;
 			children = (
-				09065BB416A1B17D0000B256 /* 头像.png */,
-				09E189DE168945E000E262CD /* icon.png */,
 				090F13FE16807D220020EDC2 /* Q&A */,
 				090F13F716807D220020EDC2 /* Frameworks */,
 				090F13F516807D220020EDC2 /* Products */,
@@ -357,6 +355,8 @@
 		090F13FF16807D220020EDC2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				09065BB416A1B17D0000B256 /* 头像.png */,
+				09E189DE168945E000E262CD /* icon.png */,
 				09A728081699B79500088017 /* Defines */,
 				090F140016807D220020EDC2 /* Q&A-Info.plist */,
 				090F140116807D220020EDC2 /* InfoPlist.strings */,
