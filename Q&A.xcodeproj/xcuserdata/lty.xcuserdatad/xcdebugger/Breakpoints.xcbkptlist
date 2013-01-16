@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQuestionViewController+CameraDelegateMethods.m"
-         timestampString = "379180303.104824"
+         timestampString = "380028418.617481"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
+         startingLineNumber = "105"
+         endingLineNumber = "105"
          landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -160,11 +160,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQuestionViewController+CameraDelegateMethods.m"
-         timestampString = "379181770.18238"
+         timestampString = "380028418.617481"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "179"
-         endingLineNumber = "179"
+         startingLineNumber = "182"
+         endingLineNumber = "182"
          landmarkName = "-uploadVideo:toServerURL:withParameterPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -173,11 +173,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQuestionViewController+CameraDelegateMethods.m"
-         timestampString = "379181770.18238"
+         timestampString = "380028418.617481"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "160"
-         endingLineNumber = "160"
+         startingLineNumber = "161"
+         endingLineNumber = "161"
          landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -186,11 +186,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQuestionViewController+CameraDelegateMethods.m"
-         timestampString = "379181770.18238"
+         timestampString = "380028418.617481"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
+         startingLineNumber = "147"
+         endingLineNumber = "147"
          landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -212,20 +212,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQuestionViewController.m"
-         timestampString = "379617700.6094"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "56"
-         endingLineNumber = "56"
-         landmarkName = "-done:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Q&amp;A/NewQuestionViewController.m"
-         timestampString = "379695685.720403"
+         timestampString = "380028418.617481"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "88"
@@ -238,12 +225,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQuestionViewController.m"
-         timestampString = "379695685.720403"
+         timestampString = "380028418.617481"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "93"
          endingLineNumber = "93"
          landmarkName = "-postNewQuestion:toServerURL:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Q&amp;A/LoginViewController.m"
+         timestampString = "380029889.65358"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "100"
+         endingLineNumber = "100"
+         landmarkName = "-loginToServerURL:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

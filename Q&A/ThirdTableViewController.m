@@ -9,6 +9,7 @@
 #import "ThirdTableViewController.h"
 #import "QuestionTableViewController.h"
 #import "SettingsTableViewController.h"
+#import "LoginViewController.h"
 
 @interface ThirdTableViewController ()
 
@@ -50,7 +51,12 @@
 	} else if ([segue.identifier isEqualToString:@"personal setting"]) {
 		SettingsTableViewController *settingView = (SettingsTableViewController *)segue.destinationViewController;
 		settingView.navigationItem.title = @"个人设置";
-	} 
+	} else if ([segue.identifier isEqualToString:@"login"]) {
+		UINavigationController *loginNav = (UINavigationController *)segue.destinationViewController;
+		LoginViewController *loginView = (LoginViewController *)loginNav.topViewController;
+		loginView.navigationItem.title = @"用户登陆";
+		loginView.navigationItem.leftBarButtonItem = nil;
+	}
 }
 
 #pragma mark - Table view delegate

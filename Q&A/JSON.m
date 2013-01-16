@@ -10,6 +10,7 @@
 #import "Question+Insert.h"
 #import "Video+Insert.h"
 #import "Answer+Insert.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation JSON
 
@@ -31,6 +32,7 @@
 //用NSURLRequest可以设置超时
 - (void)getJSONDataFromURL:(NSString *)urlString
 {	
+	[[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];	
 	urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	NSURL *url = [NSURL URLWithString:urlString];
 

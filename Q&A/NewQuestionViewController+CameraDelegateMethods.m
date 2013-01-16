@@ -9,6 +9,7 @@
 #import "NewQuestionViewController+CameraDelegateMethods.h"
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
+#import "AFNetworkActivityIndicatorManager.h"
 #import "Defines.h"
 
 @implementation NewQuestionViewController (CameraDelegateMethods)
@@ -162,6 +163,8 @@
 
 - (void)uploadVideo:(NSData *)videoData toServerURL:(NSURL *)serverURL withParameterPath:(NSString *)paramString
 {
+	[[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+	
 	AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:serverURL];
 	NSMutableURLRequest *request = [Client multipartFormRequestWithMethod:@"POST" path:paramString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 		[formData appendPartWithFileData:videoData name:@"file" fileName:@"iosVideo.mov" mimeType:@"video/quickTime"];

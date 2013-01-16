@@ -12,7 +12,7 @@
 #import "NewQuestionViewController+CameraDelegateMethods.h"
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
-#import "AFJSONRequestOperation.h"
+#import "AFNetworkActivityIndicatorManager.h"
 #import "Defines.h"
 
 @interface NewQuestionViewController ()
@@ -39,27 +39,17 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)done:(id)sender {
-//	Question *question = [NSEntityDescription insertNewObjectForEntityForName:@"Question" inManagedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-//	//		question = [Question MR_createInContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-//	question.title = self.questionTextView.text;
-//	question.tags = @"【关键词1,关键词2,关键词3】";
-//	question.author = [NSString stringWithFormat:@"发布人：刘廷勇  %@", date];
-//	question.lastAnswerAuthor = @"最后回答：还没人回答";
-//	question.answerCount = 0;
-//	question.questionID = @"000";
-//	
-//	[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
-
+- (IBAction)done:(id)sender 
+{
 	NSString *createTime = [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970] * 1000];
 	
 	NSDictionary *questionDic = @{@"title" : self.questionTextView.text, 
-	@"video" : @{@"id" : @"videoID"}, 
+	@"video" : @{@"id" : @"50ea98efe4b0a7ccd987a702"}, 
+	@"author" : @"lty",
 	@"authorName" : @"刘廷勇", 
 	@"createTime" : createTime,	
 	@"updateTime" : createTime, 
-	@"tags" : @[@"开学", @"时间", @"学费"], 
-	@"countAnswers" : @"0"};
+	@"tags" : @[@"开学", @"时间", @"学费"]};
 	NSLog(@"原始数据 ：%@", questionDic);
 	NSError *err = nil;
 	NSData *newQuestion = [NSJSONSerialization dataWithJSONObject:questionDic options:NSJSONWritingPrettyPrinted error:&err];
@@ -73,10 +63,20 @@
 
 - (void)postNewQuestion:(NSData *)questionData toServerURL:(NSURL *)serverURL
 {
-	AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:serverURL];
-	NSMutableURLRequest *request = [Client multipartFormRequestWithMethod:@"POST" path:nil parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-		[formData appendPartWithFormData:questionData name:@"question.json"];
-	}];
+//	AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:serverURL];
+	
+//	NSMutableURLRequest *request = [Client multipartFormRequestWithMethod:@"POST" path:nil parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//		[formData appendPartWithFormData:questionData name:@"question.json"];
+//	}];
+	[[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:serverURL];
+	
+    [request setHTTPMethod:@"POST"];
+	
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	
+    [request setHTTPBody:questionData];		
 	
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	//上传进度
