@@ -62,8 +62,11 @@
 
 	NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
 
-	for (NSDictionary *question in questions) {	
-		[Question questionWithInfo:question inManagedObjectContext:context];
+	for (NSDictionary *question in questions) {
+#warning 这里有一个没有video的问题，先暂时跳过此问题，后续在用delete去服务器上删除		
+		if (![[question valueForKey:@"id"] isEqualToString:@"50ff283bb7606b18aca8889f"]) {
+			[Question questionWithInfo:question inManagedObjectContext:context];
+		}
 	}
 	[self.delegate fetchJSONDidFinished];
 }

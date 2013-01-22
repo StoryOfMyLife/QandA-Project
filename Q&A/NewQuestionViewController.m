@@ -26,6 +26,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	self.questionTextView.placeholder = NSLocalizedString(@"请输入问题:",);
+	self.videoID = @"";
 	[self customizeKeyboardOfTextView:self.questionTextView];
 }
 
@@ -41,24 +42,27 @@
 
 - (IBAction)done:(id)sender 
 {
-	NSString *createTime = [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970] * 1000];
+//	NSString *createTime = [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970] * 1000];
 	
-	NSDictionary *questionDic = @{@"title" : self.questionTextView.text, 
-	@"video" : @{@"id" : @"50ea98efe4b0a7ccd987a702"}, 
-	@"author" : @"lty",
-	@"authorName" : @"刘廷勇", 
-	@"createTime" : createTime,	
-	@"updateTime" : createTime, 
-	@"tags" : @[@"开学", @"时间", @"学费"]};
-	NSLog(@"原始数据 ：%@", questionDic);
-	NSError *err = nil;
-	NSData *newQuestion = [NSJSONSerialization dataWithJSONObject:questionDic options:NSJSONWritingPrettyPrinted error:&err];
-	NSString *str = [[NSString alloc] initWithData:newQuestion encoding:NSUTF8StringEncoding];
-	NSLog(@"序列化后的JSON数据 ：%@", str);
-	
-	[self postNewQuestion:newQuestion toServerURL:[NSURL URLWithString:kUpLoadQuestionURL]];
-	
-	[self dismissViewControllerAnimated:YES completion:nil];
+	if ([self.videoID isEqualToString:@""]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有视频" message:@"请先录制视频" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+		[alert show];
+	} else {
+		NSDictionary *questionDic = @{@"title" : self.questionTextView.text, 
+		@"video" : @{@"id" : self.videoID}, 
+		@"author" : @"lty",
+		@"authorName" : @"刘廷勇", 
+		@"tags" : @[@"开学", @"时间", @"学费"]};
+	//	NSLog(@"原始数据 ：%@", questionDic);
+		NSError *err = nil;
+		NSData *newQuestion = [NSJSONSerialization dataWithJSONObject:questionDic options:NSJSONWritingPrettyPrinted error:&err];
+	//	NSString *str = [[NSString alloc] initWithData:newQuestion encoding:NSUTF8StringEncoding];
+	//	NSLog(@"序列化后的JSON数据 ：%@", str);
+		
+		[self postNewQuestion:newQuestion toServerURL:[NSURL URLWithString:kUpLoadQuestionURL]];
+		
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}
 }
 
 - (void)postNewQuestion:(NSData *)questionData toServerURL:(NSURL *)serverURL
@@ -88,7 +92,6 @@
 		NSLog(@"问题发布成功");
 		//返回videoId
 		NSLog(@"返回的questionID为: %@", operation.responseString);
-		self.videoID = operation.responseString;
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"上传出错: %@", error);
 	}];

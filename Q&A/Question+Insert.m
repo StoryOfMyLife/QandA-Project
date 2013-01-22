@@ -19,7 +19,7 @@
 	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Question"];
     request.predicate = [NSPredicate predicateWithFormat:@"%K like %@", @"questionID", [data valueForKey:@"id"]];
 	request.fetchLimit = 10;
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"questionID" ascending:YES];	
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createTime" ascending:YES];	
 	request.sortDescriptors = @[sortDescriptor];
 						 
     NSError *error = nil;
@@ -67,16 +67,19 @@
 		question.lastAnswerAuthor = lastAnswerAuthor;
 		
 		NSDictionary *videoDic = [data objectForKey:@"video"];
-		question.questionVideo = [Video videoWithInfo:videoDic inManagedObjectContext:context];
-		
-		NSArray *answersArray = [data objectForKey:@"answers"];
-		NSMutableSet *answersSet = [NSMutableSet setWithCapacity:[answersArray count]];
-		for (NSDictionary *answerDic in answersArray) {
-			Answer *answer = [Answer answerWithInfo:answerDic inManagedObjectContext:context];
-			[answersSet addObject:answer];
+		if (![videoDic isKindOfClass:[NSNull class]]) {
+			question.questionVideo = [Video videoWithInfo:videoDic inManagedObjectContext:context];
 		}
-		question.answers = answersSet;
 		
+		if ([question.answerCount integerValue] != 0) {
+			NSArray *answersArray = [data objectForKey:@"answers"];
+			NSMutableSet *answersSet = [NSMutableSet setWithCapacity:[answersArray count]];
+			for (NSDictionary *answerDic in answersArray) {
+				Answer *answer = [Answer answerWithInfo:answerDic inManagedObjectContext:context];
+				[answersSet addObject:answer];
+			}
+			question.answers = answersSet;
+		}
 		[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
     } else {
         question = [matches lastObject];

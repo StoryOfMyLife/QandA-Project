@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09065BB516A1B17D0000B256 /* 头像.png in Resources */ = {isa = PBXBuildFile; fileRef = 09065BB416A1B17D0000B256 /* 头像.png */; };
 		09065BBA16A1B3960000B256 /* ThirdTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09065BB916A1B3960000B256 /* ThirdTableViewController.m */; };
 		09065BCB16A1CC370000B256 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09065BCA16A1CC370000B256 /* SettingsTableViewController.m */; };
 		090C2D111682EFC5008051F1 /* Question+Insert.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C2D101682EFC5008051F1 /* Question+Insert.m */; };
@@ -33,6 +32,7 @@
 		090F149F1680AA7F0020EDC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F149E1680AA7F0020EDC2 /* CoreData.framework */; };
 		090F14A21680AAF20020EDC2 /* Q&ADataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 090F14A01680AAF10020EDC2 /* Q&ADataModel.xcdatamodeld */; };
 		090F14AE1680C0B20020EDC2 /* JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F14AD1680C0B20020EDC2 /* JSON.m */; };
+		090F1BC416A7AA3D00CD0610 /* 头像.png in Resources */ = {isa = PBXBuildFile; fileRef = 090F1BC316A7AA3D00CD0610 /* 头像.png */; };
 		091DA6591685E55000BC4D11 /* SVStatusHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 091DA6551685E55000BC4D11 /* SVStatusHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		091DA65A1685E55000BC4D11 /* wifi_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DA6561685E55000BC4D11 /* wifi_@2x.png */; };
 		091DA65B1685E55000BC4D11 /* wifi_break.png in Resources */ = {isa = PBXBuildFile; fileRef = 091DA6571685E55000BC4D11 /* wifi_break.png */; };
@@ -99,7 +99,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09065BB416A1B17D0000B256 /* 头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "头像.png"; path = "../头像.png"; sourceTree = "<group>"; };
 		09065BB816A1B3960000B256 /* ThirdTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdTableViewController.h; sourceTree = "<group>"; };
 		09065BB916A1B3960000B256 /* ThirdTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdTableViewController.m; sourceTree = "<group>"; };
 		09065BC916A1CC370000B256 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
@@ -139,6 +138,7 @@
 		090F14A11680AAF20020EDC2 /* Q&ADataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Q&ADataModel.xcdatamodel"; sourceTree = "<group>"; };
 		090F14AC1680C0B20020EDC2 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		090F14AD1680C0B20020EDC2 /* JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSON.m; sourceTree = "<group>"; };
+		090F1BC316A7AA3D00CD0610 /* 头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "头像.png"; sourceTree = "<group>"; };
 		091DA6541685E55000BC4D11 /* SVStatusHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVStatusHUD.h; sourceTree = "<group>"; };
 		091DA6551685E55000BC4D11 /* SVStatusHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVStatusHUD.m; sourceTree = "<group>"; };
 		091DA6561685E55000BC4D11 /* wifi_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifi_@2x.png"; sourceTree = "<group>"; };
@@ -355,7 +355,7 @@
 		090F13FF16807D220020EDC2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				09065BB416A1B17D0000B256 /* 头像.png */,
+				090F1BC316A7AA3D00CD0610 /* 头像.png */,
 				09E189DE168945E000E262CD /* icon.png */,
 				09A728081699B79500088017 /* Defines */,
 				090F140016807D220020EDC2 /* Q&A-Info.plist */,
@@ -764,7 +764,7 @@
 				091DA66D1685F27100BC4D11 /* third.png in Resources */,
 				091DA66E1685F27100BC4D11 /* third@2x.png in Resources */,
 				09E189DF168945E000E262CD /* icon.png in Resources */,
-				09065BB516A1B17D0000B256 /* 头像.png in Resources */,
+				090F1BC416A7AA3D00CD0610 /* 头像.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

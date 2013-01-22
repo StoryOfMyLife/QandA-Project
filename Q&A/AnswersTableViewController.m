@@ -152,7 +152,7 @@
 		videoID = answer.answerVideo.videoID;
 	}
 	
-	[self playVideoWithVideoID:@"50eaf271b7606b18aca8888b"];
+	[self playVideoWithVideoID:videoID];
 }
 #pragma mark - 视频下载以及播放
 #warning 此处视频无法在线播放,只能暂时用先下载,在本地播放的方式,后续需要改进

@@ -76,7 +76,7 @@
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
     cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
 	cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-	cameraUI.videoQuality = UIImagePickerControllerQualityTypeLow;
+	cameraUI.videoQuality = UIImagePickerControllerQualityTypeMedium;
 	cameraUI.videoMaximumDuration = 60;
 	
     // Hides the controls for moving & scaling pictures, or for
