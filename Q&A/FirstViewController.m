@@ -8,13 +8,22 @@
 
 #define SEGMENT_HEIGHT 45
 
+#define kNumberOfPages 3
+
 #import "FirstViewController.h"
+#import "JSON.h"
+#import "Defines.h"
+#import "SVStatusHUD.h"
 
-@interface FirstViewController ()
-
+@interface FirstViewController () <UIScrollViewDelegate, MyJSONDelegate>
+{
+	BOOL segmentedControlUsed;
+}
 @property (nonatomic, strong) UIViewController *currentViewController;
 
 @property (nonatomic) NSInteger lastSelectedSegmentIndex;
+
+@property (nonatomic, strong) NSMutableArray *questionViewControllers;
 
 @end
 
@@ -24,25 +33,153 @@
 {
     [super viewDidLoad];
 	
+	self.questionScrollView.pagingEnabled = YES;
+    self.questionScrollView.contentSize = CGSizeMake(self.questionScrollView.frame.size.width * kNumberOfPages, self.questionScrollView.frame.size.height);
+    self.questionScrollView.showsHorizontalScrollIndicator = NO;
+    self.questionScrollView.showsVerticalScrollIndicator = NO;
+    self.questionScrollView.scrollsToTop = NO;
+    self.questionScrollView.delegate = self;
+	
+	NSMutableArray *controllers = [[NSMutableArray alloc] init];
+	for (unsigned i = 0; i < kNumberOfPages; i++) {
+		[controllers addObject:[self viewControllerForSegmentIndex:i]];
+	}
+	self.questionViewControllers = controllers;
 	
 	//初始化segmentControl
 	self.segmentedControl.selectedSegmentIndex = 1;
+	[self.segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
 	
 	self.lastSelectedSegmentIndex = self.segmentedControl.selectedSegmentIndex;
 	for (int i = 0; i < 3; i++) {
 		[self.segmentedControl setImage:[UIImage imageNamed:@"clock"] forSegmentAtIndex:i];
 	}
-	//初始化待显示的子view
-	UIViewController *vc = [self viewControllerForSegmentIndex:self.segmentedControl.selectedSegmentIndex];
-    [self addChildViewController:vc];
-	//注意：添加手势一定要在addChildViewController后
-	[self addSwipeGestureIntoView:vc.view];
-	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
-    vc.view.frame = rect;
-    [self.view addSubview:vc.view];
-    self.currentViewController = vc;
+	
+	[self loadScrollViewWithPage:0];
+	[self loadScrollViewWithPage:1];
+	[self loadScrollViewWithPage:2];
+	
+	
+//	//初始化待显示的子view
+//	UIViewController *vc = [self viewControllerForSegmentIndex:self.segmentedControl.selectedSegmentIndex];
+//    [self addChildViewController:vc];
+//	//注意：添加手势一定要在addChildViewController后
+//	[self addSwipeGestureIntoView:vc.view];
+//	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
+//    vc.view.frame = rect;
+//    [self.view addSubview:vc.view];
+//    self.currentViewController = vc;
 }
 
+- (void)loadScrollViewWithPage:(NSInteger)page
+{
+	if (page < 0)
+        return;
+    if (page >= kNumberOfPages)
+        return;
+	
+	QuestionTableViewController *questionViewController = [self.questionViewControllers objectAtIndex:page];
+	if (questionViewController.view.superview == nil) {
+		CGRect frame = self.questionScrollView.frame;
+        frame.origin.x = frame.size.width * page;
+        frame.origin.y = 0;
+        questionViewController.view.frame = frame;
+        [self.questionScrollView addSubview:questionViewController.view];
+//这行保证tableview可以正常push
+		[self addChildViewController:questionViewController];
+	}
+}
+
+- (IBAction)pageValueDidChange:(UISegmentedControl *)sender
+{
+	segmentedControlUsed = YES;
+	NSInteger page = sender.selectedSegmentIndex;
+	CGRect frame = self.questionScrollView.frame;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0;
+	[self.questionScrollView scrollRectToVisible:frame animated:YES];
+}
+
+#pragma mark - scrollView delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	if (segmentedControlUsed) {
+		return;
+	}
+	CGFloat pageWidth = scrollView.frame.size.width;
+    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.segmentedControl.selectedSegmentIndex = page;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    segmentedControlUsed = NO;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    segmentedControlUsed = NO;
+}
+
+#pragma mark - 
+
+- (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {
+    QuestionTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"first table view"];
+    switch (index) {
+        case 1:
+            vc.flag = 1;
+            break;
+        case 0:
+            vc.flag = 0;
+            break;
+		case 2:
+			vc.flag = 2;
+		default:
+			break;
+    }
+    return vc;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidUnload {
+	[self setSegmentedControl:nil];
+	[self setQuestionScrollView:nil];
+	[self setQuestionScrollView:nil];
+	[self setQuestionViewControllers:nil];
+	[super viewDidUnload];
+}
+
+- (IBAction)refresh:(id)sender
+{
+	JSON *myJSON = [[JSON alloc] init];
+	myJSON.delegate = self;
+	[myJSON getJSONDataFromURL:kGetQuestionURL];
+	
+	NSLog(@"refreshed!");
+}
+
+#pragma mark - JSON delegate
+- (void)fetchJSONFailed
+{
+	NSLog(@"获取JSON数据失败!");
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[SVStatusHUD showWithImage:[UIImage imageNamed:@"wifi_"] withString1:@"加载失败" string2:@"请检查连接!" duration:1];
+	});	
+}
+
+- (void)fetchJSONDidFinished
+{
+	NSLog(@"获取JSON数据成功");
+}
+
+
+#pragma mark - 以下是之前处理页面之间滑动的方法，现在不用了，现在改用scrollView
 #pragma mark - 滑动手势处理
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer *)recognizer
 {	
@@ -94,7 +231,7 @@
 }
 
 #pragma mark - segmentedControl切换处理
-#warning 有bug，点快的时候视图会叠加
+//#warning 有bug，点快的时候视图会叠加
 - (IBAction)didSegmentControlValueChange:(UISegmentedControl *)sender
 {
 	NSInteger currentSelectedSegmentIndex = sender.selectedSegmentIndex;
@@ -140,31 +277,4 @@
     }];	
 }
 
-- (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {
-    QuestionTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"first table view"];
-    switch (index) {
-        case 1:
-            vc.flag = 1;
-            break;
-        case 0:
-            vc.flag = 0;
-            break;
-		case 2:
-			vc.flag = 2;
-		default:
-			break;
-    }
-    return vc;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-	[self setSegmentedControl:nil];
-	[super viewDidUnload];
-}
 @end

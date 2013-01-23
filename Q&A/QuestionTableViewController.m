@@ -8,12 +8,9 @@
 
 #import "QuestionTableViewController.h"
 #import "AnswersTableViewController.h"
-#import "JSON.h"
 #import "Question.h"
-#import "SVStatusHUD.h"
-#import "Defines.h"
 
-@interface QuestionTableViewController () <MyJSONDelegate>
+@interface QuestionTableViewController ()
 
 @end
 
@@ -32,15 +29,6 @@
 {
     [super viewWillAppear:animated];
 //	self.parentViewController.navigationItem.rightBarButtonItem.enabled = YES;
-}
-
-- (IBAction)refresh:(id)sender
-{
-	JSON *myJSON = [[JSON alloc] init];
-	myJSON.delegate = self;
-	[myJSON getJSONDataFromURL:kGetQuestionURL];
-		
-	NSLog(@"refreshed!");
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -145,21 +133,8 @@
 - (void)viewDidUnload 
 {
 	self.fetchedResultsController = nil;
+	[self removeFromParentViewController];
 	[super viewDidUnload]; 
-}
-
-#pragma mark - JSON delegate
-- (void)fetchJSONFailed
-{
-	NSLog(@"获取JSON数据失败!");
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[SVStatusHUD showWithImage:[UIImage imageNamed:@"wifi_"] withString1:@"加载失败" string2:@"请检查连接!" duration:1];
-	});	
-}
-
-- (void)fetchJSONDidFinished
-{
-	NSLog(@"获取JSON数据成功");
 }
 
 @end

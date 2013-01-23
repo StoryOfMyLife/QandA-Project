@@ -102,7 +102,7 @@
 - (void)configureCell:(id)cell atIndexPath:(NSIndexPath *)indexPath
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; 
 	
 	if ([cell isKindOfClass:[QuestionDetailCell class]]) {
 		QuestionDetailCell *questionDetailCell = (QuestionDetailCell *)cell;

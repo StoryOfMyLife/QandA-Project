@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) IBOutlet SDSegmentedControl *segmentedControl;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *questionScrollView;
+
 @end
