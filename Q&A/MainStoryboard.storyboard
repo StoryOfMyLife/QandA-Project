@@ -25,7 +25,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3hL-dn-MnI" customClass="GCPlaceholderTextView">
                                                     <rect key="frame" x="5" y="5" width="290" height="110"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
@@ -76,9 +76,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" barStyle="blackOpaque" placeholder="搜索问题" id="Nfn-s9-HqD">
+                            <searchBar contentMode="scaleToFill" placeholder="搜索问题" id="Nfn-s9-HqD">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="Jgh-wa-cUD" id="mFe-md-gqj"/>
@@ -949,9 +950,6 @@
         </class>
         <class className="AnswersTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="swipeBack:"/>
-            </relationships>
         </class>
         <class className="CoreDataTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
@@ -959,10 +957,6 @@
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
-                <relationship kind="action" name="didSegmentControlValueChange:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="pageValueDidChange:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="refresh:"/>
                 <relationship kind="outlet" name="questionScrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
             </relationships>
@@ -973,10 +967,7 @@
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
-                <relationship kind="action" name="dismissKeyboard:"/>
-                <relationship kind="action" name="dismissView:"/>
                 <relationship kind="action" name="login:"/>
-                <relationship kind="action" name="turnToNext:"/>
                 <relationship kind="outlet" name="password" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="username" candidateClass="UITextField"/>
             </relationships>
@@ -984,9 +975,6 @@
         <class className="NewQuestionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQuestionViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="videoRecord:"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
             </relationships>
         </class>
@@ -1014,9 +1002,6 @@
         </class>
         <class className="QuestionTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refresh:"/>
-            </relationships>
         </class>
         <class className="SDSegmentedControl" superclassName="UISegmentedControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>

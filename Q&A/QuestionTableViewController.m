@@ -10,7 +10,7 @@
 #import "AnswersTableViewController.h"
 #import "Question.h"
 
-@interface QuestionTableViewController ()
+@interface QuestionTableViewController () <UIScrollViewDelegate>
 
 @end
 
@@ -40,11 +40,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.debug = NO;
-	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
-	self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
-		
+	self.debug = NO;		
 	[self setupFetchedResultsController];	
+	
+	//在这里不设置一下背景，应用开启后会卡死在界面，原因未知。。。
+	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableView_bg"]];
+	[self.tableView setBackgroundView:tableBackgroundView];
 }
 
 - (void)setupFetchedResultsController

@@ -29,6 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	[self.tableView setBackgroundColor:[UIColor clearColor]];
+	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableView_bg"]];
+	[self.tableView setBackgroundView:tableBackgroundView];
+
 }
 
 - (void)didReceiveMemoryWarning
