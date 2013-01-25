@@ -28,7 +28,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//	self.parentViewController.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -42,14 +41,20 @@
     [super viewDidLoad];
 	self.debug = NO;		
 	[self setupFetchedResultsController];	
-	
 	//在这里不设置一下背景，应用开启后会卡死在界面，原因未知。。。
-	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableView_bg"]];
-	[self.tableView setBackgroundView:tableBackgroundView];
+//	[self.tableView setBackgroundView:nil];
+//	[self.tableView setBackgroundColor:[UIColor clearColor]];
+}
+
+- (IBAction)swipeBack:(id)sender
+{
+//	NSLog(@"%@", [[self.navigationController viewControllers] description]);
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setupFetchedResultsController
 {
+	//这里会将EntityName设置为navigationBar的title
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Question"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createTime"
 																					 ascending:NO 

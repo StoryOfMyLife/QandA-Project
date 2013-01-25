@@ -56,6 +56,8 @@
 		091FB2E916989A8D00E9B997 /* Video+Insert.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FB2E816989A8D00E9B997 /* Video+Insert.m */; };
 		091FB2EC16989B3A00E9B997 /* Answer+Insert.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FB2EB16989B3900E9B997 /* Answer+Insert.m */; };
 		092385F416A69DA10066E8B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 092385F316A69DA10066E8B3 /* LoginViewController.m */; };
+		093715A316B262E600791C19 /* CustomizedNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 093715A216B262E600791C19 /* CustomizedNavigation.m */; };
+		093715A716B274F400791C19 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093715A616B274F400791C19 /* SearchTableViewController.m */; };
 		0939CADB16B155F900B3856C /* tab_selection_indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0939CAD916B155F900B3856C /* tab_selection_indicator@2x.png */; };
 		0939CADC16B155F900B3856C /* tab_selection_indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 0939CADA16B155F900B3856C /* tab_selection_indicator.png */; };
 		0939CAEA16B15AA600B3856C /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0939CAE816B15AA600B3856C /* navbar_bg.png */; };
@@ -191,6 +193,10 @@
 		091FB2EB16989B3900E9B997 /* Answer+Insert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Answer+Insert.m"; sourceTree = "<group>"; };
 		092385F216A69DA10066E8B3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		092385F316A69DA10066E8B3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		093715A116B262E600791C19 /* CustomizedNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedNavigation.h; sourceTree = "<group>"; };
+		093715A216B262E600791C19 /* CustomizedNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedNavigation.m; sourceTree = "<group>"; };
+		093715A516B274F400791C19 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
+		093715A616B274F400791C19 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		0939CAD916B155F900B3856C /* tab_selection_indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_selection_indicator@2x.png"; sourceTree = "<group>"; };
 		0939CADA16B155F900B3856C /* tab_selection_indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_selection_indicator.png; sourceTree = "<group>"; };
 		0939CAE816B15AA600B3856C /* navbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_bg.png; sourceTree = "<group>"; };
@@ -329,6 +335,8 @@
 		09065BBB16A1B8FD0000B256 /* Second view */ = {
 			isa = PBXGroup;
 			children = (
+				093715A516B274F400791C19 /* SearchTableViewController.h */,
+				093715A616B274F400791C19 /* SearchTableViewController.m */,
 			);
 			name = "Second view";
 			sourceTree = "<group>";
@@ -470,11 +478,13 @@
 		090F143C16807EF80020EDC2 /* Tab bar  */ = {
 			isa = PBXGroup;
 			children = (
+				090F142E16807E2A0020EDC2 /* TabBarViewController.h */,
+				090F142F16807E2A0020EDC2 /* TabBarViewController.m */,
+				093715A116B262E600791C19 /* CustomizedNavigation.h */,
+				093715A216B262E600791C19 /* CustomizedNavigation.m */,
 				090F143B16807EEB0020EDC2 /* First view */,
 				09065BBB16A1B8FD0000B256 /* Second view */,
 				09065BB716A1B3580000B256 /* Third view */,
-				090F142E16807E2A0020EDC2 /* TabBarViewController.h */,
-				090F142F16807E2A0020EDC2 /* TabBarViewController.m */,
 			);
 			name = "Tab bar ";
 			sourceTree = "<group>";
@@ -945,6 +955,8 @@
 				09065BBA16A1B3960000B256 /* ThirdTableViewController.m in Sources */,
 				09065BCB16A1CC370000B256 /* SettingsTableViewController.m in Sources */,
 				092385F416A69DA10066E8B3 /* LoginViewController.m in Sources */,
+				093715A316B262E600791C19 /* CustomizedNavigation.m in Sources */,
+				093715A716B274F400791C19 /* SearchTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,11 +39,8 @@
 	//若在此之前进行setup，则会改变navigationItem的title
 	[self setupFetchedResultsController];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableView_bg"]];
+	[self.tableView setBackgroundView:tableBackgroundView];
 }
 
 - (void)setupFetchedResultsController
@@ -61,6 +58,8 @@
 
 - (IBAction)swipeBack:(id)sender
 {
+//	NSLog(@"%@", self.navigationController);
+//	NSLog(@"%@", [self.navigationController.viewControllers description]);
 	[self.navigationController popViewControllerAnimated:YES];
 }
 

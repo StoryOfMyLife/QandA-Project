@@ -138,6 +138,8 @@
 		default:
 			break;
     }
+	[vc.tableView setBackgroundView:nil];
+	[vc.tableView setBackgroundColor:[UIColor clearColor]];
     return vc;
 }
 
