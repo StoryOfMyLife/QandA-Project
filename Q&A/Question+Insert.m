@@ -83,6 +83,18 @@
 		[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
     } else {
         question = [matches lastObject];
+		//将新增回答更新进数据库
+		if ([[data valueForKey:@"countAnswer"] integerValue] != [question.answerCount integerValue]) {
+			NSArray *answersArray = [data objectForKey:@"answers"];
+			NSMutableSet *answersSet = [NSMutableSet setWithCapacity:[answersArray count]];
+			for (NSDictionary *answerDic in answersArray) {
+				Answer *answer = [Answer answerWithInfo:answerDic inManagedObjectContext:context];
+				[answersSet addObject:answer];
+			}
+			question.answers = answersSet;
+			question.answerCount = [NSNumber numberWithInteger:[[data valueForKey:@"countAnswer"] integerValue]];
+			[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
+		}
     }
     return question;
 }

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 刘廷勇. All rights reserved.
 //
 
-#import "NewQuestionViewController.h"
+#import "NewQorAViewController.h"
 
-@interface NewQuestionViewController (CameraDelegateMethods)
+@interface NewQorAViewController (CameraDelegateMethods)
 
 - (BOOL)startCameraControllerFromViewController: (UIViewController *) controller
 								  usingDelegate: (id <UIImagePickerControllerDelegate,

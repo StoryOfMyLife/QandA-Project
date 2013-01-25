@@ -78,13 +78,4 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];	
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	if (section == 0) {
-		return @"---------------个人信息---------------";
-	} else if (section == 1) {
-		return @"-----------------设置------------------";
-	} else return nil;
-}
-
 @end

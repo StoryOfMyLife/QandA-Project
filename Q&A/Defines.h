@@ -13,6 +13,7 @@
 #define kUpLoadVideoURL @"http://218.249.255.29:9080/nesdu-webapp/api/video/upload"
 #define kGetVideoURL @"http://218.249.255.29:9080/nesdu-webapp/api/video/download?videoId="
 #define kUpLoadQuestionURL @"http://218.249.255.29:9080/nesdu-webapp/api/question"
+#define kUploadAnswerURL @"http://218.249.255.29:9080/nesdu-webapp/api/answer/"
 #define kLoginURL @"http://218.249.255.29:9080/nesdu-webapp/api/auth/login?"
 
 #endif

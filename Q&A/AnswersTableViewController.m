@@ -13,6 +13,8 @@
 #import "Video+Insert.h"
 #import "Defines.h"
 #import "AFHTTPRequestOperation.h"
+#import "CustomizedNavigation.h"
+#import "NewQorAViewController.h"
 
 @interface AnswersTableViewController ()
 
@@ -43,6 +45,12 @@
 	[self.tableView setBackgroundView:tableBackgroundView];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+//	self.fetchedResultsController = nil;
+	[super viewWillDisappear:animated];
+}
+
 - (void)setupFetchedResultsController
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Answer"];
@@ -54,6 +62,16 @@
                                                                         managedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]
                                                                           sectionNameKeyPath:nil
                                                                                    cacheName:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"pop to answer"]) {
+		CustomizedNavigation *answerViewNavigation = (CustomizedNavigation *)segue.destinationViewController;
+		NewQorAViewController *answerView = (NewQorAViewController *)answerViewNavigation.topViewController;
+		answerView.isAnswerView = YES;
+		answerView.questionID = self.question.questionID;
+	}
 }
 
 - (IBAction)swipeBack:(id)sender
@@ -105,19 +123,19 @@
 	
 	if ([cell isKindOfClass:[QuestionDetailCell class]]) {
 		QuestionDetailCell *questionDetailCell = (QuestionDetailCell *)cell;
-		questionDetailCell.title.text = [questionDetailCell.title.text stringByAppendingString:self.question.title];
-		questionDetailCell.author.text = [questionDetailCell.author.text stringByAppendingString:self.question.author];
-		questionDetailCell.createTime.text = [questionDetailCell.createTime.text stringByAppendingString:[dateFormatter stringFromDate:self.question.createTime]];
-		questionDetailCell.videoDuration.text = [questionDetailCell.videoDuration.text stringByAppendingString:self.question.questionVideo.duration];
+		questionDetailCell.title.text = [@"问题：" stringByAppendingString:self.question.title];
+		questionDetailCell.author.text = [@"作者：" stringByAppendingString:self.question.author];
+		questionDetailCell.createTime.text = [@"日期：" stringByAppendingString:[dateFormatter stringFromDate:self.question.createTime]];
+		questionDetailCell.videoDuration.text = [@"时长：" stringByAppendingString:self.question.questionVideo.duration];
 	} else if ([cell isKindOfClass:[AnswerCell class]]) {
 		AnswerCell *answerCell = (AnswerCell *)cell;
 		NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
 		Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
-		answerCell.author.text = [answerCell.author.text stringByAppendingString:answer.author];
+		answerCell.author.text = [@"作者：" stringByAppendingString:answer.author];
 
-		answerCell.createTime.text = [answerCell.createTime.text stringByAppendingString:[dateFormatter stringFromDate:answer.createTime]];
+		answerCell.createTime.text = [@"日期：" stringByAppendingString:[dateFormatter stringFromDate:answer.createTime]];
 		
-		answerCell.videoDuration.text = [answerCell.videoDuration.text stringByAppendingString:answer.answerVideo.duration];
+		answerCell.videoDuration.text = [@"时长：" stringByAppendingString:answer.answerVideo.duration];
 	}
 }
 
@@ -215,7 +233,11 @@
 	[operation start];
 }
 
-- (void)viewDidUnload {
-	[super viewDidUnload];
+- (void)dealloc
+{
+//此dealloc的作用：解决save core data(question)时的[AnswersTableVC controllerWillChangeContent:]: message sent to deallocated instance的错误
+	self.fetchedResultsController = nil;
+	self.fetchedResultsController.delegate = nil;
 }
+
 @end

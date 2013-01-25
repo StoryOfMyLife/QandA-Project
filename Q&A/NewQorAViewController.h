@@ -11,7 +11,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "GCPlaceholderTextView.h"
 
-@interface NewQuestionViewController : UITableViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+@interface NewQorAViewController : UITableViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 
 @property (strong, nonatomic) IBOutlet GCPlaceholderTextView *questionTextView;
@@ -19,5 +19,9 @@
 @property (nonatomic, strong) UIBarButtonItem *saveButton;
 
 @property (nonatomic, copy) NSString *videoID;
+
+@property (nonatomic) BOOL isAnswerView;
+
+@property (nonatomic, copy) NSString *questionID;
 
 @end

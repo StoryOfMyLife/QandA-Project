@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 刘廷勇. All rights reserved.
 //
 
-#import "NewQuestionViewController.h"
+#import "NewQorAViewController.h"
 
-@interface NewQuestionViewController (KeyboardMethods)
+@interface NewQorAViewController (KeyboardMethods)
 
 - (void)customizeKeyboardOfTextView:(UITextView *)textView;
 

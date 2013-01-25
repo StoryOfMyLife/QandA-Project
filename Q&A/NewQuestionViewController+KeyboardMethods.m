@@ -9,7 +9,7 @@
 #import "NewQuestionViewController+KeyboardMethods.h"
 #import "NewQuestionViewController+CameraDelegateMethods.h"
 
-@implementation NewQuestionViewController (KeyboardMethods)
+@implementation NewQorAViewController (KeyboardMethods)
 
 - (void)customizeKeyboardOfTextView:(UITextView *)textView
 {

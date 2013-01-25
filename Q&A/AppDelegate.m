@@ -18,8 +18,8 @@
 
 	//customize appearance
 	//tabbar
-	[[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"tab_selection_indicator"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
-	[[UITabBar appearance] setBackgroundImage:[[UIImage imageNamed:@"tabbar_background"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, -5, 0)]];
+	[[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"tab_selection_indicator"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)]];
+	[[UITabBar appearance] setBackgroundImage:[[UIImage imageNamed:@"tab_bar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(-10, 0, -10, 0)]];
 	//navbar
 	[[UINavigationBar appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackgroundImage:[UIImage imageNamed:@"navbar_bg"] forBarMetrics:UIBarMetricsDefault];
 	//navbar buttons

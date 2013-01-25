@@ -12,7 +12,7 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Defines.h"
 
-@implementation NewQuestionViewController (CameraDelegateMethods)
+@implementation NewQorAViewController (CameraDelegateMethods)
 
 - (BOOL)startCameraControllerFromViewController:(UIViewController *) controller
 								  usingDelegate:(id <UIImagePickerControllerDelegate,UINavigationControllerDelegate>)delegate 
