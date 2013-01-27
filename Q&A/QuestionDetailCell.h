@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class QuestionDetailCell;
+
+@protocol QuestionDetailCellDelegate <NSObject>
+
+- (void)questionPlayButtonDidPress:(QuestionDetailCell *)sender;
+
+@end
+
 @interface QuestionDetailCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -21,4 +29,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *videoPreview;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+
+@property (weak, nonatomic) id <QuestionDetailCellDelegate> delegate;
 @end

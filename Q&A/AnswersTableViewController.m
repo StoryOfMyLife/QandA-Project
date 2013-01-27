@@ -16,7 +16,7 @@
 #import "CustomizedNavigation.h"
 #import "NewQorAViewController.h"
 
-@interface AnswersTableViewController ()
+@interface AnswersTableViewController () <AnswerCellDelegate, QuestionDetailCellDelegate>
 
 @property (nonatomic, strong) MPMoviePlayerViewController *movieView;
 
@@ -107,10 +107,12 @@
 	NSString *CellIdentifier = @"detail cell";
 	if (0 == indexPath.row) {
 		QuestionDetailCell *topCell = [tableView dequeueReusableCellWithIdentifier:topCellIdentifier];
+		topCell.delegate = self;
 		[self configureCell:topCell atIndexPath:indexPath];
 		return topCell;
 	} else {
 		AnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+		cell.delegate = self;
 		[self configureCell:cell atIndexPath:indexPath];
 		return cell;
 	}
@@ -148,29 +150,33 @@
 	}
 }
 
+#pragma mark - video play delegate
+- (void)answerPlayButtonDidPress:(AnswerCell *)sender
+{
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+	self.downloadingIndicator = sender.loadingIndicator;
+	[self.downloadingIndicator startAnimating];
+	NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
+	Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
+	NSString *videoID = answer.answerVideo.videoID;
+	[self playVideoWithVideoID:videoID];
+}
+
+- (void)questionPlayButtonDidPress:(QuestionDetailCell *)sender
+{
+	self.downloadingIndicator = sender.loadingIndicator;
+	[self.downloadingIndicator startAnimating];
+	NSString *videoID = self.question.questionVideo.videoID;
+	[self playVideoWithVideoID:videoID];
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	[self.tableView setAllowsSelection:NO];
-	NSString *videoID;
-	if (indexPath.row == 0) {
-		QuestionDetailCell *cell = (QuestionDetailCell *)[tableView cellForRowAtIndexPath:indexPath];
-		self.downloadingIndicator = cell.loadingIndicator;
-		[self.downloadingIndicator startAnimating];
-		videoID = self.question.questionVideo.videoID;
-	} else {
-		AnswerCell *cell = (AnswerCell *)[tableView cellForRowAtIndexPath:indexPath];
-		self.downloadingIndicator = cell.loadingIndicator;
-		[self.downloadingIndicator startAnimating];
-		NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
-		Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
-		videoID = answer.answerVideo.videoID;
-	}
-	
-	[self playVideoWithVideoID:videoID];
 }
+
 #pragma mark - 视频下载以及播放
 #warning 此处视频无法在线播放,只能暂时用先下载,在本地播放的方式,后续需要改进
 - (void)playVideoFromPath:(NSString *)videoPath

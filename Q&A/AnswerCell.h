@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class AnswerCell;
+@protocol AnswerCellDelegate <NSObject>
+
+- (void)answerPlayButtonDidPress:(AnswerCell *)sender;
+
+@end
+
 @interface AnswerCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *author;
@@ -19,5 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *videoPreview;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+
+@property (weak, nonatomic) id <AnswerCellDelegate> delegate;
 
 @end

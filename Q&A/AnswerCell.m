@@ -8,7 +8,7 @@
 
 #import "AnswerCell.h"
 
-@implementation AnswerCell
+@implementation AnswerCell 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -17,6 +17,11 @@
         // Initialization code
     }
     return self;
+}
+
+- (IBAction)playVideo:(id)sender 
+{
+	[self.delegate answerPlayButtonDidPress:self];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

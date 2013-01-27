@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		09065BBA16A1B3960000B256 /* ThirdTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09065BB916A1B3960000B256 /* ThirdTableViewController.m */; };
 		09065BCB16A1CC370000B256 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09065BCA16A1CC370000B256 /* SettingsTableViewController.m */; };
+		0908E6D716B4C72400626854 /* tabbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0908E6D516B4C72400626854 /* tabbar_bg.png */; };
+		0908E6D816B4C72400626854 /* tabbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0908E6D616B4C72400626854 /* tabbar_bg@2x.png */; };
+		0908E6DA16B4D75C00626854 /* textbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 0908E6D916B4D75C00626854 /* textbox.png */; };
+		0908E6DD16B4E63C00626854 /* play_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0908E6DB16B4E63C00626854 /* play_video@2x.png */; };
+		0908E6DE16B4E63C00626854 /* play_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 0908E6DC16B4E63C00626854 /* play_video.png */; };
 		090C2D111682EFC5008051F1 /* Question+Insert.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C2D101682EFC5008051F1 /* Question+Insert.m */; };
 		090C2D1A16830460008051F1 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C2D1916830460008051F1 /* CoreDataTableViewController.m */; };
 		090F13F916807D220020EDC2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090F13F816807D220020EDC2 /* UIKit.framework */; };
@@ -86,8 +91,6 @@
 		094A826416933C3800208A29 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 094A825916933C3800208A29 /* AFURLConnectionOperation.m */; };
 		094A826516933C3800208A29 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 094A825B16933C3800208A29 /* AFXMLRequestOperation.m */; };
 		094A826616933C3800208A29 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 094A825D16933C3800208A29 /* UIImageView+AFNetworking.m */; };
-		096A006216B2B8F0007C11C8 /* tab_bar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 096A006016B2B8F0007C11C8 /* tab_bar_bg.png */; };
-		096A006316B2B8F0007C11C8 /* tab_bar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 096A006116B2B8F0007C11C8 /* tab_bar_bg@2x.png */; };
 		09A727F916995A6E00088017 /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A727F816995A6E00088017 /* AnswerCell.m */; };
 		09A727FD16995CF800088017 /* QuestionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A727FC16995CF800088017 /* QuestionDetailCell.m */; };
 		09C16C221696BF2F00647ED7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C16C211696BF2F00647ED7 /* SystemConfiguration.framework */; };
@@ -126,6 +129,11 @@
 		09065BB916A1B3960000B256 /* ThirdTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdTableViewController.m; sourceTree = "<group>"; };
 		09065BC916A1CC370000B256 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		09065BCA16A1CC370000B256 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		0908E6D516B4C72400626854 /* tabbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_bg.png; sourceTree = "<group>"; };
+		0908E6D616B4C72400626854 /* tabbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@2x.png"; sourceTree = "<group>"; };
+		0908E6D916B4D75C00626854 /* textbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbox.png; sourceTree = "<group>"; };
+		0908E6DB16B4E63C00626854 /* play_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play_video@2x.png"; sourceTree = "<group>"; };
+		0908E6DC16B4E63C00626854 /* play_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_video.png; sourceTree = "<group>"; };
 		090C2D0F1682EFC5008051F1 /* Question+Insert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Question+Insert.h"; sourceTree = "<group>"; };
 		090C2D101682EFC5008051F1 /* Question+Insert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Question+Insert.m"; sourceTree = "<group>"; };
 		090C2D1816830460008051F1 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
@@ -237,8 +245,6 @@
 		094A825B16933C3800208A29 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		094A825C16933C3800208A29 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		094A825D16933C3800208A29 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		096A006016B2B8F0007C11C8 /* tab_bar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_bar_bg.png; sourceTree = "<group>"; };
-		096A006116B2B8F0007C11C8 /* tab_bar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_bar_bg@2x.png"; sourceTree = "<group>"; };
 		09A727F716995A6E00088017 /* AnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerCell.h; sourceTree = "<group>"; };
 		09A727F816995A6E00088017 /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
 		09A727FB16995CF800088017 /* QuestionDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionDetailCell.h; sourceTree = "<group>"; };
@@ -583,6 +589,8 @@
 			isa = PBXGroup;
 			children = (
 				0939CB1E16B177D100B3856C /* table view */,
+				0908E6DB16B4E63C00626854 /* play_video@2x.png */,
+				0908E6DC16B4E63C00626854 /* play_video.png */,
 				0939CAE716B1596000B3856C /* navbar */,
 				0939CAE616B1595100B3856C /* tabbar */,
 				090F1BC316A7AA3D00CD0610 /* 头像.png */,
@@ -596,8 +604,8 @@
 			children = (
 				0939CB3016B18ACB00B3856C /* tabbar_background.png */,
 				0939CB3116B18ACB00B3856C /* tabbar_background@2x.png */,
-				096A006016B2B8F0007C11C8 /* tab_bar_bg.png */,
-				096A006116B2B8F0007C11C8 /* tab_bar_bg@2x.png */,
+				0908E6D516B4C72400626854 /* tabbar_bg.png */,
+				0908E6D616B4C72400626854 /* tabbar_bg@2x.png */,
 				091DA6631685F27100BC4D11 /* first.png */,
 				091DA6641685F27100BC4D11 /* first@2x.png */,
 				091DA6651685F27100BC4D11 /* second2.png */,
@@ -633,6 +641,7 @@
 		0939CB1E16B177D100B3856C /* table view */ = {
 			isa = PBXGroup;
 			children = (
+				0908E6D916B4D75C00626854 /* textbox.png */,
 				0939CB1A16B170F500B3856C /* tableView_bg.png */,
 				0939CB1716B1708E00B3856C /* tableView_bg@2x.png */,
 			);
@@ -889,8 +898,11 @@
 				0939CB2F16B18A1B00B3856C /* header_bg@2x.png in Resources */,
 				0939CB3216B18ACB00B3856C /* tabbar_background.png in Resources */,
 				0939CB3316B18ACB00B3856C /* tabbar_background@2x.png in Resources */,
-				096A006216B2B8F0007C11C8 /* tab_bar_bg.png in Resources */,
-				096A006316B2B8F0007C11C8 /* tab_bar_bg@2x.png in Resources */,
+				0908E6D716B4C72400626854 /* tabbar_bg.png in Resources */,
+				0908E6D816B4C72400626854 /* tabbar_bg@2x.png in Resources */,
+				0908E6DA16B4D75C00626854 /* textbox.png in Resources */,
+				0908E6DD16B4E63C00626854 /* play_video@2x.png in Resources */,
+				0908E6DE16B4E63C00626854 /* play_video.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,17 +17,21 @@
 	[MagicalRecord setupCoreDataStackWithStoreNamed:@"database.sqlite"];
 
 	//customize appearance
-	//tabbar
-	[[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"tab_selection_indicator"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)]];
-	[[UITabBar appearance] setBackgroundImage:[[UIImage imageNamed:@"tab_bar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(-10, 0, -10, 0)]];
-	//navbar
+	//tabbar 选中背景
+	[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tab_selection_indicator"]];
+	//tabbar 整体背景
+	[[UITabBar appearance] setBackgroundImage:[[UIImage imageNamed:@"tabbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
+	//tabbar 选中颜色
+	[[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
+	
+	//navbar 整体背景
 	[[UINavigationBar appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackgroundImage:[UIImage imageNamed:@"navbar_bg"] forBarMetrics:UIBarMetricsDefault];
 	//navbar buttons
 	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackgroundImage:[[UIImage imageNamed:@"navbar_button_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackgroundImage:[[UIImage imageNamed:@"navbar_button_pressed_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"back_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_back_button_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-	//table view background
+	//table view 背景
 	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableView_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
 	[[UITableView appearance] setBackgroundView:tableBackgroundView];
 	[[UITableView appearance] setBackgroundColor:[UIColor clearColor]];

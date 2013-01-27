@@ -44,6 +44,7 @@
 	//在这里不设置一下背景，应用开启后会卡死在界面，原因未知。。。
 //	[self.tableView setBackgroundView:nil];
 //	[self.tableView setBackgroundColor:[UIColor clearColor]];
+	
 }
 
 - (IBAction)swipeBack:(id)sender
@@ -93,6 +94,9 @@
 {
     static NSString *CellIdentifier = @"first cell";
     QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	UIImageView *cellView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"textbox"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)]];
+//	[cell setBackgroundView:cellView];
+//	[cell setSelectedBackgroundView:cellView];
 	[self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -103,7 +107,7 @@
 	Question *question = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//	NSLog(@"%@", question);
 	cell.questionTitle.text = question.title;
-	cell.questionID.text = [NSString stringWithFormat:@"%d", indexPath.row];
+	cell.questionID.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
 	cell.questionKeywords.text = question.tags;
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -134,6 +138,11 @@
         
         [[NSManagedObjectContext MR_contextForCurrentThread] MR_save];		
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 86;
 }
 
 - (void)viewDidUnload 

@@ -18,6 +18,10 @@
     }
     return self;
 }
+- (IBAction)playVideo:(id)sender 
+{
+	[self.delegate questionPlayButtonDidPress:self];
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
