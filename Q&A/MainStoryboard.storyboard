@@ -129,7 +129,7 @@
         <!--Question Table View Controller - 我的关注-->
         <scene sceneID="7J7-v8-bof">
             <objects>
-                <tableViewController storyboardIdentifier="first table view" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w84-4E-CgI" customClass="QuestionTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="first table view" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="w84-4E-CgI" customClass="QuestionTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7li-If-rbr">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,7 +206,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="我的关注" id="mpE-em-erp"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pHW-da-V7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -271,12 +270,12 @@
                                             <rect key="frame" x="142" y="58" width="37" height="37"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
-                                        <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="wvT-IP-X3Z">
+                                        <button alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="wvT-IP-X3Z">
                                             <rect key="frame" x="138" y="53" width="45" height="45"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                            <state key="normal" title="Button" image="play_video.png">
+                                            <state key="normal" title="Button" image="play.png">
                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -332,13 +331,14 @@
                                             <rect key="frame" x="40" y="21" width="37" height="37"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
-                                        <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cu1-4B-BQg">
+                                        <button alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cu1-4B-BQg">
                                             <rect key="frame" x="36" y="17" width="45" height="45"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <state key="normal" image="play_video.png"/>
+                                            <state key="normal" image="play.png">
+                                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -366,7 +366,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="相关回答" id="r47-Zh-7iZ">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="ZId-6L-eHy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="ZId-6L-eHy">
                             <connections>
                                 <segue destination="nBh-Kp-cxe" kind="modal" identifier="pop to answer" id="dEw-xj-NM3"/>
                             </connections>
@@ -871,11 +871,6 @@
                                 <segue destination="iIP-lB-8Kf" kind="modal" modalTransitionStyle="flipHorizontal" id="35D-cZ-RJs"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="K1W-bW-9B4">
-                            <connections>
-                                <action selector="refresh:" destination="LHP-tC-tQM" id="QXc-md-njI"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -1079,7 +1074,7 @@
         <image name="Default.png" width="320" height="480"/>
         <image name="clock.png" width="25" height="25"/>
         <image name="first.png" width="28" height="28"/>
-        <image name="play_video.png" width="52" height="53"/>
+        <image name="play.png" width="75" height="75"/>
         <image name="second2.png" width="26" height="26"/>
         <image name="tableView_bg@2x.png" width="640" height="960"/>
         <image name="third.png" width="24" height="24"/>
@@ -1098,9 +1093,6 @@
         </class>
         <class className="AnswersTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="swipeBack:"/>
-            </relationships>
         </class>
         <class className="CoreDataTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>

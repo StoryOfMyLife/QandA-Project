@@ -9,43 +9,103 @@
 #import "QuestionTableViewController.h"
 #import "AnswersTableViewController.h"
 #import "Question.h"
+#import "RefreshView.h"
+#import "JSON.h"
+#import "Defines.h"
+#import "SVStatusHUD.h"
 
-@interface QuestionTableViewController () <UIScrollViewDelegate>
+@interface QuestionTableViewController () <UIScrollViewDelegate, MyJSONDelegate, RefreshViewDelegate>
+
+@property (strong, nonatomic) RefreshView *refreshView;
 
 @end
 
 @implementation QuestionTableViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-//	self.parentViewController.navigationItem.rightBarButtonItem.enabled = NO;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	self.debug = NO;		
 	[self setupFetchedResultsController];	
+	
+	//加载下拉刷新view
+	NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"RefreshView" owner:self options:nil];
+    self.refreshView = [nibs objectAtIndex:0];
+    [_refreshView setupWithOwner:self.tableView delegate:self];
+	
 	//在这里不设置一下背景，应用开启后会卡死在界面，原因未知。。。
 //	[self.tableView setBackgroundView:nil];
 //	[self.tableView setBackgroundColor:[UIColor clearColor]];
 	
 }
+
+#pragma mark - JSON delegate
+- (void)fetchJSONFailed
+{
+	NSLog(@"获取JSON数据失败!");
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self refreshFailed];
+		[SVStatusHUD showWithImage:[UIImage imageNamed:@"wifi_"] withString1:@"加载失败" string2:@"请检查连接!" duration:1];
+	});	
+}
+
+- (void)fetchJSONDidFinished
+{
+	dispatch_async(dispatch_get_main_queue(), ^{
+		NSLog(@"获取JSON数据成功");
+		[self refreshFinished];
+	});	
+	
+}
+
+#pragma mark - RefreshView method
+- (void)refreshViewDidCallBack {
+    [self refresh];
+}
+// 刷新
+- (void)refresh 
+{
+	[_refreshView startLoading];
+	JSON *myJSON = [[JSON alloc] init];
+	myJSON.delegate = self;
+	[myJSON getJSONDataFromURL:kGetQuestionURL];
+}
+
+- (void)refreshFailed
+{
+	[_refreshView stopLoading];
+}
+
+- (void)refreshFinished
+{
+	[_refreshView finishLoading];
+//	[self.tableView reloadData];
+}
+
+#pragma mark - UIScrollView 
+// 刚拖动的时候
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [_refreshView scrollViewWillBeginDragging:scrollView];
+}
+// 拖动过程中
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [_refreshView scrollViewDidScroll:scrollView];
+	scrollView.showsVerticalScrollIndicator = YES;
+}
+// 拖动结束后
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [_refreshView scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+	return YES;
+}
+
+#pragma mark - --
 
 - (IBAction)swipeBack:(id)sender
 {
@@ -94,9 +154,6 @@
 {
     static NSString *CellIdentifier = @"first cell";
     QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	UIImageView *cellView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"textbox"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)]];
-//	[cell setBackgroundView:cellView];
-//	[cell setSelectedBackgroundView:cellView];
 	[self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -148,6 +205,7 @@
 - (void)viewDidUnload 
 {
 	self.fetchedResultsController = nil;
+	self.refreshView = nil;
 	[self removeFromParentViewController];
 	[super viewDidUnload]; 
 }

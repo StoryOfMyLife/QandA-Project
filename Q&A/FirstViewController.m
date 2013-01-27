@@ -11,11 +11,8 @@
 #define kNumberOfPages 3
 
 #import "FirstViewController.h"
-#import "JSON.h"
-#import "Defines.h"
-#import "SVStatusHUD.h"
 
-@interface FirstViewController () <UIScrollViewDelegate, MyJSONDelegate>
+@interface FirstViewController () <UIScrollViewDelegate>
 {
 	BOOL segmentedControlUsed;
 }
@@ -157,28 +154,6 @@
 	[super viewDidUnload];
 }
 
-- (IBAction)refresh:(id)sender
-{
-	JSON *myJSON = [[JSON alloc] init];
-	myJSON.delegate = self;
-	[myJSON getJSONDataFromURL:kGetQuestionURL];
-	
-	NSLog(@"refreshed!");
-}
-
-#pragma mark - JSON delegate
-- (void)fetchJSONFailed
-{
-	NSLog(@"获取JSON数据失败!");
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[SVStatusHUD showWithImage:[UIImage imageNamed:@"wifi_"] withString1:@"加载失败" string2:@"请检查连接!" duration:1];
-	});	
-}
-
-- (void)fetchJSONDidFinished
-{
-	NSLog(@"获取JSON数据成功");
-}
 
 
 #pragma mark - 以下是之前处理页面之间滑动的方法，现在不用了，现在改用scrollView
