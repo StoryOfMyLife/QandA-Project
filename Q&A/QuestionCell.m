@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-    }
+	}
     return self;
 }
 
@@ -24,14 +24,6 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-	if (selected) {
-		UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"textbox"]];
-		[self setSelectedBackgroundView:imageView];
-		self.questionTitle.textColor = [UIColor redColor];
-	} else {
-		[self setSelectedBackgroundView:nil];
-		self.questionTitle.textColor = [UIColor blackColor];
-	}
 }
 
 @end

@@ -18,9 +18,9 @@
 
 	//customize appearance
 	//tabbar 选中背景
-	[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tab_selection_indicator"]];
+	[[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"tab_selection_indicator"] resizableImageWithCapInsets:UIEdgeInsetsMake(24, 24, 24, 24)]];
 	//tabbar 整体背景
-	[[UITabBar appearance] setBackgroundImage:[[UIImage imageNamed:@"tabbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, -10, 0)]];
+	[[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg1"]];
 //	[[UITabBar appearance] setShadowImage:[UIImage imageNamed:@"tab_bar_shadow"]];
 	//tabbar 选中颜色
 	[[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
@@ -36,7 +36,7 @@
 	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableView_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
 	[[UITableView appearance] setBackgroundView:tableBackgroundView];
 	[[UITableView appearance] setBackgroundColor:[UIColor clearColor]];
-	
+		
     return YES;
 }
 							

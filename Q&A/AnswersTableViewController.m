@@ -15,12 +15,17 @@
 #import "AFHTTPRequestOperation.h"
 #import "CustomizedNavigation.h"
 #import "NewQorAViewController.h"
+#import "RefreshView.h"
+#import "JSON.h"
+#import "SVStatusHUD.h"
 
-@interface AnswersTableViewController () <AnswerCellDelegate, QuestionDetailCellDelegate>
+@interface AnswersTableViewController () <AnswerCellDelegate, QuestionDetailCellDelegate, MyJSONDelegate>
 
 @property (nonatomic, strong) MPMoviePlayerViewController *movieView;
 
 @property (nonatomic, weak) UIActivityIndicatorView *downloadingIndicator;
+
+@property (strong, nonatomic) RefreshView *refreshView;
 
 @end
 
@@ -43,14 +48,78 @@
 
     UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableView_bg"]];
 	[self.tableView setBackgroundView:tableBackgroundView];
+	
+	NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"RefreshView" owner:self options:nil];
+    self.refreshView = [nibs objectAtIndex:0];
+    [_refreshView setupWithOwner:self.tableView delegate:self];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+#pragma mark - JSON delegate
+- (void)fetchJSONFailed
 {
-//	self.fetchedResultsController = nil;
-	[super viewWillDisappear:animated];
+	NSLog(@"获取JSON数据失败!");
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self refreshFailed];
+		[SVStatusHUD showWithImage:[UIImage imageNamed:@"wifi_"] withString1:@"加载失败" string2:@"请检查连接!" duration:1];
+	});	
 }
 
+- (void)fetchJSONDidFinished
+{
+	dispatch_async(dispatch_get_main_queue(), ^{
+		NSLog(@"获取JSON数据成功");
+		[self refreshFinished];
+	});		
+}
+
+#pragma mark - RefreshView method
+- (void)refreshViewDidCallBack {
+    [self refresh];
+}
+// 刷新
+- (void)refresh 
+{
+	[_refreshView startLoading];
+	JSON *myJSON = [[JSON alloc] init];
+	myJSON.delegate = self;
+	[myJSON getJSONDataFromURL:kGetQuestionURL];
+}
+
+- (void)refreshFailed
+{
+	[_refreshView stopLoading];
+}
+
+- (void)refreshFinished
+{
+	[_refreshView finishLoading];
+	[self.tableView reloadData];
+}
+
+#pragma mark - UIScrollView 
+// 刚拖动的时候
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [_refreshView scrollViewWillBeginDragging:scrollView];
+}
+// 拖动过程中
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [_refreshView scrollViewDidScroll:scrollView];
+	scrollView.showsVerticalScrollIndicator = YES;
+}
+// 拖动结束后
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [_refreshView scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+	return YES;
+}
+
+#pragma mark - --
 - (void)setupFetchedResultsController
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Answer"];
@@ -79,12 +148,6 @@
 //	NSLog(@"%@", self.navigationController);
 //	NSLog(@"%@", [self.navigationController.viewControllers description]);
 	[self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -244,6 +307,12 @@
 //此dealloc的作用：解决save core data(question)时的[AnswersTableVC controllerWillChangeContent:]: message sent to deallocated instance的错误
 	self.fetchedResultsController = nil;
 	self.fetchedResultsController.delegate = nil;
+}
+
+- (void)didReceiveMemoryWarning
+{
+	NSLog(@"内存警告！");
+	[super didReceiveMemoryWarning];
 }
 
 @end

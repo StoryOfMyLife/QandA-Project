@@ -31,6 +31,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+	self.loginButton.tintColor = [UIColor clearColor];
+	self.cancelButton.tintColor = [UIColor clearColor];
+
+	[self.loginButton setBackgroundImage:[[UIImage imageNamed:@"round_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 62, 14, 62)] forState:UIControlStateNormal];
+	[self.cancelButton setBackgroundImage:[[UIImage imageNamed:@"round_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 62, 14, 62)] forState:UIControlStateNormal];
+	[self.loginButton setBackgroundImage:[[UIImage imageNamed:@"round_button_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 62, 14, 62)] forState:UIControlStateHighlighted];
+	[self.cancelButton setBackgroundImage:[[UIImage imageNamed:@"round_button_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 62, 14, 62)] forState:UIControlStateHighlighted];
 }
 - (IBAction)dismissView:(id)sender 
 {
@@ -112,6 +119,8 @@
 - (void)viewDidUnload {
 	[self setUsername:nil];
 	[self setPassword:nil];
+    [self setLoginButton:nil];
+    [self setCancelButton:nil];
 	[super viewDidUnload];
 }
 

@@ -79,7 +79,7 @@
 - (void)refreshFinished
 {
 	[_refreshView finishLoading];
-//	[self.tableView reloadData];
+	[self.tableView reloadData];
 }
 
 #pragma mark - UIScrollView 
@@ -106,7 +106,6 @@
 }
 
 #pragma mark - --
-
 - (IBAction)swipeBack:(id)sender
 {
 //	NSLog(@"%@", [[self.navigationController viewControllers] description]);
@@ -132,7 +131,6 @@
                                                                                    cacheName:nil];
 }
 
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	NSIndexPath *index = [self.tableView indexPathForCell:sender];
@@ -144,16 +142,14 @@
 	}
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"first cell";
     QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	UIImageView *tablecellBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_bg"]];
+	[cell setBackgroundView:tablecellBackgroundView];
+	UIImageView *tablecellSelectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_selected_bg"]];
+	[cell setSelectedBackgroundView:tablecellSelectedBackgroundView];
 	[self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -162,13 +158,12 @@
 {
 	// Configure the cell...
 	Question *question = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	//	NSLog(@"%@", question);
 	cell.questionTitle.text = question.title;
 	cell.questionID.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
 	cell.questionKeywords.text = question.tags;
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	NSString *createDate = [dateFormatter stringFromDate:question.createTime];
 	cell.questionAskedFrom.text = [NSString stringWithFormat:@"提问者：%@ %@", question.author, createDate];
 	
@@ -200,6 +195,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return 86;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload 
