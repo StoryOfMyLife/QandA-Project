@@ -46,7 +46,7 @@
 	//若在此之前进行setup，则会改变navigationItem的title
 	[self setupFetchedResultsController];
 
-    UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableView_bg"]];
+    UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
 	[self.tableView setBackgroundView:tableBackgroundView];
 	
 	NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"RefreshView" owner:self options:nil];

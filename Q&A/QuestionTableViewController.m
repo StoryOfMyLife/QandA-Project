@@ -25,6 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.tableView.scrollsToTop = YES;
 	self.debug = NO;		
 	[self setupFetchedResultsController];	
 	
@@ -165,11 +166,11 @@
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	NSString *createDate = [dateFormatter stringFromDate:question.createTime];
-	cell.questionAskedFrom.text = [NSString stringWithFormat:@"提问者：%@ %@", question.author, createDate];
+	cell.questionAskedFrom.text = [NSString stringWithFormat:@"提问者: %@  %@", question.author, createDate];
 	
 	NSString *answerDate = [dateFormatter stringFromDate:question.answerTime];
-	cell.questionAnsweredFrom.text = [NSString stringWithFormat:@"回答者：%@ %@", question.lastAnswerAuthor, answerDate];
-	cell.answerCount.text = [NSString stringWithFormat:@"%d", [question.answerCount intValue]];
+	cell.questionAnsweredFrom.text = [NSString stringWithFormat:@"回答者: %@  %@", question.lastAnswerAuthor, answerDate];
+	cell.answerCount.text = [NSString stringWithFormat:@"回复: %d", [question.answerCount intValue]];
 }
 
 #pragma mark - Table view delegate
@@ -194,7 +195,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 86;
+	return 100;
 }
 
 - (void)didReceiveMemoryWarning

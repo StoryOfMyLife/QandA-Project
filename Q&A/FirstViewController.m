@@ -95,6 +95,25 @@
     frame.origin.x = frame.size.width * page;
     frame.origin.y = 0;
 	[self.questionScrollView scrollRectToVisible:frame animated:YES];
+	[self scrcollViewControllers:self.questionViewControllers enableScrollToTopAtIndex:page];
+}
+
+- (void)scrcollViewControllers:(NSArray *)scrollViewControllers enableScrollToTopAtIndex:(NSInteger)index
+{
+	NSUInteger count = [scrollViewControllers count];
+	if (index >= count || index < 0) {
+		return;
+	}
+	for (id vc in scrollViewControllers) {
+		if ([vc isKindOfClass:[QuestionTableViewController class]]) {
+			QuestionTableViewController *questionVC = (QuestionTableViewController *)vc;
+			if (questionVC.flag == index) {
+				questionVC.tableView.scrollsToTop = YES;
+			} else {
+				questionVC.tableView.scrollsToTop = NO;
+			}
+		}
+	}
 }
 
 #pragma mark - scrollView delegate
@@ -104,9 +123,11 @@
 	if (segmentedControlUsed) {
 		return;
 	}
+	//页面显示在屏幕的部分超过50%，则返回当前页的page
 	CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.segmentedControl.selectedSegmentIndex = page;
+	[self scrcollViewControllers:self.questionViewControllers enableScrollToTopAtIndex:page];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -124,14 +145,17 @@
 - (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {
     QuestionTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"first table view"];
     switch (index) {
-        case 1:
-            vc.flag = 1;
-            break;
         case 0:
             vc.flag = 0;
+			vc.tableView.scrollsToTop = NO;
+            break;
+        case 1:
+            vc.flag = 1;
+			vc.tableView.scrollsToTop = YES;
             break;
 		case 2:
 			vc.flag = 2;
+			vc.tableView.scrollsToTop = NO;
 		default:
 			break;
     }
@@ -148,7 +172,6 @@
 
 - (void)viewDidUnload {
 	[self setSegmentedControl:nil];
-	[self setQuestionScrollView:nil];
 	[self setQuestionScrollView:nil];
 	[self setQuestionViewControllers:nil];
 	[super viewDidUnload];

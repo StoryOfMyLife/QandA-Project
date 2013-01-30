@@ -33,6 +33,8 @@
 	}
 	self.videoID = @"";
 	[self customizeKeyboardOfTextView:self.questionTextView];
+	
+	[self.questionTableCell setBackgroundView:[[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"textview_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(39, 104, 39, 104)]]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -167,6 +169,7 @@
 
 - (void)viewDidUnload {
 	[self setQuestionTextView:nil];
+	[self setQuestionTableCell:nil];
 	[super viewDidUnload];
 }
 @end

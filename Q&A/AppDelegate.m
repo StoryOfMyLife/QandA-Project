@@ -18,10 +18,11 @@
 
 	//customize appearance
 	//tabbar 选中背景
-	[[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"tab_selection_indicator"] resizableImageWithCapInsets:UIEdgeInsetsMake(24, 24, 24, 24)]];
+	[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabbar_selection_indicator1"]];
+	
 	//tabbar 整体背景
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg1"]];
-//	[[UITabBar appearance] setShadowImage:[UIImage imageNamed:@"tab_bar_shadow"]];
+	
 	//tabbar 选中颜色
 	[[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
 	
@@ -33,7 +34,7 @@
 	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"back_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_back_button_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 	//table view 背景
-	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableView_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
+	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
 	[[UITableView appearance] setBackgroundView:tableBackgroundView];
 	[[UITableView appearance] setBackgroundColor:[UIColor clearColor]];
 		

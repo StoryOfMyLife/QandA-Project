@@ -119,7 +119,7 @@
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
-         continueAfterRunningActions = "No"
+         continueAfterRunningActions = "Yes"
          filePath = "Q&amp;A/AnswersTableViewController.m"
          timestampString = "380990772.118463"
          startingColumnNumber = "9223372036854775807"
@@ -134,11 +134,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "Yes"
          filePath = "Q&amp;A/QuestionTableViewController.m"
-         timestampString = "381054894.104487"
+         timestampString = "381159464.377942"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "202"
-         endingLineNumber = "202"
+         startingLineNumber = "203"
+         endingLineNumber = "203"
          landmarkName = "-didReceiveMemoryWarning"
          landmarkType = "5">
       </FileBreakpoint>

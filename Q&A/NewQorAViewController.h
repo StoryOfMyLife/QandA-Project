@@ -24,4 +24,7 @@
 
 @property (nonatomic, copy) NSString *questionID;
 
+@property (weak, nonatomic) IBOutlet UITableViewCell *questionTableCell;
+
+
 @end
