@@ -672,7 +672,7 @@ const CGFloat kSDSegmentedControlScrollOffset = 20;
     NSString *camelCaseKeyPath;
     NSString *keyPath;
 
-    if (key == @"path")
+    if ([key isEqual: @"path"])
     {
         camelCaseKeyPath = key;
         keyPath = key;

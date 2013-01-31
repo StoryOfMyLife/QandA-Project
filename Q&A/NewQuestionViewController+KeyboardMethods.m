@@ -68,7 +68,7 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-	if (self.navigationItem.rightBarButtonItem.title != @"完成") {
+	if (![self.navigationItem.rightBarButtonItem.title isEqual: @"完成"]) {
 		self.saveButton = self.navigationItem.rightBarButtonItem;
 	}
 	

@@ -29,10 +29,10 @@
 	//navbar 整体背景
 	[[UINavigationBar appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackgroundImage:[UIImage imageNamed:@"navbar_bg"] forBarMetrics:UIBarMetricsDefault];
 	//navbar buttons
-	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackgroundImage:[[UIImage imageNamed:@"navbar_button_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackgroundImage:[[UIImage imageNamed:@"navbar_button_pressed_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"back_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_back_button_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackgroundImage:[[UIImage imageNamed:@"navbar_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 8, 14, 8)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackgroundImage:[[UIImage imageNamed:@"navbar_button_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 8, 14, 8)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_backbutton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 15, 14, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_backbutton_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 10, 14, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 	//table view 背景
 	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
 	[[UITableView appearance] setBackgroundView:tableBackgroundView];

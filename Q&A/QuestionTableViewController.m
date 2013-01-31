@@ -25,7 +25,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.tableView.scrollsToTop = YES;
 	self.debug = NO;		
 	[self setupFetchedResultsController];	
 	
@@ -35,8 +34,8 @@
     [_refreshView setupWithOwner:self.tableView delegate:self];
 	
 	//在这里不设置一下背景，应用开启后会卡死在界面，原因未知。。。
-//	[self.tableView setBackgroundView:nil];
-//	[self.tableView setBackgroundColor:[UIColor clearColor]];
+	[self.tableView setBackgroundView:nil];
+	[self.tableView setBackgroundColor:[UIColor clearColor]];
 	
 }
 
@@ -208,7 +207,7 @@
 {
 	self.fetchedResultsController = nil;
 	self.refreshView = nil;
-	[self removeFromParentViewController];
+//	[self removeFromParentViewController];
 	[super viewDidUnload]; 
 }
 

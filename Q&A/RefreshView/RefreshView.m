@@ -58,7 +58,7 @@
     // UI 更新日期计算
     NSDate *nowDate = [NSDate date];
     NSDateFormatter *outFormat = [[NSDateFormatter alloc] init];
-    [outFormat setDateFormat:@"YYYY'-'MM'-'dd HH':'mm"];
+    [outFormat setDateFormat:@"YYYY'年'MM'月'dd日 HH':'mm"];
     NSString *timeStr = [outFormat stringFromDate:nowDate];
     [outFormat release];
     // UI 赋值

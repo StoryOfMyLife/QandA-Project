@@ -27,7 +27,7 @@
 			[self saveData:jsonData];
 		}
 	});	
-	dispatch_release(getJSONQ);
+//	dispatch_release(getJSONQ);
 }
 //用NSURLRequest可以设置超时
 - (void)getJSONDataFromURL:(NSString *)urlString

@@ -55,17 +55,6 @@
 	[self loadScrollViewWithPage:0];
 	[self loadScrollViewWithPage:1];
 	[self loadScrollViewWithPage:2];
-	
-	
-//	//初始化待显示的子view
-//	UIViewController *vc = [self viewControllerForSegmentIndex:self.segmentedControl.selectedSegmentIndex];
-//    [self addChildViewController:vc];
-//	//注意：添加手势一定要在addChildViewController后
-//	[self addSwipeGestureIntoView:vc.view];
-//	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
-//    vc.view.frame = rect;
-//    [self.view addSubview:vc.view];
-//    self.currentViewController = vc;
 }
 
 - (void)loadScrollViewWithPage:(NSInteger)page
@@ -147,20 +136,15 @@
     switch (index) {
         case 0:
             vc.flag = 0;
-			vc.tableView.scrollsToTop = NO;
             break;
         case 1:
             vc.flag = 1;
-			vc.tableView.scrollsToTop = YES;
             break;
 		case 2:
 			vc.flag = 2;
-			vc.tableView.scrollsToTop = NO;
 		default:
 			break;
     }
-	[vc.tableView setBackgroundView:nil];
-	[vc.tableView setBackgroundColor:[UIColor clearColor]];
     return vc;
 }
 
@@ -174,13 +158,25 @@
 	[self setSegmentedControl:nil];
 	[self setQuestionScrollView:nil];
 	[self setQuestionViewControllers:nil];
+	[self setCurrentViewController:nil];
 	[super viewDidUnload];
 }
 
 
 
 #pragma mark - 以下是之前处理页面之间滑动的方法，现在不用了，现在改用scrollView
+/*	//初始化待显示的子view,加在viewDidLoad中
+	UIViewController *vc = [self viewControllerForSegmentIndex:self.segmentedControl.selectedSegmentIndex];
+    [self addChildViewController:vc];
+	//注意：添加手势一定要在addChildViewController后
+	[self addSwipeGestureIntoView:vc.view];
+	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
+    vc.view.frame = rect;
+    [self.view addSubview:vc.view];
+    self.currentViewController = vc;
+*/
 #pragma mark - 滑动手势处理
+/*
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer *)recognizer
 {	
 	CGRect rect = CGRectMake(0, SEGMENT_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - SEGMENT_HEIGHT);
@@ -276,5 +272,6 @@
 		}
     }];	
 }
+*/
 
 @end

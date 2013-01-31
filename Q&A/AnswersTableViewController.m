@@ -315,4 +315,14 @@
 	[super didReceiveMemoryWarning];
 }
 
+- (void)viewDidUnload
+{
+	self.movieView = nil;
+	self.refreshView = nil;
+	self.downloadingIndicator = nil;
+	self.fetchedResultsController = nil;
+	self.question = nil;
+	[super viewDidUnload];
+}
+
 @end
