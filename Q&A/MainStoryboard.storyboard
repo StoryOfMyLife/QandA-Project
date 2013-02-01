@@ -40,7 +40,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="LHP-tC-tQM" kind="relationship" relationship="rootViewController" id="DF4-le-ejH"/>
+                        <segue destination="LHP-tC-tQM" kind="relationship" relationship="rootViewController" id="hhN-CK-Pge"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xju-Ce-gA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -218,7 +218,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pHW-da-V7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="BSL-SJ-EYJ">
                     <connections>
-                        <action selector="swipeBack:" destination="w84-4E-CgI" id="sjZ-Qd-NRa"/>
+                        <action selector="swipeBack:" destination="w84-4E-CgI" id="dTu-jF-ZnO"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -679,7 +679,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twy-WX-Tp4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7758" y="-1503"/>
+            <point key="canvasLocation" x="-7774" y="-1503"/>
         </scene>
         <!--Settings Table View Controller - 设置-->
         <scene sceneID="ylN-uj-6D1">
@@ -787,11 +787,11 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="table_bg.png" id="Jon-3d-ZUN">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="table_bg.png" id="lPC-73-wUb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <scrollView contentMode="scaleToFill" id="QZz-8V-e9N">
+                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" id="QZz-8V-e9N">
                                 <rect key="frame" x="0.0" y="40" width="320" height="328"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
@@ -827,7 +827,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DjR-LT-opA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7772" y="-2775"/>
+            <point key="canvasLocation" x="-7774" y="-2775"/>
         </scene>
         <!--Customized Navigation-->
         <scene sceneID="koX-Ov-eeY">
@@ -1078,9 +1078,6 @@
         </class>
         <class className="AnswersTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="swipeBack:"/>
-            </relationships>
         </class>
         <class className="CoreDataTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
@@ -1102,7 +1099,10 @@
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
+                <relationship kind="action" name="dismissKeyboard:"/>
+                <relationship kind="action" name="dismissView:"/>
                 <relationship kind="action" name="login:"/>
+                <relationship kind="action" name="turnToNext:"/>
                 <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="password" candidateClass="UITextField"/>
@@ -1112,6 +1112,8 @@
         <class className="NewQorAViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQorAViewController.h"/>
             <relationships>
+                <relationship kind="action" name="sendAnswer:"/>
+                <relationship kind="action" name="sendQuestion:"/>
                 <relationship kind="outlet" name="questionTableCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
             </relationships>
@@ -1130,6 +1132,7 @@
         <class className="QuestionDetailCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionDetailCell.h"/>
             <relationships>
+                <relationship kind="action" name="playVideo:"/>
                 <relationship kind="outlet" name="author" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
@@ -1140,6 +1143,9 @@
         </class>
         <class className="QuestionTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="swipeBack:"/>
+            </relationships>
         </class>
         <class className="SDSegmentedControl" superclassName="UISegmentedControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
@@ -1166,8 +1172,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="olO-ua-9AF"/>
         <segue reference="5gb-h3-pjT"/>
         <segue reference="lT9-Jw-CoC"/>
-        <segue reference="olO-ua-9AF"/>
     </inferredMetricsTieBreakers>
 </document>

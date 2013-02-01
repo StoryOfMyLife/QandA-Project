@@ -65,14 +65,14 @@
         return;
 	
 	QuestionTableViewController *questionViewController = [self.questionViewControllers objectAtIndex:page];
+	//这行保证tableview可以正常push
+	[self addChildViewController:questionViewController];
 	if (questionViewController.view.superview == nil) {
 		CGRect frame = self.questionScrollView.frame;
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0;
         questionViewController.view.frame = frame;
         [self.questionScrollView addSubview:questionViewController.view];
-//这行保证tableview可以正常push
-		[self addChildViewController:questionViewController];
 	}
 }
 

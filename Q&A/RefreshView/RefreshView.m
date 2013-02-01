@@ -39,7 +39,7 @@
     self.owner = owner_;
     self.delegate = delegate_;
     [owner insertSubview:self atIndex:0];
-    self.frame = CGRectMake(0, -REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT);
+    self.frame = CGRectMake(0, -REFRESH_HEADER_HEIGHT + 5, 320, REFRESH_HEADER_HEIGHT + 5);
     [refreshIndicator stopAnimating];
 }
 // refreshView 结束加载动画
