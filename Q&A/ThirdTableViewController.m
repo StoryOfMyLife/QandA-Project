@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-#warning 这里需要设置一下背景，否则UITableview的原背景在push的时候会出现一下，原因未知
+//这里需要设置一下背景，否则UITableview的原背景在push的时候会出现一下，原因未知
 	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
 	[self.tableView setBackgroundView:tableBackgroundView];
 }
@@ -42,7 +42,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-#warning 这里push到回答页面后不能pop回来，会卡死在界面，原因未知，优先解决！！！
+//这里push到回答页面后不能pop回来，会卡死在界面，原因未知，优先解决！！！
 //这里再设置一次背景，则没有卡死的情况？？？
 	if ([segue.identifier isEqualToString:@"my questions"]) {
 //因为questionView.tableView setBackgroundView:后会先执行viewDidLoad方法，所以需要在之前设置其flag，因为questionView的NSfetch方法会将title设置为entity name，所以要在viewDidLoad之后再设置一次其title，所以questionView.navigationItem.title要放在questionView.tableView setBackgroundView:之后

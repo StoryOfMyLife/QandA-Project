@@ -416,19 +416,39 @@
         <scene sceneID="Oie-FK-dg0">
             <objects>
                 <tableViewController id="bVq-qO-nm5" customClass="SearchTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="q2A-uX-vVY">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="q2A-uX-vVY">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableFooterView" contentMode="redraw" barStyle="blackOpaque" id="vWd-pm-Yz0">
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="GEa-gp-l2G">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="0.79581871810000004" green="0.79581871810000004" blue="0.79581871810000004" alpha="1" colorSpace="calibratedRGB"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <outlet property="delegate" destination="bVq-qO-nm5" id="VD0-ch-xGy"/>
+                                <outlet property="delegate" destination="bVq-qO-nm5" id="af5-S6-b4U"/>
                             </connections>
                         </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="cgP-RC-gha" rowHeight="44" style="IBUITableViewCellStyleDefault" id="gdC-o4-afd">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cgP-RC-gha">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="bVq-qO-nm5" id="IQn-1H-io6"/>
                             <outlet property="delegate" destination="bVq-qO-nm5" id="fZc-VZ-t7G"/>
@@ -437,18 +457,18 @@
                     <navigationItem key="navigationItem" title="全站搜索" id="Jc8-Bu-fpG"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="searchBar" destination="vWd-pm-Yz0" id="GHC-L8-IVR"/>
-                        <outlet property="searchDisplayController" destination="XuQ-D7-cSZ" id="lKq-uE-Rkl"/>
+                        <outlet property="searchBar" destination="GEa-gp-l2G" id="8OJ-wn-XlK"/>
+                        <outlet property="searchDisplayController" destination="osx-Pw-tlN" id="KW1-wd-TKU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8E-ob-vxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="XuQ-D7-cSZ">
+                <searchDisplayController id="osx-Pw-tlN">
                     <connections>
-                        <outlet property="delegate" destination="bVq-qO-nm5" id="Rei-kB-lLJ"/>
-                        <outlet property="searchBar" destination="vWd-pm-Yz0" id="8JI-tP-llC"/>
-                        <outlet property="searchContentsController" destination="bVq-qO-nm5" id="R9e-ja-LSN"/>
-                        <outlet property="searchResultsDataSource" destination="bVq-qO-nm5" id="BV6-EI-szb"/>
-                        <outlet property="searchResultsDelegate" destination="bVq-qO-nm5" id="vI2-1i-MGd"/>
+                        <outlet property="delegate" destination="bVq-qO-nm5" id="doV-Bo-Z5q"/>
+                        <outlet property="searchBar" destination="GEa-gp-l2G" id="uub-on-NR2"/>
+                        <outlet property="searchContentsController" destination="bVq-qO-nm5" id="dab-84-uD0"/>
+                        <outlet property="searchResultsDataSource" destination="bVq-qO-nm5" id="hGs-wk-F4x"/>
+                        <outlet property="searchResultsDelegate" destination="bVq-qO-nm5" id="ocQ-Lc-Hff"/>
                     </connections>
                 </searchDisplayController>
             </objects>
@@ -791,7 +811,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" id="QZz-8V-e9N">
+                            <scrollView clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" pagingEnabled="YES" id="QZz-8V-e9N">
                                 <rect key="frame" x="0.0" y="40" width="320" height="328"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
@@ -815,7 +835,7 @@
                     <navigationItem key="navigationItem" title="我的关注" id="73M-oR-ywU">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="6hy-6S-mJq">
                             <connections>
-                                <segue destination="iIP-lB-8Kf" kind="modal" modalTransitionStyle="flipHorizontal" id="Bwq-hU-Khd"/>
+                                <segue destination="DTb-1H-GJJ" kind="modal" identifier="custom to new" customClass="CustomSegue" modalTransitionStyle="flipHorizontal" id="6Wr-FW-qTf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -828,26 +848,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DjR-LT-opA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-7774" y="-2775"/>
-        </scene>
-        <!--Customized Navigation-->
-        <scene sceneID="koX-Ov-eeY">
-            <objects>
-                <navigationController id="iIP-lB-8Kf" customClass="CustomizedNavigation" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="s2v-wB-DC4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="m4s-GV-jeY" kind="relationship" relationship="rootViewController" id="BSz-Xm-fIf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="46J-0m-XfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-7281" y="-2775"/>
         </scene>
         <!--Customized Navigation-->
         <scene sceneID="saw-LF-hMn">
@@ -976,13 +976,13 @@
                         <barButtonItem key="leftBarButtonItem" title="取消" id="pDR-M0-Y1n">
                             <color key="tintColor" red="0.50510204079999999" green="0.50510204079999999" blue="0.50510204079999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="cancel:" destination="m4s-GV-jeY" id="H8x-1f-uZJ"/>
+                                <action selector="cancel:" destination="m4s-GV-jeY" id="w7E-fa-Unz"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="发送" id="scG-7K-Z6e">
                             <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="sendQuestion:" destination="m4s-GV-jeY" id="QXc-U2-Goa"/>
+                                <action selector="sendQuestion:" destination="m4s-GV-jeY" id="YPp-KO-jkk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -995,7 +995,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1V-Ei-yHi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6787" y="-2775"/>
+            <point key="canvasLocation" x="-6774" y="-2775"/>
         </scene>
         <!--Customized Navigation-->
         <scene sceneID="KTi-L3-k0d">
@@ -1052,6 +1052,25 @@
             </objects>
             <point key="canvasLocation" x="-7774" y="-881"/>
         </scene>
+        <!--Customized Navigation-->
+        <scene sceneID="98t-cH-41d">
+            <objects>
+                <navigationController id="DTb-1H-GJJ" customClass="CustomizedNavigation" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cbH-bg-iRg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="m4s-GV-jeY" kind="relationship" relationship="rootViewController" id="GDp-ur-Lfx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VJL-fT-psi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7300" y="-2775"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Default@2x.png" width="640" height="960"/>
@@ -1068,7 +1087,6 @@
         <class className="AnswerCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerCell.h"/>
             <relationships>
-                <relationship kind="action" name="playVideo:"/>
                 <relationship kind="outlet" name="author" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
@@ -1088,7 +1106,6 @@
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
-                <relationship kind="action" name="pageValueDidChange:" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="questionScrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
             </relationships>
@@ -1099,10 +1116,7 @@
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
-                <relationship kind="action" name="dismissKeyboard:"/>
-                <relationship kind="action" name="dismissView:"/>
                 <relationship kind="action" name="login:"/>
-                <relationship kind="action" name="turnToNext:"/>
                 <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="password" candidateClass="UITextField"/>
@@ -1112,8 +1126,10 @@
         <class className="NewQorAViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQorAViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="sendAnswer:"/>
                 <relationship kind="action" name="sendQuestion:"/>
+                <relationship kind="action" name="videoRecord:"/>
                 <relationship kind="outlet" name="questionTableCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
             </relationships>
@@ -1132,7 +1148,6 @@
         <class className="QuestionDetailCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionDetailCell.h"/>
             <relationships>
-                <relationship kind="action" name="playVideo:"/>
                 <relationship kind="outlet" name="author" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>

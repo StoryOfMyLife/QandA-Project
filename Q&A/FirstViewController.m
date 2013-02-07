@@ -11,6 +11,7 @@
 #define kNumberOfPages 3
 
 #import "FirstViewController.h"
+#import "NewQorAViewController.h"
 
 @interface FirstViewController () <UIScrollViewDelegate>
 {
@@ -43,6 +44,10 @@
 	}
 	self.questionViewControllers = controllers;
 	
+	[self loadScrollViewWithPage:0];
+	[self loadScrollViewWithPage:1];
+	[self loadScrollViewWithPage:2];
+	
 	//初始化segmentControl
 	self.segmentedControl.selectedSegmentIndex = 1;
 	[self.segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
@@ -51,10 +56,6 @@
 	for (int i = 0; i < 3; i++) {
 		[self.segmentedControl setImage:[UIImage imageNamed:@"clock"] forSegmentAtIndex:i];
 	}
-	
-	[self loadScrollViewWithPage:0];
-	[self loadScrollViewWithPage:1];
-	[self loadScrollViewWithPage:2];
 }
 
 - (void)loadScrollViewWithPage:(NSInteger)page

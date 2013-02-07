@@ -11,8 +11,14 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "GCPlaceholderTextView.h"
 
-@interface NewQorAViewController : UITableViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+@class NewQorAViewController;
+@protocol NewQuestionProtocal <NSObject>
 
+- (void)dismissNewQorAViewController:(NewQorAViewController *)viewController;
+
+@end
+
+@interface NewQorAViewController : UITableViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet GCPlaceholderTextView *questionTextView;
 
@@ -25,6 +31,8 @@
 @property (nonatomic, copy) NSString *questionID;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *questionTableCell;
+
+@property (nonatomic, weak) id <NewQuestionProtocal> delegate;
 
 
 @end

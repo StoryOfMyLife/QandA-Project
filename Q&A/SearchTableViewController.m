@@ -10,6 +10,8 @@
 
 @interface SearchTableViewController ()
 
+@property (nonatomic) CGPoint searchBarOrigin;
+
 @end
 
 @implementation SearchTableViewController
@@ -26,8 +28,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//	self.tableView.contentOffset = CGPointMake(0, 44);
+	self.searchBarOrigin = self.searchBar.frame.origin;
 	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_bg"] forBarMetrics:UIBarMetricsDefault];
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//	CGSize searchSize = self.searchBar.frame.size;
+//	self.searchBar.frame = CGRectMake(self.searchBarOrigin.x, self.searchBarOrigin.y + scrollView.contentOffset.y, searchSize.width, searchSize.height);
+//}
 
 - (void)didReceiveMemoryWarning
 {

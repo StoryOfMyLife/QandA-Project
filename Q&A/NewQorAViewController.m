@@ -44,6 +44,7 @@
 }
 
 - (IBAction)cancel:(id)sender {
+//	[self.delegate dismissNewQorAViewController:self];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
