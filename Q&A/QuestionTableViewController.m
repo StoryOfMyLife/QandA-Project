@@ -13,10 +13,15 @@
 #import "JSON.h"
 #import "Defines.h"
 #import "SVStatusHUD.h"
+#import "UITabBarController+HideTabBar.h"
 
 @interface QuestionTableViewController () <UIScrollViewDelegate, MyJSONDelegate, RefreshViewDelegate>
 
 @property (strong, nonatomic) RefreshView *refreshView;
+
+@property (nonatomic) CGPoint currentScrollOffset;
+
+@property (nonatomic) CGRect originTabbarFrame;
 
 @end
 
@@ -36,7 +41,8 @@
 	//在这里不设置一下背景，应用开启后会卡死在界面，原因未知。。。
 	[self.tableView setBackgroundView:nil];
 	[self.tableView setBackgroundColor:[UIColor clearColor]];
-	
+	self.currentScrollOffset = self.tableView.contentOffset;
+	self.originTabbarFrame = self.tabBarController.tabBar.frame;
 }
 
 #pragma mark - JSON delegate
@@ -93,6 +99,56 @@
 {
     [_refreshView scrollViewDidScroll:scrollView];
 	scrollView.showsVerticalScrollIndicator = YES;
+	
+//	if (scrollView.contentOffset.y > self.currentScrollOffset.y) {
+//		scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+////		[self makeTabBarHidden:YES];
+//		[self.navigationController setNavigationBarHidden:YES animated:YES];
+//	} else if (scrollView.contentOffset.y < self.currentScrollOffset.y) {
+////		scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+////		[self makeTabBarHidden:NO];
+//		[self.navigationController setNavigationBarHidden:NO animated:YES];
+//	}
+//	self.currentScrollOffset = scrollView.contentOffset;
+}
+
+- (void)makeTabBarHidden:(BOOL)hide
+{
+    // Custom code to hide TabBar
+    if ( [self.tabBarController.view.subviews count] < 2 ) {
+        return;
+    }
+	
+    UIView *contentView;
+	
+    if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ) {
+        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
+    } else {
+        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
+    }
+	
+    if (hide) {
+		contentView.frame = self.tabBarController.view.bounds;
+		CGRect tabbarFrame = self.originTabbarFrame;
+		tabbarFrame.origin.y += tabbarFrame.size.height;
+		[UIView animateWithDuration:0.3 animations:^{
+			self.tabBarController.tabBar.frame = tabbarFrame;
+		} completion:^(BOOL finished) {
+			
+		}];
+    }
+    else {
+		[UIView animateWithDuration:0.3 animations:^{
+			self.tabBarController.tabBar.frame = self.originTabbarFrame;
+		} completion:^(BOOL finished) {
+//			self.tabBarController.tabBar.hidden = hide;
+			contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
+										   self.tabBarController.view.bounds.origin.y,
+										   self.tabBarController.view.bounds.size.width,
+										   self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
+		}];
+        
+    }
 }
 // 拖动结束后
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate

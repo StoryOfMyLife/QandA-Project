@@ -16,4 +16,5 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *questionScrollView;
 
+@property (weak, nonatomic) IBOutlet UIView *myView;
 @end

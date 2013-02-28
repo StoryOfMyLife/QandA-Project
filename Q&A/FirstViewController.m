@@ -33,6 +33,7 @@
 	
 	self.questionScrollView.pagingEnabled = YES;
     self.questionScrollView.contentSize = CGSizeMake(self.questionScrollView.frame.size.width * kNumberOfPages, self.questionScrollView.frame.size.height);
+//	NSLog(@"%f,%f,%f,%f", view.frame.origin.y, view.frame.size.height, self.questionScrollView.frame.origin.y, self.questionScrollView.frame.size.height);
     self.questionScrollView.showsHorizontalScrollIndicator = NO;
     self.questionScrollView.showsVerticalScrollIndicator = NO;
     self.questionScrollView.scrollsToTop = NO;
@@ -88,7 +89,8 @@
 	[self scrcollViewControllers:self.questionViewControllers enableScrollToTopAtIndex:page];
 }
 
-- (void)scrcollViewControllers:(NSArray *)scrollViewControllers enableScrollToTopAtIndex:(NSInteger)index
+- (void)scrcollViewControllers:(NSArray *)scrollViewControllers
+	  enableScrollToTopAtIndex:(NSInteger)index
 {
 	NSUInteger count = [scrollViewControllers count];
 	if (index >= count || index < 0) {
@@ -132,7 +134,8 @@
 
 #pragma mark - 
 
-- (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {
+- (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index 
+{
     QuestionTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"first table view"];
     switch (index) {
         case 0:
@@ -160,6 +163,7 @@
 	[self setQuestionScrollView:nil];
 	[self setQuestionViewControllers:nil];
 	[self setCurrentViewController:nil];
+	[self setMyView:nil];
 	[super viewDidUnload];
 }
 

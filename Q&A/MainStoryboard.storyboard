@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ALp-21-B4Q">
     <dependencies>
+        <deployment version="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Tab Bar View Controller-->
         <scene sceneID="RCI-cz-5hL">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="ALp-21-B4Q" customClass="TabBarViewController" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" modalTransitionStyle="crossDissolve" id="ALp-21-B4Q" customClass="TabBarViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="H03-dQ-hRH">
@@ -164,16 +165,16 @@
                                             <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1040" contentMode="left" text="发布人：LiLei 学生 2010/09/15 23:15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YIQ-6u-s7i">
-                                            <rect key="frame" x="8" y="51" width="300" height="20"/>
+                                            <rect key="frame" x="8" y="53" width="300" height="20"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1050" contentMode="left" text="最后回答：HanHan 教师 2012/09/16 08:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ox9-vx-aCp">
-                                            <rect key="frame" x="8" y="66" width="300" height="20"/>
+                                            <rect key="frame" x="8" y="67" width="300" height="20"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -805,15 +806,15 @@
                 <viewController id="LHP-tC-tQM" customClass="FirstViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SGm-Hv-ahf">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="table_bg.png" id="lPC-73-wUb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" pagingEnabled="YES" id="QZz-8V-e9N">
-                                <rect key="frame" x="0.0" y="40" width="320" height="328"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="327"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             </scrollView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="XgA-k5-mPn" customClass="SDSegmentedControl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -841,6 +842,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="myView" destination="SGm-Hv-ahf" id="ran-Ay-sqX"/>
                         <outlet property="questionScrollView" destination="QZz-8V-e9N" id="3Ek-Ib-NPx"/>
                         <outlet property="segmentedControl" destination="XgA-k5-mPn" id="A4m-f6-yNm"/>
                     </connections>
@@ -1083,104 +1085,6 @@
         <image name="third.png" width="24" height="24"/>
         <image name="头像.png" width="300" height="400"/>
     </resources>
-    <classes>
-        <class className="AnswerCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="videoDuration" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="videoPreview" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="AnswersTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersTableViewController.h"/>
-        </class>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="CustomizedNavigation" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomizedNavigation.h"/>
-        </class>
-        <class className="FirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="questionScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="GCPlaceholderTextView" superclassName="UITextView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GCPlaceholderTextView.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="login:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NewQorAViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQorAViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="sendAnswer:"/>
-                <relationship kind="action" name="sendQuestion:"/>
-                <relationship kind="action" name="videoRecord:"/>
-                <relationship kind="outlet" name="questionTableCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
-            </relationships>
-        </class>
-        <class className="QuestionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="answerCount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionAnsweredFrom" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionAskedFrom" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionID" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionKeywords" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionTitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="QuestionDetailCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionDetailCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="videoDuration" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="videoPreview" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="QuestionTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="swipeBack:"/>
-            </relationships>
-        </class>
-        <class className="SDSegmentedControl" superclassName="UISegmentedControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
-        </class>
-        <class className="SearchTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="SettingsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
-        </class>
-        <class className="TabBarViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarViewController.h"/>
-        </class>
-        <class className="ThirdTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ThirdTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
