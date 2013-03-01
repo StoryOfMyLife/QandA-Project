@@ -513,7 +513,7 @@
                                             <rect key="frame" x="10" y="1" width="300" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="头像.png" id="tLI-oi-7is">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="photo.png" id="tLI-oi-7is">
                                                     <rect key="frame" x="3" y="3" width="149" height="194"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1078,12 +1078,12 @@
         <image name="Default@2x.png" width="640" height="960"/>
         <image name="first.png" width="28" height="28"/>
         <image name="login_bg1.png" width="302" height="302"/>
+        <image name="photo.png" width="300" height="400"/>
         <image name="play.png" width="75" height="75"/>
         <image name="second2.png" width="26" height="26"/>
         <image name="table_bg.png" width="320" height="480"/>
         <image name="textbox.png" width="272" height="35"/>
         <image name="third.png" width="24" height="24"/>
-        <image name="头像.png" width="300" height="400"/>
     </resources>
     <classes>
         <class className="AnswerCell" superclassName="UITableViewCell">
@@ -1129,6 +1129,10 @@
         <class className="NewQorAViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQorAViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="sendAnswer:"/>
+                <relationship kind="action" name="sendQuestion:"/>
+                <relationship kind="action" name="videoRecord:"/>
                 <relationship kind="outlet" name="questionTableCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
             </relationships>
@@ -1157,6 +1161,9 @@
         </class>
         <class className="QuestionTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="swipeBack:"/>
+            </relationships>
         </class>
         <class className="SDSegmentedControl" superclassName="UISegmentedControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
