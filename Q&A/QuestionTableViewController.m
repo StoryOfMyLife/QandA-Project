@@ -98,18 +98,20 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [_refreshView scrollViewDidScroll:scrollView];
-	scrollView.showsVerticalScrollIndicator = YES;
+	scrollView.showsVerticalScrollIndicator = NO;
 	
-//	if (scrollView.contentOffset.y > self.currentScrollOffset.y) {
-//		scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-////		[self makeTabBarHidden:YES];
-//		[self.navigationController setNavigationBarHidden:YES animated:YES];
-//	} else if (scrollView.contentOffset.y < self.currentScrollOffset.y) {
-////		scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-////		[self makeTabBarHidden:NO];
-//		[self.navigationController setNavigationBarHidden:NO animated:YES];
-//	}
-//	self.currentScrollOffset = scrollView.contentOffset;
+	//只有内容超过屏幕大小时，才启动tabbar隐藏
+	if (scrollView.contentSize.height > scrollView.frame.size.height) {
+		if (scrollView.contentOffset.y > self.currentScrollOffset.y &&
+			scrollView.contentOffset.y > 0) {
+			scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+			[self makeTabBarHidden:YES];
+		} else if (scrollView.contentOffset.y < self.currentScrollOffset.y &&
+				   scrollView.contentOffset.y < scrollView.contentSize.height - scrollView.frame.size.height) {
+			[self makeTabBarHidden:NO];
+		}
+		self.currentScrollOffset = scrollView.contentOffset;
+	}
 }
 
 - (void)makeTabBarHidden:(BOOL)hide
@@ -127,25 +129,25 @@
         contentView = [self.tabBarController.view.subviews objectAtIndex:0];
     }
 	
-    if (hide) {
+	CGRect tabbarFrame = self.tabBarController.tabBar.frame;
+	
+    if (hide && tabbarFrame.origin.y < self.tabBarController.view.bounds.size.height) {
 		contentView.frame = self.tabBarController.view.bounds;
-		CGRect tabbarFrame = self.originTabbarFrame;
 		tabbarFrame.origin.y += tabbarFrame.size.height;
 		[UIView animateWithDuration:0.3 animations:^{
 			self.tabBarController.tabBar.frame = tabbarFrame;
-		} completion:^(BOOL finished) {
-			
-		}];
-    }
-    else {
+		} completion:NULL];
+    } else if (!hide && tabbarFrame.origin.y >= self.tabBarController.view.bounds.size.height) {
+		tabbarFrame.origin.y -= tabbarFrame.size.height;
 		[UIView animateWithDuration:0.3 animations:^{
-			self.tabBarController.tabBar.frame = self.originTabbarFrame;
+			self.tabBarController.tabBar.frame = tabbarFrame;
 		} completion:^(BOOL finished) {
-//			self.tabBarController.tabBar.hidden = hide;
-			contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
+			if (finished) {
+				contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
 										   self.tabBarController.view.bounds.origin.y,
 										   self.tabBarController.view.bounds.size.width,
 										   self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
+			}
 		}];
         
     }

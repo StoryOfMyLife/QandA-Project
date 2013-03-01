@@ -706,7 +706,7 @@
         <scene sceneID="ylN-uj-6D1">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="Opb-Oc-kPj" customClass="SettingsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MmR-nR-KJ7">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MmR-nR-KJ7">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -814,7 +814,7 @@
                             </imageView>
                             <scrollView clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" pagingEnabled="YES" id="QZz-8V-e9N">
                                 <rect key="frame" x="0.0" y="40" width="320" height="327"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             </scrollView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="XgA-k5-mPn" customClass="SDSegmentedControl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
