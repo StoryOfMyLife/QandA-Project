@@ -160,12 +160,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/QuestionTableViewController.m"
-         timestampString = "383820535.491749"
+         timestampString = "383832918.202526"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "135"
-         endingLineNumber = "135"
-         landmarkName = "-makeTabBarHidden:"
+         startingLineNumber = "148"
+         endingLineNumber = "148"
+         landmarkName = "-makeTabBarHidden:animated:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
