@@ -103,7 +103,7 @@
 	//只有内容超过屏幕大小时，才启动tabbar隐藏
 	if (scrollView.contentSize.height > scrollView.frame.size.height) {
 		if (scrollView.contentOffset.y > self.currentScrollOffset.y &&
-			scrollView.contentOffset.y > 0) {
+			scrollView.contentOffset.y > scrollView.frame.size.height) {
 			scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 			[self makeTabBarHidden:YES];
 		} else if (scrollView.contentOffset.y < self.currentScrollOffset.y &&
