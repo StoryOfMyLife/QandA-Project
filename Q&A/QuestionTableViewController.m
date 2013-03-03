@@ -44,6 +44,12 @@
 	self.tableView.showsVerticalScrollIndicator = NO;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+	[self makeTabBarHidden:NO animated:NO];
+}
+
 #pragma mark - JSON delegate
 - (void)fetchJSONFailed
 {
@@ -104,12 +110,12 @@
 			if (scrollView.contentOffset.y > self.currentScrollOffset.y &&
 				scrollView.contentOffset.y > 0) {
 				scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//				[self makeTabBarHidden:YES animated:YES];
-				[self makeTabbarInvisible:YES animated:YES];
+				[self makeTabBarHidden:YES animated:YES];
+//				[self makeTabbarInvisible:YES animated:YES];
 			} else if (scrollView.contentOffset.y < self.currentScrollOffset.y &&
 					   scrollView.contentOffset.y < scrollView.contentSize.height - scrollView.frame.size.height) {
-//				[self makeTabBarHidden:NO animated:YES];
-				[self makeTabbarInvisible:NO animated:YES];
+				[self makeTabBarHidden:NO animated:YES];
+//				[self makeTabbarInvisible:NO animated:YES];
 			}
 			self.currentScrollOffset = scrollView.contentOffset;
 		}
@@ -163,6 +169,8 @@
         return;
     }
 	
+	static BOOL enable = YES;
+	
     UIView *contentView;
 	
     if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ) {
@@ -175,27 +183,34 @@
 	
 	NSTimeInterval duration = animated ? 0.3 : 0.0;
 	
-    if (hide && tabbarFrame.origin.y < self.tabBarController.view.bounds.size.height) {
-		contentView.frame = self.tabBarController.view.bounds;
-		tabbarFrame.origin.y += tabbarFrame.size.height;
-		[UIView animateWithDuration:duration animations:^{
-			self.tabBarController.tabBar.frame = tabbarFrame;
-		} completion:NULL];
-    } else if (!hide && tabbarFrame.origin.y >= self.tabBarController.view.bounds.size.height) {
-		tabbarFrame.origin.y -= tabbarFrame.size.height;
-//		contentView.frame = self.tabBarController.view.bounds;
-		[UIView animateWithDuration:duration animations:^{
-			self.tabBarController.tabBar.frame = tabbarFrame;
-		} completion:^(BOOL finished) { //这里是导致快速上拉到顶端出现刷新时view跳动的原因，不用将contentView.size设置回去！！
-//			if (finished) {
-//				contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
-//										   self.tabBarController.view.bounds.origin.y,
-//										   self.tabBarController.view.bounds.size.width,
-//										   self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
-//			}
-		}];
-        
-    }
+	if (enable) {
+		if (hide && tabbarFrame.origin.y < self.tabBarController.view.bounds.size.height) {
+			enable = NO;
+			contentView.frame = self.tabBarController.view.bounds;
+			tabbarFrame.origin.y += tabbarFrame.size.height;
+			[UIView animateWithDuration:duration animations:^{
+				self.tabBarController.tabBar.frame = tabbarFrame;
+			} completion:^(BOOL finished) {
+				enable = YES;
+			}];
+		} else if (!hide && tabbarFrame.origin.y >= self.tabBarController.view.bounds.size.height) {
+			enable = NO;
+			tabbarFrame.origin.y -= tabbarFrame.size.height;
+			//		contentView.frame = self.tabBarController.view.bounds;
+			[UIView animateWithDuration:duration animations:^{
+				self.tabBarController.tabBar.frame = tabbarFrame;
+			} completion:^(BOOL finished) { //这里是导致快速上拉到顶端出现刷新时view跳动的原因，不用将contentView.size设置回去！！
+				//			if (finished) {
+				//				contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
+				//										   self.tabBarController.view.bounds.origin.y,
+				//										   self.tabBarController.view.bounds.size.width,
+				//										   self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
+				//			}
+				enable = YES;
+			}];	
+		}
+	}
+    
 }
 // 拖动结束后
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
