@@ -122,6 +122,8 @@
         return;
     }
 	
+	static BOOL enable = YES;
+	
     UIView *contentView;
 	
     if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ) {
@@ -134,15 +136,23 @@
 	
 	UIView *tabbar = self.tabBarController.tabBar;
 	
-	if (invisible && tabbar.alpha > 0) {
-		contentView.frame = self.tabBarController.view.bounds;
-		[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-			tabbar.alpha = 0;
-		} completion:NULL];
-	} else if (!invisible && tabbar.alpha == 0) {
-		[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-			tabbar.alpha = 1;
-		} completion:NULL];
+	if (enable) {
+		if (invisible && tabbar.alpha > 0) {
+			enable = NO;
+			contentView.frame = self.tabBarController.view.bounds;
+			[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+				tabbar.alpha = 0;
+			} completion:^(BOOL finished) {
+				enable = YES;
+			}];
+		} else if (!invisible && tabbar.alpha == 0) {
+			enable = NO;
+			[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+				tabbar.alpha = 1;
+			} completion:^(BOOL finished) {
+				enable = YES;
+			}];
+		}
 	}
 }
 
