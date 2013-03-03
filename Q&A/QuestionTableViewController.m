@@ -40,12 +40,8 @@
 	[self.tableView setBackgroundView:nil];
 	[self.tableView setBackgroundColor:[UIColor clearColor]];
 	self.currentScrollOffset = self.tableView.contentOffset;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	[self makeTabBarHidden:NO animated:NO];
+	
+	self.tableView.showsVerticalScrollIndicator = NO;
 }
 
 #pragma mark - JSON delegate
@@ -101,19 +97,52 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [_refreshView scrollViewDidScroll:scrollView];
-	scrollView.showsVerticalScrollIndicator = NO;
 	
-	//只有内容超过屏幕大小时，才启动tabbar隐藏
-	if (scrollView.contentSize.height > scrollView.frame.size.height) {
-		if (scrollView.contentOffset.y > self.currentScrollOffset.y &&
-			scrollView.contentOffset.y > 0) {
-			scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-			[self makeTabBarHidden:YES animated:YES];
-		} else if (scrollView.contentOffset.y < self.currentScrollOffset.y &&
-				   scrollView.contentOffset.y < scrollView.contentSize.height - scrollView.frame.size.height) {
-			[self makeTabBarHidden:NO animated:YES];
+	if (scrollView.dragging) {
+		//只有内容超过屏幕大小时，才启动tabbar隐藏
+		if (scrollView.contentSize.height > scrollView.frame.size.height) {
+			if (scrollView.contentOffset.y > self.currentScrollOffset.y &&
+				scrollView.contentOffset.y > 0) {
+				scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+//				[self makeTabBarHidden:YES animated:YES];
+				[self makeTabbarInvisible:YES animated:YES];
+			} else if (scrollView.contentOffset.y < self.currentScrollOffset.y &&
+					   scrollView.contentOffset.y < scrollView.contentSize.height - scrollView.frame.size.height) {
+//				[self makeTabBarHidden:NO animated:YES];
+				[self makeTabbarInvisible:NO animated:YES];
+			}
+			self.currentScrollOffset = scrollView.contentOffset;
 		}
-		self.currentScrollOffset = scrollView.contentOffset;
+	}	
+}
+
+- (void)makeTabbarInvisible:(BOOL)invisible animated:(BOOL)animated
+{
+	if ( [self.tabBarController.view.subviews count] < 2 ) {
+        return;
+    }
+	
+    UIView *contentView;
+	
+    if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ) {
+        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
+    } else {
+        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
+    }
+	
+	NSTimeInterval duration = animated ? 0.3 : 0.0;
+	
+	UIView *tabbar = self.tabBarController.tabBar;
+	
+	if (invisible && tabbar.alpha > 0) {
+		contentView.frame = self.tabBarController.view.bounds;
+		[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+			tabbar.alpha = 0;
+		} completion:NULL];
+	} else if (!invisible && tabbar.alpha == 0) {
+		[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+			tabbar.alpha = 1;
+		} completion:NULL];
 	}
 }
 
@@ -147,13 +176,13 @@
 //		contentView.frame = self.tabBarController.view.bounds;
 		[UIView animateWithDuration:duration animations:^{
 			self.tabBarController.tabBar.frame = tabbarFrame;
-		} completion:^(BOOL finished) {
-			if (finished) {
-				contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
-										   self.tabBarController.view.bounds.origin.y,
-										   self.tabBarController.view.bounds.size.width,
-										   self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
-			}
+		} completion:^(BOOL finished) { //这里是导致快速上拉到顶端出现刷新时view跳动的原因，不用将contentView.size设置回去！！
+//			if (finished) {
+//				contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
+//										   self.tabBarController.view.bounds.origin.y,
+//										   self.tabBarController.view.bounds.size.width,
+//										   self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
+//			}
 		}];
         
     }

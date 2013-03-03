@@ -1151,6 +1151,7 @@
         <class className="QuestionDetailCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionDetailCell.h"/>
             <relationships>
+                <relationship kind="action" name="playVideo:"/>
                 <relationship kind="outlet" name="author" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
