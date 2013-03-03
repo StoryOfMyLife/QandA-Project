@@ -45,6 +45,7 @@
 			//获取数据为空，报错
 //			[self.delegate fetchJSONFailed];
 			NSLog(@"数据为空");
+			[self.delegate fetchJSONFailed];
 		}
 		else if (error != nil) {
 			NSLog(@"Error happened : %@", error.localizedDescription);

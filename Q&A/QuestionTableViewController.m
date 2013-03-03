@@ -47,7 +47,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
-	[self makeTabBarHidden:NO animated:NO];
+	[self makeTabbarHidden:NO animated:NO];
 }
 
 #pragma mark - JSON delegate
@@ -110,11 +110,11 @@
 			if (scrollView.contentOffset.y > self.currentScrollOffset.y &&
 				scrollView.contentOffset.y > 0) {
 				scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-				[self makeTabBarHidden:YES animated:YES];
+				[self makeTabbarHidden:YES animated:YES];
 //				[self makeTabbarInvisible:YES animated:YES];
 			} else if (scrollView.contentOffset.y < self.currentScrollOffset.y &&
 					   scrollView.contentOffset.y < scrollView.contentSize.height - scrollView.frame.size.height) {
-				[self makeTabBarHidden:NO animated:YES];
+				[self makeTabbarHidden:NO animated:YES];
 //				[self makeTabbarInvisible:NO animated:YES];
 			}
 			self.currentScrollOffset = scrollView.contentOffset;
@@ -162,7 +162,7 @@
 	}
 }
 
-- (void)makeTabBarHidden:(BOOL)hide animated:(BOOL)animated
+- (void)makeTabbarHidden:(BOOL)hide animated:(BOOL)animated
 {
     // Custom code to hide TabBar
     if ( [self.tabBarController.view.subviews count] < 2 ) {

@@ -87,6 +87,7 @@
     frame.origin.y = 0;
 	[self.questionScrollView scrollRectToVisible:frame animated:YES];
 	[self scrcollViewControllers:self.questionViewControllers enableScrollToTopAtIndex:page];
+	[self.questionViewControllers[sender.selectedSegmentIndex] makeTabbarHidden:NO animated:YES];
 }
 
 - (void)scrcollViewControllers:(NSArray *)scrollViewControllers
@@ -119,6 +120,7 @@
 	CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.segmentedControl.selectedSegmentIndex = page;
+	[self.questionViewControllers[page] makeTabbarHidden:NO animated:YES];
 	[self scrcollViewControllers:self.questionViewControllers enableScrollToTopAtIndex:page];
 }
 
