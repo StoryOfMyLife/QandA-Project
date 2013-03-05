@@ -7,8 +7,9 @@
 //
 
 #import "NewQorAViewController.h"
+#import "AddingTagViewController.h"
 
-@interface NewQorAViewController (KeyboardMethods)
+@interface NewQorAViewController (KeyboardMethods) <AddingTagViewControllerDelegate>
 
 - (void)customizeKeyboardOfTextView:(UITextView *)textView;
 

@@ -38,10 +38,11 @@
 		NSString *title = [data valueForKey:@"title"];
 		
 		NSArray *tags = (NSArray *)[data objectForKey:@"tags"];
-		NSString *tag0 = tags[0];
-		NSString *tag1 = tags[1];
-		NSString *tag2 = tags[2];
-		NSString *keywords = [[NSString alloc] initWithFormat:@"【%@, %@, %@】", tag0, tag1, tag2];
+		NSString *tagsString = [tags componentsJoinedByString:@","];
+//		NSString *tag0 = tags[0];
+//		NSString *tag1 = tags[1];
+//		NSString *tag2 = tags[2];
+		NSString *keywords = [[NSString alloc] initWithFormat:@"【%@】", tagsString];
 		
 		NSTimeInterval createTimeInterval = [[data valueForKey:@"createTime"] doubleValue] / 1000;
 		NSDate *createTime = [NSDate dateWithTimeIntervalSince1970:createTimeInterval];

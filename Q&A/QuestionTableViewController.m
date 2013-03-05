@@ -44,10 +44,12 @@
 	self.tableView.showsVerticalScrollIndicator = NO;
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+
+- (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewDidDisappear:animated];
-	[self makeTabbarHidden:NO animated:NO];
+	[super viewWillDisappear:animated];
+//	[self makeTabbarHidden:NO animated:NO];
+	[self makeTabbarInvisible:NO animated:NO];
 }
 
 #pragma mark - JSON delegate
@@ -110,12 +112,12 @@
 			if (scrollView.contentOffset.y > self.currentScrollOffset.y &&
 				scrollView.contentOffset.y > 0) {
 				scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-				[self makeTabbarHidden:YES animated:YES];
-//				[self makeTabbarInvisible:YES animated:YES];
+//				[self makeTabbarHidden:YES animated:YES];
+				[self makeTabbarInvisible:YES animated:YES];
 			} else if (scrollView.contentOffset.y < self.currentScrollOffset.y &&
 					   scrollView.contentOffset.y < scrollView.contentSize.height - scrollView.frame.size.height) {
-				[self makeTabbarHidden:NO animated:YES];
-//				[self makeTabbarInvisible:NO animated:YES];
+//				[self makeTabbarHidden:NO animated:YES];
+				[self makeTabbarInvisible:NO animated:YES];
 			}
 			self.currentScrollOffset = scrollView.contentOffset;
 		}

@@ -152,6 +152,7 @@
 		09E189F3168B45B700E262CD /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E189F2168B45B700E262CD /* GCPlaceholderTextView.m */; };
 		09F1A41A16DE20B000E4E5A6 /* UITabBarController+HideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F1A41916DE20B000E4E5A6 /* UITabBarController+HideTabBar.m */; };
 		09F1A41E16E0E17500E4E5A6 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1A41D16E0E17500E4E5A6 /* photo.png */; };
+		09F84F1C16E588A7005804C1 /* AddingTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F84F1B16E588A7005804C1 /* AddingTagViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -373,6 +374,8 @@
 		09F1A41816DE20B000E4E5A6 /* UITabBarController+HideTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITabBarController+HideTabBar.h"; path = "UITabBarController_setHidden/UITabBarController+HideTabBar.h"; sourceTree = "<group>"; };
 		09F1A41916DE20B000E4E5A6 /* UITabBarController+HideTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+HideTabBar.m"; path = "UITabBarController_setHidden/UITabBarController+HideTabBar.m"; sourceTree = "<group>"; };
 		09F1A41D16E0E17500E4E5A6 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
+		09F84F1A16E588A7005804C1 /* AddingTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddingTagViewController.h; sourceTree = SOURCE_ROOT; };
+		09F84F1B16E588A7005804C1 /* AddingTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddingTagViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,6 +485,7 @@
 				090F143F16807F2C0020EDC2 /* Story board */,
 				090F143C16807EF80020EDC2 /* Tab bar  */,
 				092385F016A69D7E0066E8B3 /* Login view */,
+				09F84F1916E5886F005804C1 /* Tag Selection View */,
 				091DA67B16873D6400BC4D11 /* New Question View */,
 				0938DA6A16A6C4F70093608C /* Third APIs */,
 				090F143716807E330020EDC2 /* App Delegate */,
@@ -948,6 +952,15 @@
 			name = "textView with placeholder";
 			sourceTree = "<group>";
 		};
+		09F84F1916E5886F005804C1 /* Tag Selection View */ = {
+			isa = PBXGroup;
+			children = (
+				09F84F1A16E588A7005804C1 /* AddingTagViewController.h */,
+				09F84F1B16E588A7005804C1 /* AddingTagViewController.m */,
+			);
+			name = "Tag Selection View";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1145,6 +1158,7 @@
 				091F6FD316BABA5200C2EBED /* PageViewController.m in Sources */,
 				0970F26116BE32E600907E91 /* CustomSegue.m in Sources */,
 				09F1A41A16DE20B000E4E5A6 /* UITabBarController+HideTabBar.m in Sources */,
+				09F84F1C16E588A7005804C1 /* AddingTagViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

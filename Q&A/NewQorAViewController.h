@@ -32,6 +32,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *questionTableCell;
 
+@property (nonatomic, strong) NSArray *tags;
+
 @property (nonatomic, weak) id <NewQuestionProtocal> delegate;
 
 

@@ -8,6 +8,7 @@
 
 #import "NewQuestionViewController+KeyboardMethods.h"
 #import "NewQuestionViewController+CameraDelegateMethods.h"
+#import "CustomizedNavigation.h"
 
 @implementation NewQorAViewController (KeyboardMethods)
 
@@ -22,11 +23,23 @@
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"隐藏键盘" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];    
 	
 	UIBarButtonItem *videoBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(showVideoSytleChooseAction)];
+	UIBarButtonItem *tagBtn = [[UIBarButtonItem alloc] initWithTitle:@"添加标签" style:UIBarButtonItemStyleBordered target:self action:@selector(presentAddingTagViewController)];
 	
-    [topView setItems:@[videoBtn, btnSpace, doneButton] animated:YES];
+    [topView setItems:@[videoBtn, btnSpace, tagBtn] animated:YES];
     [textView setInputAccessoryView:topView];
 	
 	[textView becomeFirstResponder];
+}
+
+#pragma mark - keyboard accessory method
+
+- (void)presentAddingTagViewController
+{
+	[self.questionTextView resignFirstResponder];
+	CustomizedNavigation *tagViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"adding tag view"];
+	AddingTagViewController *addingTagsViewController = [tagViewController.viewControllers lastObject];
+	addingTagsViewController.delegate = self;
+	[self presentViewController:tagViewController animated:YES completion:NULL];
 }
 
 - (void)showVideoSytleChooseAction
@@ -37,6 +50,26 @@
 	
 	[videoAction showInView:self.view];
 }
+
+- (void)dismissKeyBoard
+{
+	[self.questionTextView resignFirstResponder];
+	self.navigationItem.rightBarButtonItem = self.saveButton;
+	if ([self.questionTextView.text isEqualToString:@""] && [self.navigationItem.rightBarButtonItem.title isEqualToString:@"发送"]) {
+		[self.navigationItem.rightBarButtonItem setEnabled:NO];
+	} else {
+		[self.navigationItem.rightBarButtonItem setEnabled:YES];
+	}
+}
+
+#pragma mark - selected tags delegate
+
+- (void)addingTagViewController:(AddingTagViewController *)viewController didSelectTags:(NSArray *)selectedTags
+{
+	self.tags = selectedTags;
+}
+
+#pragma mark - actionSheet delegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -55,16 +88,7 @@
     //
 }
 
-- (void)dismissKeyBoard
-{
-	[self.questionTextView resignFirstResponder];
-	self.navigationItem.rightBarButtonItem = self.saveButton;
-	if ([self.questionTextView.text isEqualToString:@""] && [self.navigationItem.rightBarButtonItem.title isEqualToString:@"发送"]) {
-		[self.navigationItem.rightBarButtonItem setEnabled:NO];
-	} else {
-		[self.navigationItem.rightBarButtonItem setEnabled:YES];
-	}
-}
+#pragma mark - keyboard delegate
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {

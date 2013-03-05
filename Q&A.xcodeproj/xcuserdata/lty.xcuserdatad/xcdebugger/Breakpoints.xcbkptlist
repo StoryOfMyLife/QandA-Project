@@ -47,22 +47,22 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQuestionViewController+KeyboardMethods.m"
-         timestampString = "381511292.635486"
+         timestampString = "384160356.275376"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "108"
-         endingLineNumber = "108">
+         startingLineNumber = "132"
+         endingLineNumber = "132">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQuestionViewController+KeyboardMethods.m"
-         timestampString = "381511292.635486"
+         timestampString = "384160356.275376"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114">
+         startingLineNumber = "138"
+         endingLineNumber = "138">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -82,11 +82,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQuestionViewController+KeyboardMethods.m"
-         timestampString = "381511292.635486"
+         timestampString = "384160356.275376"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "83"
-         endingLineNumber = "83"
+         startingLineNumber = "107"
+         endingLineNumber = "107"
          landmarkName = "-textViewDidChange:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -160,12 +160,38 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/QuestionTableViewController.m"
-         timestampString = "383994047.85588"
+         timestampString = "384143034.37335"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "109"
-         endingLineNumber = "109"
+         startingLineNumber = "111"
+         endingLineNumber = "111"
          landmarkName = "-scrollViewDidScroll:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "AddingTagViewController.m"
+         timestampString = "384189988.930945"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "153"
+         endingLineNumber = "153"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Q&amp;A/AnswersTableViewController.m"
+         timestampString = "384188468.917902"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "261"
+         endingLineNumber = "261"
+         landmarkName = "-playVideoFromPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

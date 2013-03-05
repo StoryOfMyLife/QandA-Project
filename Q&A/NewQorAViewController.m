@@ -18,6 +18,8 @@
 
 @interface NewQorAViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *tagsLabel;
+
 @end
 
 @implementation NewQorAViewController
@@ -35,12 +37,24 @@
 	[self customizeKeyboardOfTextView:self.questionTextView];
 	
 	[self.questionTableCell setBackgroundView:[[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"textview_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(39, 104, 39, 104)]]];
+	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
+	[self.tableView setBackgroundView:tableBackgroundView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	[self.questionTextView becomeFirstResponder];
+}
+
+- (void)setTags:(NSArray *)tags
+{
+	if (!_tags) {
+		_tags = [[NSArray alloc] initWithArray:tags];
+	} else {
+		_tags = [tags copy];
+	}
+	self.tagsLabel.text = [NSString stringWithFormat:@"标签: %@", [_tags componentsJoinedByString:@","]];
 }
 
 - (IBAction)cancel:(id)sender {
@@ -83,7 +97,7 @@
 		@"video" : @{@"id" : self.videoID}, 
 		@"author" : @"lty",
 		@"authorName" : @"刘廷勇", 
-		@"tags" : @[@"开学", @"时间", @"学费"]};
+		@"tags" : self.tags};
 	//	NSLog(@"原始数据 ：%@", questionDic);
 		NSError *err = nil;
 		NSData *newQuestion = [NSJSONSerialization dataWithJSONObject:questionDic options:NSJSONWritingPrettyPrinted error:&err];
@@ -171,6 +185,8 @@
 - (void)viewDidUnload {
 	[self setQuestionTextView:nil];
 	[self setQuestionTableCell:nil];
+	[self setTagsLabel:nil];
+	[self setTags:nil];
 	[super viewDidUnload];
 }
 @end

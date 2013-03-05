@@ -953,7 +953,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="xEK-H0-3u2" customClass="GCPlaceholderTextView">
-                                                    <rect key="frame" x="6" y="6" width="288" height="97"/>
+                                                    <rect key="frame" x="6" y="6" width="288" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -962,6 +962,13 @@
                                                         <outlet property="delegate" destination="m4s-GV-jeY" id="gL0-mj-eOE"/>
                                                     </connections>
                                                 </textView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="标签:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ap0-lu-Mfx">
+                                                    <rect key="frame" x="6" y="86" width="288" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -993,11 +1000,53 @@
                     <connections>
                         <outlet property="questionTableCell" destination="5cG-Wa-Skw" id="QtQ-5d-Lsp"/>
                         <outlet property="questionTextView" destination="xEK-H0-3u2" id="29a-gG-Vx6"/>
+                        <outlet property="tagsLabel" destination="Ap0-lu-Mfx" id="Y70-td-PvI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1V-Ei-yHi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6774" y="-2775"/>
+        </scene>
+        <!--Adding Tag View Controller - 选择三个标签-->
+        <scene sceneID="a7Z-nR-gbq">
+            <objects>
+                <tableViewController storyboardIdentifier="" id="Jdk-qE-0p6" customClass="AddingTagViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="G0b-0e-Qhm">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tag cell" id="hHK-on-IwU">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Jdk-qE-0p6" id="Jzh-Qw-HdR"/>
+                            <outlet property="delegate" destination="Jdk-qE-0p6" id="54M-mB-0rj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="选择三个标签" id="tEg-CL-sKL">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="Lfl-R2-Asg">
+                            <connections>
+                                <action selector="cancel:" destination="Jdk-qE-0p6" id="Ap1-j3-KbV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="确定" id="WlL-7W-t5e">
+                            <connections>
+                                <action selector="done:" destination="Jdk-qE-0p6" id="lM6-S6-Q7H"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="moP-st-vEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5831" y="-2775"/>
         </scene>
         <!--Customized Navigation-->
         <scene sceneID="KTi-L3-k0d">
@@ -1073,6 +1122,24 @@
             </objects>
             <point key="canvasLocation" x="-7300" y="-2775"/>
         </scene>
+        <!--Customized Navigation-->
+        <scene sceneID="tjV-zf-ZEV">
+            <objects>
+                <navigationController storyboardIdentifier="adding tag view" id="Ap2-Gm-68c" customClass="CustomizedNavigation" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FuA-FX-p78">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Jdk-qE-0p6" kind="relationship" relationship="rootViewController" id="VnK-Ad-K7w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9p-p9-ZDC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6357" y="-2775"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Default@2x.png" width="640" height="960"/>
@@ -1085,110 +1152,10 @@
         <image name="textbox.png" width="272" height="35"/>
         <image name="third.png" width="24" height="24"/>
     </resources>
-    <classes>
-        <class className="AnswerCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="videoDuration" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="videoPreview" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="AnswersTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersTableViewController.h"/>
-        </class>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="CustomizedNavigation" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomizedNavigation.h"/>
-        </class>
-        <class className="FirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="myView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="questionScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="GCPlaceholderTextView" superclassName="UITextView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GCPlaceholderTextView.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="login:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NewQorAViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQorAViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="sendAnswer:"/>
-                <relationship kind="action" name="sendQuestion:"/>
-                <relationship kind="action" name="videoRecord:"/>
-                <relationship kind="outlet" name="questionTableCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
-            </relationships>
-        </class>
-        <class className="QuestionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="answerCount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionAnsweredFrom" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionAskedFrom" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionID" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionKeywords" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionTitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="QuestionDetailCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionDetailCell.h"/>
-            <relationships>
-                <relationship kind="action" name="playVideo:"/>
-                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="videoDuration" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="videoPreview" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="QuestionTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="swipeBack:"/>
-            </relationships>
-        </class>
-        <class className="SDSegmentedControl" superclassName="UISegmentedControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
-        </class>
-        <class className="SearchTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="SettingsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
-        </class>
-        <class className="TabBarViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarViewController.h"/>
-        </class>
-        <class className="ThirdTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ThirdTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="olO-ua-9AF"/>
