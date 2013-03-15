@@ -18,6 +18,7 @@
 #import "RefreshView.h"
 #import "JSON.h"
 #import "SVStatusHUD.h"
+#import "Account.h"
 
 @interface AnswersTableViewController () <AnswerCellDelegate, QuestionDetailCellDelegate, MyJSONDelegate>
 
@@ -83,10 +84,14 @@
 // 刷新
 - (void)refresh 
 {
-	[_refreshView startLoading];
-	JSON *myJSON = [[JSON alloc] init];
-	myJSON.delegate = self;
-	[myJSON getJSONDataFromURL:kGetQuestionURL];
+	Account *account = [Account sharedAcount];
+	if (account.isloginedIn) {
+		[self.refreshView startLoading];
+		JSON *myJSON = [[JSON alloc] init];
+		myJSON.delegate = self;
+		NSString *url = [kGetQuestionURL stringByAppendingString:account.accessToken];
+		[myJSON getJSONDataFromURL:url];
+	}
 }
 
 - (void)refreshFailed

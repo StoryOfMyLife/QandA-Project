@@ -56,7 +56,7 @@
 {
 	[super viewWillDisappear:animated];
 //	[self makeTabbarHidden:NO animated:NO];
-	[self makeTabbarInvisible:NO animated:NO];
+	[self.tabBarController makeTabbarInvisible:NO animated:NO];
 }
 
 #pragma mark - JSON delegate
@@ -85,7 +85,7 @@
 // 刷新
 - (void)refresh 
 {
-	AccountController *account = [AccountController sharedInstance];
+	Account *account = [Account sharedAcount];
 	if (account.isloginedIn) {
 		[self.refreshView startLoading];
 		JSON *myJSON = [[JSON alloc] init];
@@ -127,107 +127,17 @@
 				scrollView.contentOffset.y > 0) {
 				scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 //				[self makeTabbarHidden:YES animated:YES];
-				[self makeTabbarInvisible:YES animated:YES];
+				[self.tabBarController makeTabbarInvisible:YES animated:YES];
 			} else if (scrollView.contentOffset.y < self.currentScrollOffset.y &&
 					   scrollView.contentOffset.y < scrollView.contentSize.height - scrollView.frame.size.height) {
 //				[self makeTabbarHidden:NO animated:YES];
-				[self makeTabbarInvisible:NO animated:YES];
+				[self.tabBarController makeTabbarInvisible:NO animated:YES];
 			}
 			self.currentScrollOffset = scrollView.contentOffset;
 		}
 	}	
 }
 
-- (void)makeTabbarInvisible:(BOOL)invisible animated:(BOOL)animated
-{
-	if ( [self.tabBarController.view.subviews count] < 2 ) {
-        return;
-    }
-	
-	static BOOL enable = YES;
-	
-    UIView *contentView;
-	
-    if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ) {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
-    } else {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
-    }
-	
-	NSTimeInterval duration = animated ? 0.3 : 0.0;
-	
-	UIView *tabbar = self.tabBarController.tabBar;
-	
-	if (enable) {
-		if (invisible && tabbar.alpha > 0) {
-			enable = NO;
-			contentView.frame = self.tabBarController.view.bounds;
-			[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-				tabbar.alpha = 0;
-			} completion:^(BOOL finished) {
-				enable = YES;
-			}];
-		} else if (!invisible && tabbar.alpha == 0) {
-			enable = NO;
-			[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-				tabbar.alpha = 1;
-			} completion:^(BOOL finished) {
-				enable = YES;
-			}];
-		}
-	}
-}
-
-- (void)makeTabbarHidden:(BOOL)hide animated:(BOOL)animated
-{
-    // Custom code to hide TabBar
-    if ( [self.tabBarController.view.subviews count] < 2 ) {
-        return;
-    }
-	
-	static BOOL enable = YES;
-	
-    UIView *contentView;
-	
-    if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ) {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
-    } else {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
-    }
-	
-	CGRect tabbarFrame = self.tabBarController.tabBar.frame;
-	
-	NSTimeInterval duration = animated ? 0.3 : 0.0;
-	
-	if (enable) {
-		if (hide && tabbarFrame.origin.y < self.tabBarController.view.bounds.size.height) {
-			enable = NO;
-			contentView.frame = self.tabBarController.view.bounds;
-			tabbarFrame.origin.y += tabbarFrame.size.height;
-			[UIView animateWithDuration:duration animations:^{
-				self.tabBarController.tabBar.frame = tabbarFrame;
-			} completion:^(BOOL finished) {
-				enable = YES;
-			}];
-		} else if (!hide && tabbarFrame.origin.y >= self.tabBarController.view.bounds.size.height) {
-			enable = NO;
-			tabbarFrame.origin.y -= tabbarFrame.size.height;
-			//		contentView.frame = self.tabBarController.view.bounds;
-			[UIView animateWithDuration:duration animations:^{
-				self.tabBarController.tabBar.frame = tabbarFrame;
-			} completion:^(BOOL finished) { //这里是导致快速上拉到顶端出现刷新时view跳动的原因，不用将contentView.size设置回去！！
-				//			if (finished) {
-				//				contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
-				//										   self.tabBarController.view.bounds.origin.y,
-				//										   self.tabBarController.view.bounds.size.width,
-				//										   self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
-				//			}
-				enable = YES;
-			}];	
-		}
-	}
-    
-}
 // 拖动结束后
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {

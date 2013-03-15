@@ -14,8 +14,4 @@
 
 @property (nonatomic) NSInteger flag;
 
-- (void)makeTabbarHidden:(BOOL)hide animated:(BOOL)animated;
-
-- (void)makeTabbarInvisible:(BOOL)invisible animated:(BOOL)animated;
-
 @end

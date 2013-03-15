@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 刘廷勇. All rights reserved.
 //
 
-#import "AccountController.h"
+#import "Account.h"
 
 // User Default Key
 #define USER_DEFAULT_KEY_MAIL @"AccountMail"
@@ -15,19 +15,19 @@
 #define USER_DEFAULT_KEY_ACCESSTOKEN @"AccountAccessToken"
 #define USER_DEFAULT_KEY_EXPIRE @"AccountExpire"
 
-@interface AccountController()
+@interface Account()
 
 @end
 
-@implementation AccountController
+@implementation Account
 
-static AccountController *accountController = nil;
+static Account *accountController = nil;
 
-+ (AccountController *)sharedInstance
++ (Account *)sharedAcount
 {
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		accountController = [[AccountController alloc] init];
+		accountController = [[Account alloc] init];
 	});
 	return accountController;
 }

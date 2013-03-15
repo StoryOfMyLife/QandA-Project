@@ -106,7 +106,7 @@
 		094C7EE116B66F7E0069F250 /* tablecell_selected_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 094C7EE016B66F7E0069F250 /* tablecell_selected_bg.png */; };
 		094C7EE416B6767A0069F250 /* round_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 094C7EE216B6767A0069F250 /* round_button_pressed.png */; };
 		094C7EE516B6767A0069F250 /* round_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 094C7EE316B6767A0069F250 /* round_button.png */; };
-		0956720416F2C36100D56F93 /* AccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0956720316F2C36100D56F93 /* AccountController.m */; };
+		0956720416F2C36100D56F93 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0956720316F2C36100D56F93 /* Account.m */; };
 		096F17C816C800D300E4F56A /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 096F17C716C800D300E4F56A /* clock.png */; };
 		0970F26116BE32E600907E91 /* CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0970F26016BE32E600907E91 /* CustomSegue.m */; };
 		0970F26416C0C5F100907E91 /* arrow_rear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0970F26216C0C5F100907E91 /* arrow_rear@2x.png */; };
@@ -294,8 +294,8 @@
 		094C7EE016B66F7E0069F250 /* tablecell_selected_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tablecell_selected_bg.png; sourceTree = "<group>"; };
 		094C7EE216B6767A0069F250 /* round_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round_button_pressed.png; sourceTree = "<group>"; };
 		094C7EE316B6767A0069F250 /* round_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round_button.png; sourceTree = "<group>"; };
-		0956720216F2C36100D56F93 /* AccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountController.h; sourceTree = "<group>"; };
-		0956720316F2C36100D56F93 /* AccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountController.m; sourceTree = "<group>"; };
+		0956720216F2C36100D56F93 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		0956720316F2C36100D56F93 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		096F17C716C800D300E4F56A /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		0970F25F16BE32E600907E91 /* CustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegue.h; sourceTree = "<group>"; };
 		0970F26016BE32E600907E91 /* CustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegue.m; sourceTree = "<group>"; };
@@ -686,7 +686,7 @@
 		092385F016A69D7E0066E8B3 /* Login view */ = {
 			isa = PBXGroup;
 			children = (
-				0956720116F2C33C00D56F93 /* Accout controller */,
+				0956720116F2C33C00D56F93 /* Account */,
 				092385F216A69DA10066E8B3 /* LoginViewController.h */,
 				092385F316A69DA10066E8B3 /* LoginViewController.m */,
 			);
@@ -815,13 +815,13 @@
 			name = login;
 			sourceTree = "<group>";
 		};
-		0956720116F2C33C00D56F93 /* Accout controller */ = {
+		0956720116F2C33C00D56F93 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				0956720216F2C36100D56F93 /* AccountController.h */,
-				0956720316F2C36100D56F93 /* AccountController.m */,
+				0956720216F2C36100D56F93 /* Account.h */,
+				0956720316F2C36100D56F93 /* Account.m */,
 			);
-			name = "Accout controller";
+			name = Account;
 			sourceTree = "<group>";
 		};
 		0970F25E16BE32BA00907E91 /* custom segue */ = {
@@ -1176,7 +1176,7 @@
 				09F1A41A16DE20B000E4E5A6 /* UITabBarController+HideTabBar.m in Sources */,
 				09F84F1C16E588A7005804C1 /* AddingTagViewController.m in Sources */,
 				09F84F1F16E6F6D8005804C1 /* CameraViewController.m in Sources */,
-				0956720416F2C36100D56F93 /* AccountController.m in Sources */,
+				0956720416F2C36100D56F93 /* Account.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 #import "FirstViewController.h"
 #import "NewQorAViewController.h"
 #import "LoginViewController.h"
+#import "UITabBarController+HideTabBar.h"
 
 @interface FirstViewController () <UIScrollViewDelegate>
 {
@@ -59,7 +60,7 @@
 		[self.segmentedControl setImage:[UIImage imageNamed:@"clock"] forSegmentAtIndex:i];
 	}
 	
-	AccountController *account = [AccountController sharedInstance];
+	Account *account = [Account sharedAcount];
 	if (!account.isloginedIn) {
 		LoginViewController *loginView = [self.storyboard instantiateViewControllerWithIdentifier:@"login view"];
 		[self presentViewController:loginView animated:YES completion:NULL];
@@ -94,7 +95,7 @@
     frame.origin.y = 0;
 	[self.questionScrollView scrollRectToVisible:frame animated:YES];
 	[self scrcollViewControllers:self.questionViewControllers enableScrollToTopAtIndex:page];
-	[self.questionViewControllers[sender.selectedSegmentIndex] makeTabbarInvisible:NO animated:YES];
+	[self.tabBarController makeTabbarInvisible:NO animated:YES];
 }
 
 - (void)scrcollViewControllers:(NSArray *)scrollViewControllers
@@ -142,7 +143,7 @@
 		qvc.view.alpha = width;
 //		qvc.view.transform = CGAffineTransformMakeScale(width, width);
 	}
-	[self.questionViewControllers[page] makeTabbarInvisible:NO animated:YES];
+	[self.tabBarController makeTabbarInvisible:NO animated:YES];
 	[self scrcollViewControllers:self.questionViewControllers enableScrollToTopAtIndex:page];
 }
 

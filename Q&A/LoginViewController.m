@@ -101,7 +101,7 @@
 			
             [alert show];
 		} else {
-			AccountController *account = [AccountController sharedInstance];
+			Account *account = [Account sharedAcount];
 			account.userID = self.username.text;
 			account.password = self.password.text;
 			account.loginedIn = YES;

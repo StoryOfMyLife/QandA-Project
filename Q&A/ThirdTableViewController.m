@@ -10,6 +10,7 @@
 #import "QuestionTableViewController.h"
 #import "SettingsTableViewController.h"
 #import "LoginViewController.h"
+#import "UITabBarController+HideTabBar.h"
 
 @interface ThirdTableViewController ()
 
@@ -32,6 +33,12 @@
 //这里需要设置一下背景，否则UITableview的原背景在push的时候会出现一下，原因未知
 	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
 	[self.tableView setBackgroundView:tableBackgroundView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self.tabBarController makeTabbarInvisible:NO animated:NO];
 }
 
 - (void)didReceiveMemoryWarning

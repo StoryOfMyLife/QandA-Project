@@ -10,8 +10,11 @@
 
 @interface UITabBarController (HideTabBar)
 
-@property (nonatomic, getter=isTabBarHidden) BOOL tabBarHidden;
+- (void)makeTabbarInvisible:(BOOL)invisible animated:(BOOL)animated;
 
-- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated;
+
+//@property (nonatomic, getter=isTabBarHidden) BOOL tabBarHidden;
+//
+//- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated;
 
 @end

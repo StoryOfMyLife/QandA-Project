@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AccountController : NSObject 
+@interface Account : NSObject 
 
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, getter = isloginedIn) BOOL loginedIn; 
 
-+ (AccountController *)sharedInstance;
++ (Account *)sharedAcount;
 
 @end
