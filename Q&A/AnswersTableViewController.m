@@ -257,7 +257,7 @@
 	self.movieView = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
 	
 //	[self addThumbnailImageFromURL:[NSURL fileURLWithPath:videoPath] toCell:self.currentSelectedCell];
-	
+	self.movieView.moviePlayer.shouldAutoplay = NO;
 	self.movieView.moviePlayer.repeatMode = MPMovieRepeatModeNone;
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(movieDidFinish:) 

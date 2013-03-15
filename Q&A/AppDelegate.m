@@ -16,6 +16,13 @@
     // Override point for customization after application launch.
 	[MagicalRecord setupCoreDataStackWithStoreNamed:@"database.sqlite"];
 
+	[self customization];
+		
+    return YES;
+}
+
+- (void)customization
+{
 	//customize appearance
 	//tabbar 选中背景
 	[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabbar_selection_indicator1"]];
@@ -38,8 +45,6 @@
 	//backgroundView不完全支持全局自定义，可能会出现失效情况，需要注意！
 	[[UITableView appearance] setBackgroundView:tableBackgroundView];
 	[[UITableView appearance] setBackgroundColor:[UIColor clearColor]];
-		
-    return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -51,7 +51,7 @@
         <!--Login View Controller - 重新登陆-->
         <scene sceneID="uYb-JD-33I">
             <objects>
-                <viewController id="aHE-MX-Fr0" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login view" id="aHE-MX-Fr0" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ygv-oZ-y2z">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,7 +121,7 @@
                     <connections>
                         <outlet property="cancelButton" destination="JG7-sa-fTH" id="PvT-lP-qR5"/>
                         <outlet property="loginButton" destination="ii5-cE-ek0" id="r3A-az-Pik"/>
-                        <outlet property="password" destination="lNZ-dp-EwV" id="Y0M-BK-B3o"/>
+                        <outlet property="password" destination="lNZ-dp-EwV" id="Yrk-MW-L4w"/>
                         <outlet property="username" destination="qja-fj-rks" id="DUp-sc-Exa"/>
                     </connections>
                 </viewController>
@@ -430,26 +430,6 @@
                                 <outlet property="delegate" destination="bVq-qO-nm5" id="af5-S6-b4U"/>
                             </connections>
                         </searchBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="cgP-RC-gha" rowHeight="44" style="IBUITableViewCellStyleDefault" id="gdC-o4-afd">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cgP-RC-gha">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="bVq-qO-nm5" id="IQn-1H-io6"/>
                             <outlet property="delegate" destination="bVq-qO-nm5" id="fZc-VZ-t7G"/>

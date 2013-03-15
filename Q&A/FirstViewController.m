@@ -12,6 +12,7 @@
 
 #import "FirstViewController.h"
 #import "NewQorAViewController.h"
+#import "LoginViewController.h"
 
 @interface FirstViewController () <UIScrollViewDelegate>
 {
@@ -56,6 +57,12 @@
 	self.lastSelectedSegmentIndex = self.segmentedControl.selectedSegmentIndex;
 	for (int i = 0; i < 3; i++) {
 		[self.segmentedControl setImage:[UIImage imageNamed:@"clock"] forSegmentAtIndex:i];
+	}
+	
+	AccountController *account = [AccountController sharedInstance];
+	if (!account.isloginedIn) {
+		LoginViewController *loginView = [self.storyboard instantiateViewControllerWithIdentifier:@"login view"];
+		[self presentViewController:loginView animated:YES completion:NULL];
 	}
 }
 
@@ -108,6 +115,13 @@
 		}
 	}
 }
+//计算view在屏幕中显示部分的比例，可用来调整view切换时的大小和透明度等属性，提升切换效果
+- (CGFloat)viewVisibleWidth:(UIView *)view inScrollView:(UIScrollView *)scrollView
+{
+	CGFloat viewWidth = view.frame.size.width;
+	CGFloat visibleWidth = (viewWidth - abs(view.frame.origin.x - scrollView.contentOffset.x)) / viewWidth;
+	return visibleWidth <= 0 ? 1 : visibleWidth;
+}
 
 #pragma mark - scrollView delegate
 
@@ -116,10 +130,18 @@
 	if (segmentedControlUsed) {
 		return;
 	}
+	
 	//页面显示在屏幕的部分超过50%，则返回当前页的page
 	CGFloat pageWidth = scrollView.frame.size.width;
+	
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.segmentedControl.selectedSegmentIndex = page;
+	
+	for (QuestionTableViewController *qvc in self.questionViewControllers) {
+		CGFloat width = [self viewVisibleWidth:qvc.view inScrollView:scrollView];
+		qvc.view.alpha = width;
+//		qvc.view.transform = CGAffineTransformMakeScale(width, width);
+	}
 	[self.questionViewControllers[page] makeTabbarInvisible:NO animated:YES];
 	[self scrcollViewControllers:self.questionViewControllers enableScrollToTopAtIndex:page];
 }

@@ -10,6 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "GCPlaceholderTextView.h"
+#import "CameraViewController.h"
 
 @class NewQorAViewController;
 @protocol NewQuestionProtocal <NSObject>
@@ -33,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *questionTableCell;
 
 @property (nonatomic, strong) NSArray *tags;
+
+@property (strong, nonatomic) CameraViewController *cameraViewController;
 
 @property (nonatomic, weak) id <NewQuestionProtocal> delegate;
 

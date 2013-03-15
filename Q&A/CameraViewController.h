@@ -1,14 +1,16 @@
 //
-//  NewQuestionViewController+CameraDelegateMethods.h
+//  CameraViewController.h
 //  Q&A
 //
-//  Created by 刘廷勇 on 12-12-24.
-//  Copyright (c) 2012年 刘廷勇. All rights reserved.
+//  Created by 刘廷勇 on 13-3-6.
+//  Copyright (c) 2013年 刘廷勇. All rights reserved.
 //
 
-#import "NewQorAViewController.h"
+#import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
-@interface NewQorAViewController (CameraDelegateMethods)
+@interface CameraViewController : UIImagePickerController
 
 - (BOOL)startCameraControllerFromViewController: (UIViewController *) controller
 								  usingDelegate: (id <UIImagePickerControllerDelegate,

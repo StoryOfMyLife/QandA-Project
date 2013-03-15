@@ -14,6 +14,7 @@
 #import "Defines.h"
 #import "SVStatusHUD.h"
 #import "UITabBarController+HideTabBar.h"
+#import "LoginViewController.h"
 
 @interface QuestionTableViewController () <UIScrollViewDelegate, MyJSONDelegate, RefreshViewDelegate>
 
@@ -34,7 +35,6 @@
 	//加载下拉刷新view
 	NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"RefreshView" owner:self options:nil];
     self.refreshView = [nibs objectAtIndex:0];
-    [_refreshView setupWithOwner:self.tableView delegate:self];
 	
 	//在这里不设置一下背景，应用开启后会卡死在界面，原因未知。。。
 	[self.tableView setBackgroundView:nil];
@@ -44,6 +44,13 @@
 	self.tableView.showsVerticalScrollIndicator = NO;
 }
 
+- (void)setRefreshView:(RefreshView *)refreshView
+{
+	if (_refreshView != refreshView) {
+		_refreshView = refreshView;
+		[_refreshView setupWithOwner:self.tableView delegate:self];
+	}
+}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -78,20 +85,27 @@
 // 刷新
 - (void)refresh 
 {
-	[_refreshView startLoading];
-	JSON *myJSON = [[JSON alloc] init];
-	myJSON.delegate = self;
-	[myJSON getJSONDataFromURL:kGetQuestionURL];
+	AccountController *account = [AccountController sharedInstance];
+	if (account.isloginedIn) {
+		[self.refreshView startLoading];
+		JSON *myJSON = [[JSON alloc] init];
+		myJSON.delegate = self;
+		NSString *url = [kGetQuestionURL stringByAppendingString:account.accessToken];
+		[myJSON getJSONDataFromURL:url];
+	} else {
+		LoginViewController *loginView = [self.storyboard instantiateViewControllerWithIdentifier:@"login view"];
+		[self presentViewController:loginView animated:YES completion:NULL];
+	}
 }
 
 - (void)refreshFailed
 {
-	[_refreshView stopLoading];
+	[self.refreshView stopLoading];
 }
 
 - (void)refreshFinished
 {
-	[_refreshView finishLoading];
+	[self.refreshView finishLoading];
 	[self.tableView reloadData];
 }
 

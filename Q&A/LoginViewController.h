@@ -7,6 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccountController.h"
+
+@protocol LoginViewDelegate <NSObject>
+
+@optional
+- (void)loginViewDidLoginWithLoginID:(NSString *)loginID;
+
+@end
 
 @interface LoginViewController : UIViewController
 
@@ -14,8 +22,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *password;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+
+@property (nonatomic, weak) id <LoginViewDelegate> delegate;
 
 - (IBAction)login:(id)sender;
 @end

@@ -27,6 +27,14 @@
     return self;
 }
 
+- (NSMutableArray *)selectedTags
+{
+	if (!_selectedTags) {
+		_selectedTags = [NSMutableArray array];
+	}
+	return _selectedTags;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

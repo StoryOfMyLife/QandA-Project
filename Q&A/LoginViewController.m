@@ -101,6 +101,11 @@
 			
             [alert show];
 		} else {
+			AccountController *account = [AccountController sharedInstance];
+			account.userID = self.username.text;
+			account.password = self.password.text;
+			account.loginedIn = YES;
+			account.accessToken = operation.responseString;
 			[self dismissView:nil];
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -108,7 +113,6 @@
 	}];
 	[operation start];
 }
-
 
 - (void)didReceiveMemoryWarning
 {

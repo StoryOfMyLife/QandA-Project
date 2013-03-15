@@ -6,8 +6,7 @@
 //  Copyright (c) 2012年 刘廷勇. All rights reserved.
 //
 
-#import "NewQuestionViewController+KeyboardMethods.h"
-#import "NewQuestionViewController+CameraDelegateMethods.h"
+#import "NewQorAViewController+KeyboardMethods.h"
 #import "CustomizedNavigation.h"
 
 @implementation NewQorAViewController (KeyboardMethods)
@@ -20,7 +19,7 @@
 	topView.alpha = 0;
     
     UIBarButtonItem *btnSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"隐藏键盘" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];    
+//    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"隐藏键盘" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];    
 	
 	UIBarButtonItem *videoBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(showVideoSytleChooseAction)];
 	UIBarButtonItem *tagBtn = [[UIBarButtonItem alloc] initWithTitle:@"添加标签" style:UIBarButtonItemStyleBordered target:self action:@selector(presentAddingTagViewController)];
@@ -74,9 +73,9 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if (buttonIndex == 1) {
-		[self startPhotoControllerFromViewController:self usingDelegate:self];
+		[self.cameraViewController startPhotoControllerFromViewController:self usingDelegate:self];
 	} else if (buttonIndex == 0) {
-		[self startVideoControllerFromViewController:self usingDelegate:self];
+		[self.cameraViewController startVideoControllerFromViewController:self usingDelegate:self];
 	} else if (buttonIndex == 2) {
 		[self.questionTextView becomeFirstResponder];
 	}
