@@ -21,10 +21,9 @@
 
 @implementation Account
 
-static Account *accountController = nil;
-
 + (Account *)sharedAcount
 {
+	static Account *accountController;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		accountController = [[Account alloc] init];

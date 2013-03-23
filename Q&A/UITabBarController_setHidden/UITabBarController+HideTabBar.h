@@ -12,6 +12,8 @@
 
 - (void)makeTabbarInvisible:(BOOL)invisible animated:(BOOL)animated;
 
+- (void)makeTabbarOriginal;
+
 
 //@property (nonatomic, getter=isTabBarHidden) BOOL tabBarHidden;
 //

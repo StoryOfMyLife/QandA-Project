@@ -12,6 +12,29 @@
 
 @implementation UITabBarController (HideTabBar)
 
+- (void)makeTabbarOriginal
+{
+	UIView *contentView;
+	
+    if ( [[self.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ) {
+        contentView = [self.view.subviews objectAtIndex:1];
+    } else {
+        contentView = [self.view.subviews objectAtIndex:0];
+    }
+	
+	CGRect tabbarFrame = self.tabBar.frame;
+	
+	if (tabbarFrame.origin.y > self.view.bounds.size.height - tabbarFrame.size.height ||
+		contentView.frame.size.height > self.view.bounds.size.height - tabbarFrame.size.height) {
+		tabbarFrame.origin.y = self.view.bounds.size.height - tabbarFrame.size.height;
+		self.tabBar.frame = tabbarFrame;
+		contentView.frame = CGRectMake(self.view.bounds.origin.x,
+									   self.view.bounds.origin.y,
+									   self.view.bounds.size.width,
+									   self.view.bounds.size.height - tabbarFrame.size.height);
+	}
+}
+
 - (void)makeTabbarInvisible:(BOOL)invisible animated:(BOOL)animated
 {
 	if ( [self.view.subviews count] < 2 ) {
@@ -41,21 +64,13 @@
 			} completion:^(BOOL finished) {
 				enable = YES;
 			}];
-		} else if (!invisible) {
-			if (tabbar.alpha == 0) {
-				enable = NO;
-				[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-					tabbar.alpha = 1;
-				} completion:^(BOOL finished) {
-					enable = YES;
-				}];
-			} else if (!animated) {
-				contentView.frame = CGRectMake(self.view.bounds.origin.x,
-											   self.view.bounds.origin.y,
-											   self.view.bounds.size.width,
-											   self.view.bounds.size.height - self.tabBar.frame.size.height);
-			}
-			
+		} else if (!invisible && tabbar.alpha == 0) {
+			enable = NO;
+			[UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+				tabbar.alpha = 1;
+			} completion:^(BOOL finished) {
+				enable = YES;
+			}];
 		}
 	}
 }

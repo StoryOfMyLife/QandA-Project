@@ -52,13 +52,6 @@
 	}
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-//	[self makeTabbarHidden:NO animated:NO];
-	[self.tabBarController makeTabbarInvisible:NO animated:NO];
-}
-
 #pragma mark - JSON delegate
 - (void)fetchJSONFailed
 {

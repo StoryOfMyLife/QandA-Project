@@ -11,6 +11,7 @@
 #import "SettingsTableViewController.h"
 #import "LoginViewController.h"
 #import "UITabBarController+HideTabBar.h"
+#import "Account.h"
 
 @interface ThirdTableViewController ()
 
@@ -38,7 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self.tabBarController makeTabbarInvisible:NO animated:NO];
+	[self.tabBarController makeTabbarOriginal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,6 +72,9 @@
 		SettingsTableViewController *settingView = (SettingsTableViewController *)segue.destinationViewController;
 		settingView.navigationItem.title = @"个人设置";
 	} else if ([segue.identifier isEqualToString:@"login"]) {
+		Account *account = [Account sharedAcount];
+		account.loginedIn = NO;
+		
 		UINavigationController *loginNav = (UINavigationController *)segue.destinationViewController;
 		LoginViewController *loginView = (LoginViewController *)loginNav.topViewController;
 		loginView.navigationItem.title = @"用户登陆";
