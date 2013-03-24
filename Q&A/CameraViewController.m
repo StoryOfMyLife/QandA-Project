@@ -52,8 +52,8 @@
 	
     // Displays a control that allows the user to choose picture or
     // movie capture, if both are available:
-    self.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-	
+//    self.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+	self.mediaTypes = @[(NSString *)kUTTypeImage];;
     // Hides the controls for moving & scaling pictures, or for
     // trimming movies. To instead show the controls, use YES.
     self.allowsEditing = YES;	
