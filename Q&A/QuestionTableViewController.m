@@ -26,6 +26,7 @@
 
 @implementation QuestionTableViewController
 
+#pragma mark - view life cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,6 +43,21 @@
 	self.currentScrollOffset = self.tableView.contentOffset;
 	
 	self.tableView.showsVerticalScrollIndicator = NO;
+}
+
+- (void)didReceiveMemoryWarning
+{
+	NSLog(@"QustionTableView did receive memory warning!");
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidUnload 
+{
+	self.fetchedResultsController = nil;
+	self.refreshView = nil;
+	//	[self removeFromParentViewController];
+	[super viewDidUnload]; 
 }
 
 - (void)setRefreshView:(RefreshView *)refreshView
@@ -232,20 +248,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return 100;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload 
-{
-	self.fetchedResultsController = nil;
-	self.refreshView = nil;
-//	[self removeFromParentViewController];
-	[super viewDidUnload]; 
 }
 
 @end

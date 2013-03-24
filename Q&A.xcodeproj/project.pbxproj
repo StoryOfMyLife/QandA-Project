@@ -107,6 +107,9 @@
 		094C7EE416B6767A0069F250 /* round_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 094C7EE216B6767A0069F250 /* round_button_pressed.png */; };
 		094C7EE516B6767A0069F250 /* round_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 094C7EE316B6767A0069F250 /* round_button.png */; };
 		0956720416F2C36100D56F93 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0956720316F2C36100D56F93 /* Account.m */; };
+		0956724616FE12A700D56F93 /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0956724516FE12A700D56F93 /* ProfileView.m */; };
+		0956724A16FE138800D56F93 /* ProfileSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0956724816FE138800D56F93 /* ProfileSelected@2x.png */; };
+		0956724B16FE138800D56F93 /* ProfileNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0956724916FE138800D56F93 /* ProfileNormal@2x.png */; };
 		096F17C816C800D300E4F56A /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 096F17C716C800D300E4F56A /* clock.png */; };
 		0970F26116BE32E600907E91 /* CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0970F26016BE32E600907E91 /* CustomSegue.m */; };
 		0970F26416C0C5F100907E91 /* arrow_rear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0970F26216C0C5F100907E91 /* arrow_rear@2x.png */; };
@@ -151,7 +154,6 @@
 		09CEC9361684DC6300CBC403 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC91A1684DC6300CBC403 /* MagicalRecord.m */; };
 		09E189F3168B45B700E262CD /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E189F2168B45B700E262CD /* GCPlaceholderTextView.m */; };
 		09F1A41A16DE20B000E4E5A6 /* UITabBarController+HideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F1A41916DE20B000E4E5A6 /* UITabBarController+HideTabBar.m */; };
-		09F1A41E16E0E17500E4E5A6 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1A41D16E0E17500E4E5A6 /* photo.png */; };
 		09F84F1C16E588A7005804C1 /* AddingTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F84F1B16E588A7005804C1 /* AddingTagViewController.m */; };
 		09F84F1F16E6F6D8005804C1 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F84F1E16E6F6D8005804C1 /* CameraViewController.m */; };
 		09FB79F616E730B300ACD855 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FB79F516E730B300ACD855 /* AVFoundation.framework */; };
@@ -296,6 +298,10 @@
 		094C7EE316B6767A0069F250 /* round_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round_button.png; sourceTree = "<group>"; };
 		0956720216F2C36100D56F93 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		0956720316F2C36100D56F93 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		0956724416FE12A700D56F93 /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
+		0956724516FE12A700D56F93 /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
+		0956724816FE138800D56F93 /* ProfileSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileSelected@2x.png"; sourceTree = "<group>"; };
+		0956724916FE138800D56F93 /* ProfileNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileNormal@2x.png"; sourceTree = "<group>"; };
 		096F17C716C800D300E4F56A /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		0970F25F16BE32E600907E91 /* CustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegue.h; sourceTree = "<group>"; };
 		0970F26016BE32E600907E91 /* CustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegue.m; sourceTree = "<group>"; };
@@ -375,7 +381,6 @@
 		09E189F2168B45B700E262CD /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
 		09F1A41816DE20B000E4E5A6 /* UITabBarController+HideTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITabBarController+HideTabBar.h"; path = "UITabBarController_setHidden/UITabBarController+HideTabBar.h"; sourceTree = "<group>"; };
 		09F1A41916DE20B000E4E5A6 /* UITabBarController+HideTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+HideTabBar.m"; path = "UITabBarController_setHidden/UITabBarController+HideTabBar.m"; sourceTree = "<group>"; };
-		09F1A41D16E0E17500E4E5A6 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		09F84F1A16E588A7005804C1 /* AddingTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddingTagViewController.h; sourceTree = SOURCE_ROOT; };
 		09F84F1B16E588A7005804C1 /* AddingTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddingTagViewController.m; sourceTree = SOURCE_ROOT; };
 		09F84F1D16E6F6D8005804C1 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
@@ -423,6 +428,7 @@
 		09065BB716A1B3580000B256 /* Third view */ = {
 			isa = PBXGroup;
 			children = (
+				0956724716FE12B000D56F93 /* ProfileView */,
 				09065BC816A1CC190000B256 /* Settings view */,
 				09065BB816A1B3960000B256 /* ThirdTableViewController.h */,
 				09065BB916A1B3960000B256 /* ThirdTableViewController.m */,
@@ -709,7 +715,6 @@
 		0939CAE516B1592100B3856C /* images */ = {
 			isa = PBXGroup;
 			children = (
-				09F1A41D16E0E17500E4E5A6 /* photo.png */,
 				091D58A516B548C200D07D84 /* play.png */,
 				091D58A116B547BD00D07D84 /* play@2x.png */,
 				0908E6DB16B4E63C00626854 /* play_video@2x.png */,
@@ -822,6 +827,25 @@
 				0956720316F2C36100D56F93 /* Account.m */,
 			);
 			name = Account;
+			sourceTree = "<group>";
+		};
+		0956724716FE12B000D56F93 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				0956724C16FE138F00D56F93 /* image */,
+				0956724416FE12A700D56F93 /* ProfileView.h */,
+				0956724516FE12A700D56F93 /* ProfileView.m */,
+			);
+			name = ProfileView;
+			sourceTree = "<group>";
+		};
+		0956724C16FE138F00D56F93 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				0956724816FE138800D56F93 /* ProfileSelected@2x.png */,
+				0956724916FE138800D56F93 /* ProfileNormal@2x.png */,
+			);
+			name = image;
 			sourceTree = "<group>";
 		};
 		0970F25E16BE32BA00907E91 /* custom segue */ = {
@@ -1096,7 +1120,8 @@
 				0970F26416C0C5F100907E91 /* arrow_rear@2x.png in Resources */,
 				0970F26516C0C5F100907E91 /* arrow_rear.png in Resources */,
 				096F17C816C800D300E4F56A /* clock.png in Resources */,
-				09F1A41E16E0E17500E4E5A6 /* photo.png in Resources */,
+				0956724A16FE138800D56F93 /* ProfileSelected@2x.png in Resources */,
+				0956724B16FE138800D56F93 /* ProfileNormal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1177,6 +1202,7 @@
 				09F84F1C16E588A7005804C1 /* AddingTagViewController.m in Sources */,
 				09F84F1F16E6F6D8005804C1 /* CameraViewController.m in Sources */,
 				0956720416F2C36100D56F93 /* Account.m in Sources */,
+				0956724616FE12A700D56F93 /* ProfileView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

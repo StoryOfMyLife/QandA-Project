@@ -12,8 +12,12 @@
 #import "LoginViewController.h"
 #import "UITabBarController+HideTabBar.h"
 #import "Account.h"
+#import "ProfileView.h"
+#import "CameraViewController.h"
 
-@interface ThirdTableViewController ()
+@interface ThirdTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (nonatomic, strong) CameraViewController *cameraViewController;
 
 @end
 
@@ -28,26 +32,119 @@
     return self;
 }
 
+- (ProfileView *)profileView
+{
+	if (!_profileView) {
+		_profileView = [[ProfileView alloc] initWithRoundedRect:CGRectMake(10, 10, 50, 50)];
+//		_profileView = [[ProfileView alloc] initWithCircleInRect:CGRectMake(10, 10, 50, 50)];
+		[_profileView addTarget:self action:@selector(editProfileImage) forControlEvents:UIControlEventTouchUpInside];
+		[self.tableView addSubview:_profileView];
+	}
+	return _profileView;
+}
+
+- (CameraViewController *)cameraViewController
+{
+	if (!_cameraViewController) {
+		_cameraViewController = [[CameraViewController alloc] init];
+	}
+	return _cameraViewController;
+}
+#pragma mark - View life cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 //这里需要设置一下背景，否则UITableview的原背景在push的时候会出现一下，原因未知
 	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
 	[self.tableView setBackgroundView:tableBackgroundView];
+	[self profileView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-	[super viewWillAppear:animated];
+	[super viewDidAppear:animated];
 	[self.tabBarController makeTabbarOriginal];
+}
+
+- (void)viewDidUnload {
+	[self setProfileView:nil];
+	[super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+	NSLog(@"ThirdView did receive memory warning!");
 }
 
+#pragma mark - UIActionSheet Delegate
+- (IBAction)editProfileImage
+{
+	if (self.profileView.profileImage) {
+		UIActionSheet *imageAction = [[UIActionSheet alloc] initWithTitle:@"编辑靓照" delegate:self cancelButtonTitle:@"下次再说" destructiveButtonTitle:@"删掉靓照" otherButtonTitles:@"重照一张", @"选一张", nil];
+		imageAction.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+		
+//		[imageAction showFromTabBar:self.tabBarController.tabBar];
+		[imageAction showInView:[UIApplication sharedApplication].keyWindow];
+	} else {
+		UIActionSheet *imageAction = [[UIActionSheet alloc] initWithTitle:@"添加靓照" delegate:self cancelButtonTitle:@"下次再说" destructiveButtonTitle:nil otherButtonTitles:@"照一张", @"选一张", nil];
+		imageAction.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+		
+		[imageAction showInView:[UIApplication sharedApplication].keyWindow];
+	}
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (self.profileView.profileImage) {
+		if (0 == buttonIndex) {
+			self.profileView.profileImage = nil;
+		} else if (1 == buttonIndex) {
+			[self.cameraViewController startCameraControllerFromViewController:self usingDelegate:self];
+		} else if (2 == buttonIndex) {
+			[self.cameraViewController startPhotoControllerFromViewController:self usingDelegate:self];
+		}
+	} else {
+		if (0 == buttonIndex) {
+			[self.cameraViewController startCameraControllerFromViewController:self usingDelegate:self];
+		}
+		if (1 == buttonIndex) {
+			[self.cameraViewController startPhotoControllerFromViewController:self usingDelegate:self];
+		}
+	}	
+}
+
+#pragma mark - camera delegate
+
+// For responding to the user tapping Cancel.
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{	
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// For responding to the user accepting a newly-captured picture or movie
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{	
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    UIImage *originalImage, *editedImage, *imageToSave;
+	
+    // Handle a still image capture
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo) {
+		
+        editedImage = (UIImage *) [info objectForKey:UIImagePickerControllerEditedImage];
+        originalImage = (UIImage *) [info objectForKey:UIImagePickerControllerOriginalImage];
+        if (editedImage) {
+            imageToSave = editedImage;
+        } else {
+            imageToSave = originalImage;
+        }
+    }
+	self.profileView.profileImage = imageToSave;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 //这里push到回答页面后不能pop回来，会卡死在界面，原因未知，优先解决！！！

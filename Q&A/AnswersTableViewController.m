@@ -59,6 +59,11 @@
     [_refreshView setupWithOwner:self.tableView delegate:self];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+}
+
 #pragma mark - JSON delegate
 - (void)fetchJSONFailed
 {
@@ -337,7 +342,7 @@
 
 - (void)didReceiveMemoryWarning
 {
-	NSLog(@"内存警告！");
+	NSLog(@"AnswerTableView did receive memory warning!");
 	[super didReceiveMemoryWarning];
 }
 

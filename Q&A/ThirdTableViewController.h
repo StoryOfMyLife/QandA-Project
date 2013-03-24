@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class ProfileView;
 @interface ThirdTableViewController : UITableViewController
+
+@property (strong, nonatomic) IBOutlet ProfileView *profileView;
+
+- (IBAction)editProfileImage;
 
 @end

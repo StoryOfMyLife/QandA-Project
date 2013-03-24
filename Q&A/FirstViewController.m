@@ -67,6 +67,11 @@
 	}
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+}
+
 - (void)loadScrollViewWithPage:(NSInteger)page
 {
 	if (page < 0)
@@ -181,6 +186,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+	NSLog(@"FirstView did receive memory warning!");
 }
 
 - (void)viewDidUnload {
