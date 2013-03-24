@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) CameraViewController *cameraViewController;
 
+@property (nonatomic, strong) Account *account;
+
 @end
 
 @implementation ThirdTableViewController
@@ -32,12 +34,18 @@
     return self;
 }
 
+- (Account *)account
+{
+	return [Account sharedAcount];
+}
+
 - (ProfileView *)profileView
 {
 	if (!_profileView) {
-		_profileView = [[ProfileView alloc] initWithRoundedRect:CGRectMake(10, 10, 50, 50)];
-//		_profileView = [[ProfileView alloc] initWithCircleInRect:CGRectMake(10, 10, 50, 50)];
+//		_profileView = [[ProfileView alloc] initWithRoundedRect:CGRectMake(10, 10, 50, 50)];
+		_profileView = [[ProfileView alloc] initWithCircleInRect:CGRectMake(10, 10, 50, 50)];
 		[_profileView addTarget:self action:@selector(editProfileImage) forControlEvents:UIControlEventTouchUpInside];
+		_profileView.profileImage = self.account.userProfileImage;
 		[self.tableView addSubview:_profileView];
 	}
 	return _profileView;
@@ -82,7 +90,7 @@
 - (IBAction)editProfileImage
 {
 	if (self.profileView.profileImage) {
-		UIActionSheet *imageAction = [[UIActionSheet alloc] initWithTitle:@"编辑靓照" delegate:self cancelButtonTitle:@"下次再说" destructiveButtonTitle:@"删掉靓照" otherButtonTitles:@"重照一张", @"选一张", nil];
+		UIActionSheet *imageAction = [[UIActionSheet alloc] initWithTitle:@"编辑靓照" delegate:self cancelButtonTitle:@"下次再说" destructiveButtonTitle:@"删掉靓照" otherButtonTitles:@"重照一张", @"重选一张", nil];
 		imageAction.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 		
 //		[imageAction showFromTabBar:self.tabBarController.tabBar];
@@ -99,6 +107,7 @@
 {
 	if (self.profileView.profileImage) {
 		if (0 == buttonIndex) {
+			self.account.userProfileImage = nil;
 			self.profileView.profileImage = nil;
 		} else if (1 == buttonIndex) {
 			[self.cameraViewController startCameraControllerFromViewController:self usingDelegate:self];
@@ -140,6 +149,7 @@
             imageToSave = originalImage;
         }
     }
+	self.account.userProfileImage = imageToSave;
 	self.profileView.profileImage = imageToSave;
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -26,6 +26,8 @@
 		_imageView = [[UIImageView alloc] initWithFrame:self.bounds];
 		_imageView.contentMode = UIViewContentModeScaleAspectFit;
 		_imageView.image = [UIImage imageNamed:@"ProfileNormal"];
+		_imageView.layer.cornerRadius = self.layer.cornerRadius;
+		_imageView.layer.masksToBounds = YES;
 		[self addSubview:_imageView];
 	}
 	return _imageView;
@@ -34,7 +36,7 @@
 - (void)setProfileImage:(UIImage *)profileImage
 {
 	if (_profileImage != profileImage) {
-		_profileImage = profileImage;	
+		_profileImage = profileImage;
 		self.imageView.image = _profileImage;
 	}
 }
@@ -43,16 +45,26 @@
 {
     // do initialization here
 	[self setupDefaultImage];
+	[self setupShadow];
 	self.backgroundColor = [UIColor whiteColor];
-	self.clipsToBounds = YES;
 }
 
 - (void)setupDefaultImage
 {
 	UIImageView *defaultImage = [[UIImageView alloc] initWithFrame:self.bounds];
+	defaultImage.transform = CGAffineTransformMakeScale(0.7, 0.7);
 	defaultImage.image = [UIImage imageNamed:@"ProfileNormal"];
 	defaultImage.contentMode = UIViewContentModeScaleAspectFit;
+	defaultImage.layer.cornerRadius = self.layer.cornerRadius;
+	defaultImage.layer.masksToBounds = YES;
 	[self addSubview:defaultImage];
+}
+
+- (void)setupShadow
+{
+	self.layer.shadowColor = [UIColor grayColor].CGColor;
+	self.layer.shadowOffset = CGSizeMake(0, 0);
+	self.layer.shadowOpacity = 0.8;
 }
 
 - (void)awakeFromNib
@@ -71,8 +83,8 @@
 {
 	self = [self initWithFrame:frame];
 	self.layer.cornerRadius = CORNER_RADIUS;
-	self.layer.borderWidth = 0.5;
-	self.layer.borderColor = [UIColor grayColor].CGColor;
+//	self.layer.borderWidth = 0.5;
+//	self.layer.borderColor = [UIColor grayColor].CGColor;
 	return self;
 }
 
@@ -86,8 +98,8 @@
 	}
 	self = [self initWithFrame:frame];
 	self.layer.cornerRadius = frame.size.width / 2;
-	self.layer.borderWidth = 0.5;
-	self.layer.borderColor = [UIColor grayColor].CGColor;
+//	self.layer.borderWidth = 0.5;
+//	self.layer.borderColor = [UIColor grayColor].CGColor;
 	return self;
 }
 

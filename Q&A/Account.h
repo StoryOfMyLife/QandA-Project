@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, getter = isloginedIn) BOOL loginedIn; 
+@property (nonatomic, strong) UIImage *userProfileImage;
 
 + (Account *)sharedAcount;
 

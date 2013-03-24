@@ -31,6 +31,39 @@
 	return accountController;
 }
 
+- (UIImage *)userProfileImage
+{
+	NSString *imagePath = [self imagePath];
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	if ([fileManager fileExistsAtPath:imagePath]) {
+		NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
+		UIImage *image = [UIImage imageWithData:imageData];
+		return image;
+	}
+	return nil;
+}
+
+- (void)setUserProfileImage:(UIImage *)userProfileImage
+{
+	NSString *imagePath = [self imagePath];
+	if (userProfileImage) {
+		NSData *imageData = UIImagePNGRepresentation(userProfileImage);
+		[imageData writeToFile:imagePath atomically:YES];
+	} else {
+		NSFileManager *fileManager = [NSFileManager defaultManager];
+		if ([fileManager fileExistsAtPath:imagePath]) {
+			[fileManager removeItemAtPath:imagePath error:nil];
+		}
+	}
+}
+
+- (NSString *)imagePath
+{
+	NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+	NSString *imagePath = [documentPath stringByAppendingPathComponent:@"profile_image.png"];
+	return imagePath;
+}
+
 #pragma mark - 获取账户信息
 - (NSString *)password
 {
