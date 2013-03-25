@@ -64,23 +64,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" 用户名" minimumFontSize="17" background="textbox.png" clearButtonMode="unlessEditing" id="qja-fj-rks">
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="textbox.png" clearButtonMode="unlessEditing" id="qja-fj-rks">
                                         <rect key="frame" x="76" y="89" width="200" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="turnToNext:" destination="aHE-MX-Fr0" eventType="editingDidEndOnExit" id="udf-Qj-Y81"/>
-                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder=" 密码" minimumFontSize="17" background="textbox.png" clearButtonMode="unlessEditing" id="lNZ-dp-EwV">
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumFontSize="17" background="textbox.png" clearButtonMode="unlessEditing" id="lNZ-dp-EwV">
                                         <rect key="frame" x="76" y="136" width="200" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
-                                        <connections>
-                                            <action selector="login:" destination="aHE-MX-Fr0" eventType="editingDidEndOnExit" id="fin-Gc-nMV"/>
-                                        </connections>
                                     </textField>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ii5-cE-ek0">
                                         <rect key="frame" x="44" y="193" width="106" height="30"/>
@@ -106,6 +100,24 @@
                                             <action selector="dismissView:" destination="aHE-MX-Fr0" eventType="touchUpInside" id="9QB-Yy-Jox"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" id="ozg-VA-B0l">
+                                        <rect key="frame" x="85" y="139" width="172" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="login:" destination="aHE-MX-Fr0" eventType="editingDidEndOnExit" id="THO-93-wMZ"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名" minimumFontSize="17" id="wPP-AE-qhn">
+                                        <rect key="frame" x="85" y="92" width="172" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="turnToNext:" destination="aHE-MX-Fr0" eventType="editingDidEndOnExit" id="vdK-bt-BkP"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -121,8 +133,8 @@
                     <connections>
                         <outlet property="cancelButton" destination="JG7-sa-fTH" id="PvT-lP-qR5"/>
                         <outlet property="loginButton" destination="ii5-cE-ek0" id="r3A-az-Pik"/>
-                        <outlet property="password" destination="lNZ-dp-EwV" id="Yrk-MW-L4w"/>
-                        <outlet property="username" destination="qja-fj-rks" id="DUp-sc-Exa"/>
+                        <outlet property="password" destination="ozg-VA-B0l" id="qdB-SZ-l7Z"/>
+                        <outlet property="username" destination="wPP-AE-qhn" id="mN2-Xy-Yso"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nQZ-rK-xn7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -669,6 +681,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twy-WX-Tp4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1170,6 +1183,10 @@
         <class className="NewQorAViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQorAViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="sendAnswer:"/>
+                <relationship kind="action" name="sendQuestion:"/>
+                <relationship kind="action" name="videoRecord:"/>
                 <relationship kind="outlet" name="questionTableCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
                 <relationship kind="outlet" name="tagsLabel" candidateClass="UILabel"/>
@@ -1202,6 +1219,9 @@
         </class>
         <class className="QuestionTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="swipeBack:"/>
+            </relationships>
         </class>
         <class className="SDSegmentedControl" superclassName="UISegmentedControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>

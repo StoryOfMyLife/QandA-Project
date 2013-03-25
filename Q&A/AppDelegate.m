@@ -41,10 +41,11 @@
 	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_backbutton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 15, 14, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 	[[UIBarButtonItem appearanceWhenContainedIn:[CustomizedNavigation class], nil] setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_backbutton_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 10, 14, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 	//table view 背景
-	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
+
 	//backgroundView不完全支持全局自定义，可能会出现失效情况，需要注意！
-	[[UITableView appearance] setBackgroundView:tableBackgroundView];
-	[[UITableView appearance] setBackgroundColor:[UIColor clearColor]];
+//	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
+//	[[UITableView appearance] setBackgroundView:tableBackgroundView];
+//	[[UITableView appearance] setBackgroundColor:[UIColor clearColor]];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -98,7 +98,6 @@
 	} else {
 		UIActionSheet *imageAction = [[UIActionSheet alloc] initWithTitle:@"添加靓照" delegate:self cancelButtonTitle:@"下次再说" destructiveButtonTitle:nil otherButtonTitles:@"照一张", @"选一张", nil];
 		imageAction.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-		
 		[imageAction showInView:[UIApplication sharedApplication].keyWindow];
 	}
 }

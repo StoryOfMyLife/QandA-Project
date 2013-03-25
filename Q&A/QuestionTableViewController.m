@@ -54,7 +54,7 @@
 
 - (void)viewDidUnload 
 {
-	self.fetchedResultsController = nil;
+//	self.fetchedResultsController = nil;
 	self.refreshView = nil;
 	//	[self removeFromParentViewController];
 	[super viewDidUnload]; 

@@ -63,7 +63,7 @@
 - (void)setupShadow
 {
 	self.layer.shadowColor = [UIColor grayColor].CGColor;
-	self.layer.shadowOffset = CGSizeMake(0, 0);
+	self.layer.shadowOffset = CGSizeMake(0, 2);
 	self.layer.shadowOpacity = 0.8;
 }
 

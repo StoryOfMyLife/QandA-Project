@@ -30,4 +30,6 @@
 
 - (void)getJSONDataFromURL:(NSString *)urlString;
 
++ (void)postJSONData:(NSData *)jsonData toServerURL:(NSURL *)serverURL;
+
 @end
