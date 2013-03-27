@@ -172,7 +172,7 @@
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createTime"
 																					 ascending:NO 
 																					  selector:nil]];
-	request.fetchLimit = 10;
+//	request.fetchLimit = 10;
 	if (self.flag == 2) {
 		request.predicate = [NSPredicate predicateWithFormat:@"answerCount = 0"];
 	} else if (self.flag == 0) {

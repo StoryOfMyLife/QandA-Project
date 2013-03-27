@@ -235,7 +235,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-7306" y="-876"/>
+            <point key="canvasLocation" x="-7294" y="-871"/>
         </scene>
         <!--Answers Table View Controller - 相关回答-->
         <scene sceneID="0wp-6r-mf2">
@@ -405,10 +405,10 @@
             </objects>
             <point key="canvasLocation" x="-6813" y="-876"/>
         </scene>
-        <!--Navigation Controller - 全站搜索-->
+        <!--Customized Navigation - 全站搜索-->
         <scene sceneID="dzP-d6-W0i">
             <objects>
-                <navigationController id="0Tz-0u-Ndo" sceneMemberID="viewController">
+                <navigationController id="0Tz-0u-Ndo" customClass="CustomizedNavigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="全站搜索" image="second2.png" id="epk-C4-daj"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
@@ -418,54 +418,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bVq-qO-nm5" kind="relationship" relationship="rootViewController" id="vP0-bq-q72"/>
+                        <segue destination="teK-Ff-DG0" kind="relationship" relationship="rootViewController" id="B9u-fT-L8l"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5eX-xC-ag9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-8208" y="-2141"/>
-        </scene>
-        <!--Search Table View Controller - 全站搜索-->
-        <scene sceneID="Oie-FK-dg0">
-            <objects>
-                <tableViewController id="bVq-qO-nm5" customClass="SearchTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="q2A-uX-vVY">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="GEa-gp-l2G">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" red="0.79581871810000004" green="0.79581871810000004" blue="0.79581871810000004" alpha="1" colorSpace="calibratedRGB"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="bVq-qO-nm5" id="af5-S6-b4U"/>
-                            </connections>
-                        </searchBar>
-                        <connections>
-                            <outlet property="dataSource" destination="bVq-qO-nm5" id="IQn-1H-io6"/>
-                            <outlet property="delegate" destination="bVq-qO-nm5" id="fZc-VZ-t7G"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="全站搜索" id="Jc8-Bu-fpG"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="searchBar" destination="GEa-gp-l2G" id="8OJ-wn-XlK"/>
-                        <outlet property="searchDisplayController" destination="osx-Pw-tlN" id="KW1-wd-TKU"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p8E-ob-vxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="osx-Pw-tlN">
-                    <connections>
-                        <outlet property="delegate" destination="bVq-qO-nm5" id="doV-Bo-Z5q"/>
-                        <outlet property="searchBar" destination="GEa-gp-l2G" id="uub-on-NR2"/>
-                        <outlet property="searchContentsController" destination="bVq-qO-nm5" id="dab-84-uD0"/>
-                        <outlet property="searchResultsDataSource" destination="bVq-qO-nm5" id="hGs-wk-F4x"/>
-                        <outlet property="searchResultsDelegate" destination="bVq-qO-nm5" id="ocQ-Lc-Hff"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="-7770" y="-2144"/>
         </scene>
         <!--Customized Navigation - 我的问答-->
         <scene sceneID="NPL-Sj-NFf">
@@ -836,6 +794,112 @@
             </objects>
             <point key="canvasLocation" x="-7774" y="-2775"/>
         </scene>
+        <!--Search Table View Controller - 搜索问题-->
+        <scene sceneID="IfY-bP-nyq">
+            <objects>
+                <tableViewController id="teK-Ff-DG0" customClass="SearchTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="A5X-b1-sez">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="blackOpaque" id="qdk-yG-AWs">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" red="0.79581871810000004" green="0.79581871810000004" blue="0.79581871810000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="teK-Ff-DG0" id="eEx-1L-HZW"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="first cell" rowHeight="100" id="qK8-Ci-ZP1" customClass="QuestionCell">
+                                <rect key="frame" x="0.0" y="66" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1010" contentMode="left" text="请问什么时候开学啊？" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1MG-Ii-aEC">
+                                            <rect key="frame" x="35" y="10" width="229" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1030" contentMode="left" text="【教务，支持服务，入学】" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="woV-Zk-yDC">
+                                            <rect key="frame" x="29" y="31" width="259" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1040" contentMode="left" text="发布人：LiLei 学生 2010/09/15 23:15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wpM-kl-pgk">
+                                            <rect key="frame" x="8" y="53" width="280" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1050" contentMode="left" text="最后回答：HanHan 教师 2012/09/16 08:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yyV-Qg-Pi4">
+                                            <rect key="frame" x="8" y="67" width="280" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1020" contentMode="left" text="回复:1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aw5-83-4Ko">
+                                            <rect key="frame" x="256" y="11" width="51" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yes-iF-EpF">
+                                            <rect key="frame" x="7" y="10" width="23" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="answerCount" destination="aw5-83-4Ko" id="QnL-3e-fVe"/>
+                                    <outlet property="questionAnsweredFrom" destination="yyV-Qg-Pi4" id="Xmu-Lr-axn"/>
+                                    <outlet property="questionAskedFrom" destination="wpM-kl-pgk" id="B9a-MQ-uTm"/>
+                                    <outlet property="questionID" destination="Yes-iF-EpF" id="cze-ne-sL3"/>
+                                    <outlet property="questionKeywords" destination="woV-Zk-yDC" id="Iz9-9f-7tU"/>
+                                    <outlet property="questionTitle" destination="1MG-Ii-aEC" id="f3A-od-1xF"/>
+                                    <segue destination="V4x-2J-qPi" kind="push" id="sww-8O-upa"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="teK-Ff-DG0" id="jsh-LU-O3U"/>
+                            <outlet property="delegate" destination="teK-Ff-DG0" id="i9v-nm-XDA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="搜索问题" id="wPN-bu-ROK"/>
+                    <connections>
+                        <outlet property="searchBar" destination="qdk-yG-AWs" id="dR8-bR-zql"/>
+                        <outlet property="searchDisplayController" destination="VEk-Av-Bqh" id="Sol-xe-m2t"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WQu-dq-LMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="VEk-Av-Bqh">
+                    <connections>
+                        <outlet property="delegate" destination="teK-Ff-DG0" id="YSf-c2-LEh"/>
+                        <outlet property="searchBar" destination="qdk-yG-AWs" id="v8X-Bg-nvl"/>
+                        <outlet property="searchContentsController" destination="teK-Ff-DG0" id="bEg-nN-kWV"/>
+                        <outlet property="searchResultsDataSource" destination="teK-Ff-DG0" id="po8-uR-2Pl"/>
+                        <outlet property="searchResultsDelegate" destination="teK-Ff-DG0" id="Kyb-QT-Z57"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-7787" y="-2141"/>
+        </scene>
         <!--Customized Navigation-->
         <scene sceneID="saw-LF-hMn">
             <objects>
@@ -1183,10 +1247,6 @@
         <class className="NewQorAViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQorAViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="sendAnswer:"/>
-                <relationship kind="action" name="sendQuestion:"/>
-                <relationship kind="action" name="videoRecord:"/>
                 <relationship kind="outlet" name="questionTableCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
                 <relationship kind="outlet" name="tagsLabel" candidateClass="UILabel"/>
@@ -1219,14 +1279,11 @@
         </class>
         <class className="QuestionTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="swipeBack:"/>
-            </relationships>
         </class>
         <class className="SDSegmentedControl" superclassName="UISegmentedControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
         </class>
-        <class className="SearchTableViewController" superclassName="UITableViewController">
+        <class className="SearchTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchTableViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
@@ -1252,8 +1309,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="olO-ua-9AF"/>
+        <segue reference="sww-8O-upa"/>
         <segue reference="5gb-h3-pjT"/>
         <segue reference="lT9-Jw-CoC"/>
+        <segue reference="olO-ua-9AF"/>
     </inferredMetricsTieBreakers>
 </document>

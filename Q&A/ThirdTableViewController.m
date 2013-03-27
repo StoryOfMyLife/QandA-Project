@@ -71,7 +71,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	[self.tabBarController makeTabbarOriginal];
+	
 }
 
 - (void)viewDidUnload {

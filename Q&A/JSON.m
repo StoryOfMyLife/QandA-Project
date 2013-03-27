@@ -22,7 +22,9 @@
 		NSData *jsonData = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil] dataUsingEncoding:NSUTF8StringEncoding];
 		if (!jsonData) {
 			//获取数据为空，报错
-			[self.delegate fetchJSONFailed];
+			if ([self.delegate respondsToSelector:@selector(fetchJSONFailed)]) {
+				[self.delegate fetchJSONFailed];
+			}
 		} else {
 			[self saveData:jsonData];
 		}
@@ -39,19 +41,23 @@
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
 	[NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		if ([data length] >0 && error == nil) {
+		if ([data length] > 0 && error == nil) {
 			[self saveData:data];
 		}
 		else if ([data length] == 0 && error == nil) {
 			//获取数据为空，报错
 //			[self.delegate fetchJSONFailed];
 			NSLog(@"数据为空");
-			[self.delegate fetchJSONFailed];
+			if ([self.delegate respondsToSelector:@selector(fetchJSONFailed)]) {
+				[self.delegate fetchJSONFailed];
+			}
 		}
 		else if (error != nil) {
 			NSLog(@"Error happened : %@", error.localizedDescription);
 
-			[self.delegate fetchJSONFailed];
+			if ([self.delegate respondsToSelector:@selector(fetchJSONFailed)]) {
+				[self.delegate fetchJSONFailed];
+			}
 		}
 	}];
 }
@@ -61,16 +67,18 @@
 {
 	NSArray *questions = [self fetchData:jsonData];
 	NSAssert(questions != nil, @"没有获取数据...");
-
+	[self.delegate fetchedData:questions];
+	
 	NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-
 	for (NSDictionary *question in questions) {
 #warning 这里有一个没有video的问题，先暂时跳过此问题，后续在用delete去服务器上删除		
 		if (![[question valueForKey:@"id"] isEqualToString:@"50ff283bb7606b18aca8889f"]) {
 			[Question questionWithInfo:question inManagedObjectContext:context];
 		}
 	}
-	[self.delegate fetchJSONDidFinished];
+	if ([self.delegate respondsToSelector:@selector(fetchJSONDidFinished)]) {
+		[self.delegate fetchJSONDidFinished];
+	}
 }
 
 //解析JSON数据

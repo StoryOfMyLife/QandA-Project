@@ -17,7 +17,7 @@
 @optional
 - (void)fetchJSONDidFinished;
 - (void)fetchJSONFailed;
-
+- (void)fetchedData:(NSArray *)array;
 @end
 
 @interface JSON : NSObject

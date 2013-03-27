@@ -45,6 +45,7 @@
     return self;
 }
 
+#pragma mark - life cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,11 +58,39 @@
 	NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"RefreshView" owner:self options:nil];
     self.refreshView = [nibs objectAtIndex:0];
     [_refreshView setupWithOwner:self.tableView delegate:self];
+	
+//	[self.navigationController.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"navbar_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 8, 14, 8)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//	[self.navigationController.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"navbar_button_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 8, 14, 8)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+//	[self.navigationController.navigationItem.backBarButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_backbutton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 15, 14, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//	[self.navigationController.navigationItem.backBarButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_backbutton_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 10, 14, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
+}
+
+- (void)dealloc
+{
+	//此dealloc的作用：解决save core data(question)时的[AnswersTableVC controllerWillChangeContent:]: message sent to deallocated instance的错误
+	self.fetchedResultsController = nil;
+	self.fetchedResultsController.delegate = nil;
+}
+
+- (void)didReceiveMemoryWarning
+{
+	NSLog(@"AnswerTableView did receive memory warning!");
+	[super didReceiveMemoryWarning];
+}
+
+- (void)viewDidUnload
+{
+	self.movieView = nil;
+	self.refreshView = nil;
+	self.downloadingIndicator = nil;
+	self.fetchedResultsController = nil;
+	self.question = nil;
+	[super viewDidUnload];
 }
 
 #pragma mark - JSON delegate
@@ -267,7 +296,7 @@
 	self.movieView = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
 	
 //	[self addThumbnailImageFromURL:[NSURL fileURLWithPath:videoPath] toCell:self.currentSelectedCell];
-	self.movieView.moviePlayer.shouldAutoplay = NO;
+	self.movieView.moviePlayer.shouldAutoplay = YES;
 	self.movieView.moviePlayer.repeatMode = MPMovieRepeatModeNone;
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(movieDidFinish:) 
@@ -329,31 +358,6 @@
 	}];
 	
 	[operation start];
-}
-
-#pragma mark - life cycle
-
-- (void)dealloc
-{
-//此dealloc的作用：解决save core data(question)时的[AnswersTableVC controllerWillChangeContent:]: message sent to deallocated instance的错误
-	self.fetchedResultsController = nil;
-	self.fetchedResultsController.delegate = nil;
-}
-
-- (void)didReceiveMemoryWarning
-{
-	NSLog(@"AnswerTableView did receive memory warning!");
-	[super didReceiveMemoryWarning];
-}
-
-- (void)viewDidUnload
-{
-	self.movieView = nil;
-	self.refreshView = nil;
-	self.downloadingIndicator = nil;
-	self.fetchedResultsController = nil;
-	self.question = nil;
-	[super viewDidUnload];
 }
 
 #pragma mark - 视频截图获取和添加

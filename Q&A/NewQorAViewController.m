@@ -17,7 +17,11 @@
 #import "JSON.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface NewQorAViewController ()
+@interface NewQorAViewController () 
+
+@property (strong, nonatomic) NSData *imageData;
+
+@property (strong, nonatomic) NSData *videoData;
 
 @property (weak, nonatomic) IBOutlet UILabel *tagsLabel;
 
@@ -57,9 +61,9 @@
 	[self.tableView setBackgroundView:tableBackgroundView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-	[super viewWillAppear:animated];
+	[super viewDidAppear:animated];
 	[self.questionTextView becomeFirstResponder];
 }
 
@@ -157,9 +161,12 @@
 		
 		//        NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
 		NSURL *movieURL = [info objectForKey:UIImagePickerControllerMediaURL];
-		NSData *videoData = [NSData dataWithContentsOfURL:movieURL];
-#warning 这里好像只能获取url在document文件夹或服务器的movie
+		self.videoData = [NSData dataWithContentsOfURL:movieURL];
 		
+		UIImage *videoThumbnail = [self getThumbnailFromURL:movieURL];
+		self.imageData = UIImagePNGRepresentation(videoThumbnail);
+		
+//这里好像只能获取url在document文件夹或服务器的movie		
 		AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:movieURL];
 		CMTime duration = playerItem.duration;
 		int seconds = floor(CMTimeGetSeconds(duration));
@@ -175,7 +182,7 @@
 		NSString *paramString = [NSString stringWithFormat:@"?duration=%@s&encode=h.264&fileType=mov&cameraInfo=%@", [NSNumber numberWithInt:seconds], cameraInfo];
 		NSURL *uploadURL = [NSURL URLWithString:kUpLoadVideoURL];
 		
-		[self uploadVideo:videoData toServerURL:uploadURL withParameterPath:paramString];
+		[self uploadVideo:self.videoData toServerURL:uploadURL withParameterPath:paramString];
 		
 		//保存到本地路径
 		//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, nil);
@@ -192,12 +199,18 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (UIImage *)getThumbnailFromURL:(NSURL *)url
+{
+	MPMoviePlayerController *movieViewController = [[MPMoviePlayerController alloc] initWithContentURL:url];
+	return [movieViewController thumbnailImageAtTime:1 timeOption:MPMovieTimeOptionNearestKeyFrame];
+}
+
 - (void)uploadVideo:(NSData *)videoData toServerURL:(NSURL *)serverURL withParameterPath:(NSString *)paramString
 {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
-	AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:serverURL];
-	NSMutableURLRequest *request = [Client multipartFormRequestWithMethod:@"POST" path:paramString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+	AFHTTPClient * client = [[AFHTTPClient alloc] initWithBaseURL:serverURL];
+	NSMutableURLRequest *request = [client multipartFormRequestWithMethod:@"POST" path:paramString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 		[formData appendPartWithFileData:videoData name:@"file" fileName:@"iosVideo.mov" mimeType:@"video/quickTime"];
 	}];
 	
@@ -213,6 +226,37 @@
 		//返回videoId
 		NSLog(@"返回的videoID为: %@", operation.responseString);
 		self.videoID = operation.responseString;
+		
+		NSURL *uploadURL = [NSURL URLWithString:kUpLoadImageURL];
+		[self uploadImage:self.imageData toServerURL:uploadURL withParameterPath:self.videoID];
+		
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		NSLog(@"上传出错: %@", error);
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	}];
+	[operation start];
+}
+
+- (void)uploadImage:(NSData *)imageData toServerURL:(NSURL *)serverURL withParameterPath:(NSString *)paramString
+{
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	
+	AFHTTPClient * client = [[AFHTTPClient alloc] initWithBaseURL:serverURL];
+	NSMutableURLRequest *request = [client multipartFormRequestWithMethod:@"POST" path:paramString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+		[formData appendPartWithFileData:imageData name:@"file" fileName:@"iosImage.png" mimeType:@"image/png"];
+	}];
+	
+	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+	//上传进度
+	[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+		NSLog(@"预览图上传进度：%1.0f%%", (double)totalBytesWritten / (double)totalBytesExpectedToWrite * 100);
+	}];
+	//上传信息反馈
+	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+		NSLog(@"预览图上传成功");
+		NSLog(@"截图上传: %@", operation.responseString);
+		self.imageData = nil;
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"上传出错: %@", error);
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

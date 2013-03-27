@@ -8,8 +8,9 @@
 
 #import "TabBarViewController.h"
 #import "LoginViewController.h"
+#import "UITabBarController+HideTabBar.h"
 
-@interface TabBarViewController ()
+@interface TabBarViewController () <UITabBarControllerDelegate>
 
 @end
 
@@ -28,12 +29,18 @@
 {
     [super viewDidLoad];	
 	// Do any additional setup after loading the view.
+	self.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+	[self makeTabbarOriginal];
 }
 
 @end
