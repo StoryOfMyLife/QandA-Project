@@ -81,7 +81,7 @@
 			}
 			question.answers = answersSet;
 		}
-		[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
+		[[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
     } else {
         question = [matches lastObject];
 		//将新增回答更新进数据库
@@ -94,7 +94,7 @@
 			}
 			question.answers = answersSet;
 			question.answerCount = [NSNumber numberWithInteger:[[data valueForKey:@"countAnswer"] integerValue]];
-			[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
+			[[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 		}
     }
     return question;

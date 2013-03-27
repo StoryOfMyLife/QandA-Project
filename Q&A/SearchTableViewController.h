@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreDataTableViewController.h"
 #import "QuestionCell.h"
 
-@interface SearchTableViewController : CoreDataTableViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
+@interface SearchTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 

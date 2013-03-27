@@ -9,7 +9,6 @@
 #import "SearchTableViewController.h"
 #import "AnswersTableViewController.h"
 #import "Question.h"
-#import "RefreshView.h"
 #import "JSON.h"
 #import "Defines.h"
 #import "SVStatusHUD.h"
@@ -22,6 +21,10 @@
 
 @property (nonatomic, strong) NSMutableArray *searchResult; //of questionID
 
+@property (nonatomic, strong) UILabel *noResultLabel;
+
+@property (strong, nonatomic) UIControl *searchBackgroundView;
+
 @end
 
 @implementation SearchTableViewController
@@ -30,10 +33,11 @@
 
 - (void)setSearchResult:(NSMutableArray *)searchResult
 {
+	self.noResultLabel.hidden = [searchResult count] == 0 ? NO : YES;
 	if (_searchResult != searchResult) {
 		_searchResult = searchResult;
-		[self setupFetchedResultsController];
-		[self.tableView reloadData];
+//		[self.tableView reloadData];
+		[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 	}
 }
 
@@ -56,33 +60,47 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	self.debug = NO;		
+    [super viewDidLoad];	
 		
 	//在这里不设置一下背景，应用开启后会卡死在界面，原因未知。。。
 	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
 	[self.tableView setBackgroundView:tableBackgroundView];
-	
-//	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_bg"] forBarMetrics:UIBarMetricsDefault];
-//	
-//	[self.navigationController.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"navbar_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 8, 14, 8)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-	
-	
-		
 	self.tableView.showsVerticalScrollIndicator = NO;
+//	CGRect tableFrame = self.tableView.frame;
+//	CGRect searchBarFrame = self.searchBar.frame;
+//	tableFrame.origin.y += 8;
+//	tableFrame.size.height -= 8;
+	self.searchBarOrigin = self.searchBar.frame.origin;
+	
+	self.noResultLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 150, 220, 50)];
+	self.noResultLabel.textAlignment = UITextAlignmentCenter;
+	self.noResultLabel.hidden = YES;
+	self.noResultLabel.backgroundColor = [UIColor clearColor];
+	self.noResultLabel.text = @"抱歉,没有找到结果!";
+	
+	[self.view addSubview:self.noResultLabel];
+	
+	CGRect frame = self.view.frame;
+	frame.origin.y += self.searchBar.frame.size.height / 2;
+	self.searchBackgroundView = [[UIControl alloc] initWithFrame:frame];
+	self.searchBackgroundView.alpha = 0;
+	self.searchBackgroundView.backgroundColor = [UIColor blackColor];
+	[self.searchBackgroundView addTarget:self action:@selector(cancelSearch:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
 {
-	NSLog(@"QustionTableView did receive memory warning!");
+	NSLog(@"Search view did receive memory warning!");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload 
 {
-	//	self.fetchedResultsController = nil;
-	//	[self removeFromParentViewController];
+	self.noResultLabel = nil;
+	self.searchResult = nil;
+	[self.searchBackgroundView removeTarget:self action:@selector(cancelSearch:) forControlEvents:UIControlEventTouchDown];
+	self.searchBackgroundView = nil;
 	[super viewDidUnload]; 
 }
 
@@ -101,14 +119,26 @@
 
 - (void)fetchedData:(NSArray *)array
 {
-	NSMutableArray *questionIDs = [NSMutableArray array];
+	NSMutableArray *questions = [NSMutableArray array];
 	for (NSDictionary *question in array) {
 		NSString *questionID = [question valueForKey:@"id"];
-		[questionIDs addObject:questionID];
+		NSArray *result = [Question MR_findByAttribute:@"questionID" withValue:questionID];
+		if ([result count] == 1) {
+			[questions addObject:result[0]];
+		}
 	}
-	self.searchResult = questionIDs;
-	[self.tableView reloadData];
+	self.searchResult = questions;
 }
+
+
+- (void)searchWithKeywords:(NSString *)keyword
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS %@", keyword];
+	NSArray *result = [Question MR_findAllWithPredicate:predicate];
+	NSMutableArray *questions = [NSMutableArray arrayWithArray:result];
+	self.searchResult = questions;
+}
+
 
 
 #pragma mark - UIScrollView 
@@ -118,34 +148,16 @@
 	return YES;
 }
 
-#pragma mark - --
-
-- (void)setupFetchedResultsController
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-	//这里会将EntityName设置为navigationBar的title
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Question"];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createTime"
-																					 ascending:NO 
-																					  selector:nil]];
-	request.predicate = [NSPredicate predicateWithFormat:@"questionID IN %@", self.searchResult];
-	request.fetchLimit = 10;
-	NSArray *questions = [Question MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"questionID IN %@", self.searchResult]];
-	Question *q = questions[0];
-	NSLog(@"%@", q);
-
-//	if (!self.fetchedResultsController) {
-//		self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-//																			managedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]
-//																			  sectionNameKeyPath:nil
-//																					   cacheName:nil];
-//	}
-    
+	CGSize searchSize = self.searchBar.frame.size;
+	self.searchBar.frame = CGRectMake(self.searchBarOrigin.x, self.searchBarOrigin.y + scrollView.contentOffset.y, searchSize.width, searchSize.height);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	NSIndexPath *index = [self.tableView indexPathForCell:sender];
-	Question *question = [self.fetchedResultsController objectAtIndexPath:index];
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+	Question *question = (Question *)self.searchResult[indexPath.row];
 	if ([segue.identifier isEqualToString:@"push to detail"])
 	{
 		AnswersTableViewController *detailView = segue.destinationViewController;
@@ -168,7 +180,7 @@
 - (void)configureCell:(QuestionCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
 	// Configure the cell...
-	Question *question = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	Question *question = (Question *)self.searchResult[indexPath.row];
 	cell.questionTitle.text = question.title;
 	cell.questionID.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
 	cell.questionKeywords.text = question.tags;
@@ -195,26 +207,84 @@
 	return 100;
 }
 
+#pragma mark - Table view datasource
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+	return 0;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [self.searchResult count];
+}
 
 #pragma mark - searchbar delegate
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-	if (![self.searchBar.text isEqualToString:@""]) {
-		JSON *myJSON = [[JSON alloc] init];
-		myJSON.delegate = self;
-		NSString *url = [kGetSearchResultURL stringByAppendingString:self.searchBar.text];
-		[myJSON getJSONDataFromURL:url];
-	}
+	[UIView animateWithDuration:0.2 animations:^{
+		self.searchBackgroundView.alpha = 0.0;
+	} completion:^(BOOL finished) {
+		[self.searchBackgroundView removeFromSuperview];
+	}];
+	[searchBar setShowsCancelButton:NO animated:YES];
+		[self.navigationController setNavigationBarHidden:NO animated:YES];
+	[self.searchBar resignFirstResponder];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+//	if (![self.searchBar.text isEqualToString:@""]) {
+//		JSON *myJSON = [[JSON alloc] init];
+//		myJSON.delegate = self;
+//		NSString *url = [kGetSearchResultURL stringByAppendingString:self.searchBar.text];
+//		[myJSON getJSONDataFromURL:url];
+//	}
+	[self removeSearchBackgroundView];
+	
+	[self searchWithKeywords:searchBar.text];
+
+	[searchBar setShowsCancelButton:NO animated:YES];
+		[self.navigationController setNavigationBarHidden:NO animated:YES];
+	[searchBar resignFirstResponder];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+	[self addSearchBackgroundView];
+	self.noResultLabel.hidden = YES;
+	[searchBar setShowsCancelButton:YES animated:YES];
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
 	return YES;
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+- (IBAction)cancelSearch:(id)sender
 {
-	return NO;
+	[self removeSearchBackgroundView];
+	[self.searchBar resignFirstResponder];
+	[self.searchBar setShowsCancelButton:NO animated:YES];
+	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)addSearchBackgroundView
+{
+	[self.view addSubview:self.searchBackgroundView];
+	[UIView animateWithDuration:0.2 animations:^{
+		self.searchBackgroundView.alpha = 0.8;
+	} completion:^(BOOL finished) {
+		[self.tableView setScrollEnabled:NO];
+	}];
+}
 
+- (void)removeSearchBackgroundView
+{
+	[UIView animateWithDuration:0.2 animations:^{
+		self.searchBackgroundView.alpha = 0.0;
+	} completion:^(BOOL finished) {
+		[self.searchBackgroundView removeFromSuperview];
+		[self.tableView setScrollEnabled:YES];
+	}];
+}
 //- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 //{
 //	for (id cancelButton in [searchBar subviews]) {

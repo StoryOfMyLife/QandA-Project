@@ -59,6 +59,8 @@
     self.refreshView = [nibs objectAtIndex:0];
     [_refreshView setupWithOwner:self.tableView delegate:self];
 	
+//	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_bg"] forBarMetrics:UIBarMetricsDefault];
+//
 //	[self.navigationController.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"navbar_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 8, 14, 8)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 //	[self.navigationController.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"navbar_button_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 8, 14, 8)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
 //	[self.navigationController.navigationItem.backBarButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_backbutton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 15, 14, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
@@ -229,7 +231,7 @@
 - (void)configureCell:(id)cell atIndexPath:(NSIndexPath *)indexPath
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; 
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"]; 
 	
 	if ([cell isKindOfClass:[QuestionDetailCell class]]) {
 		QuestionDetailCell *questionDetailCell = (QuestionDetailCell *)cell;

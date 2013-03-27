@@ -241,7 +241,7 @@
         // Remove the person
         [selectedPerson MR_deleteInContext:[NSManagedObjectContext MR_contextForCurrentThread]];
         
-        [[NSManagedObjectContext MR_contextForCurrentThread] MR_save];		
+        [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];		
     }
 }
 

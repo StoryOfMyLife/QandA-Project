@@ -44,7 +44,7 @@
 		video.encode = encode;
 		video.cameraInfo = cameraInfo;
 		
-		[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
+		[[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
     } else {
         video = [matches lastObject];
     }

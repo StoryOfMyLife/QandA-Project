@@ -1,4 +1,6 @@
 
+#define MR_ENABLE_ACTIVE_RECORD_LOGGING 0
+
 #ifndef NS_BLOCKS_AVAILABLE
     #warning MagicalRecord requires blocks
 #endif

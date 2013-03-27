@@ -44,7 +44,7 @@
 		NSDictionary *videoDic = [data objectForKey:@"video"];
 		answer.answerVideo = [Video videoWithInfo:videoDic inManagedObjectContext:context];
 		
-		[[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
+		[[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
     } else {
         answer = [matches lastObject];
     }
