@@ -33,6 +33,8 @@
 		NSString *cameraInfo = [data valueForKey:@"cameraInfo"];
 		NSString *fileType = [data valueForKey:@"fileType"];
 		NSString *encode = [data valueForKey:@"encode"];
+		NSString *videoURL = [data valueForKey:@"videoUrl"];
+		NSString *videoPreviewImageURL = [data valueForKey:@"imageUrl"];
 		//	NSString *mimeType = [videoDic valueForKey:@"mimeType"];
 		
         video = [NSEntityDescription insertNewObjectForEntityForName:@"Video" inManagedObjectContext:context];
@@ -43,6 +45,8 @@
 		video.fileType = fileType;
 		video.encode = encode;
 		video.cameraInfo = cameraInfo;
+		video.videoURL = videoURL;
+		video.videoPreviewImageURL = videoPreviewImageURL;
 		
 		[[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
     } else {

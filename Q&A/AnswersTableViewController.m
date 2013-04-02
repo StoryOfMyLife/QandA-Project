@@ -13,6 +13,7 @@
 #import "Video+Insert.h"
 #import "Defines.h"
 #import "AFHTTPRequestOperation.h"
+#import "AFImageRequestOperation.h"
 #import "CustomizedNavigation.h"
 #import "NewQorAViewController.h"
 #import "RefreshView.h"
@@ -31,6 +32,8 @@
 @property (strong, nonatomic) NSURL *videoURL;
 
 @property (strong, nonatomic) UITableViewCell *currentSelectedCell;
+
+@property (strong, nonatomic) NSMutableDictionary *previewImages;
 
 @end
 
@@ -239,6 +242,9 @@
 		questionDetailCell.author.text = [NSString stringWithFormat:@"作者: %@", self.question.author];
 		questionDetailCell.createTime.text = [NSString stringWithFormat:@"日期: %@", [dateFormatter stringFromDate:self.question.createTime]];
 		questionDetailCell.videoDuration.text = [NSString stringWithFormat:@"时长: %@", self.question.questionVideo.duration];
+		questionDetailCell.videoPreview.contentMode = UIViewContentModeScaleAspectFill;
+		questionDetailCell.videoPreview.clipsToBounds = YES;
+		[questionDetailCell.videoPreview setImageWithURL:[NSURL URLWithString:self.question.questionVideo.videoPreviewImageURL] placeholderImage:[UIImage imageNamed:@"videoImage.jpg"]];
 	} else if ([cell isKindOfClass:[AnswerCell class]]) {
 		AnswerCell *answerCell = (AnswerCell *)cell;
 		NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
@@ -248,6 +254,12 @@
 		answerCell.createTime.text = [NSString stringWithFormat:@"日期: %@", [dateFormatter stringFromDate:answer.createTime]];
 		
 		answerCell.videoDuration.text = [NSString stringWithFormat:@"时长: %@", answer.answerVideo.duration];
+//		if (!answerCell.videoPreview.image ) {			
+//			[self downLoadVideoPreviewImageFromURL:[NSURL URLWithString:answer.answerVideo.videoPreviewImageURL] toCell:answerCell];
+//		}
+		answerCell.videoPreview.contentMode = UIViewContentModeScaleAspectFit;
+		answerCell.videoPreview.clipsToBounds = YES;
+		[answerCell.videoPreview setImageWithURL:[NSURL URLWithString:answer.answerVideo.videoPreviewImageURL] placeholderImage:[UIImage imageNamed:@"videoImage.jpg"]];
 	}
 }
 
@@ -278,7 +290,8 @@
 	NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
 	Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
 	NSString *videoID = answer.answerVideo.videoID;
-	[self playVideoWithVideoID:videoID];
+	NSString *url = answer.answerVideo.videoURL;
+	[self playVideoWithVideoURL:[NSURL URLWithString:url]];
 }
 
 - (void)questionPlayButtonDidPress:(QuestionDetailCell *)sender
@@ -287,7 +300,8 @@
 	self.downloadingIndicator = sender.loadingIndicator;
 	[self.downloadingIndicator startAnimating];
 	NSString *videoID = self.question.questionVideo.videoID;
-	[self playVideoWithVideoID:videoID];
+	NSString *url = self.question.questionVideo.videoURL;
+	[self playVideoWithVideoURL:[NSURL URLWithString:url]];
 }
 
 #pragma mark - 视频下载以及播放
@@ -308,20 +322,27 @@
 }
 
 //对已经下载过的视频则直接播放，不重复下载
-- (void)playVideoWithVideoID:(NSString *)videoID
+- (void)playVideoWithVideoURL:(NSURL *)url
 {
+	NSString *videoID = [url lastPathComponent];
 	NSString *path = [self videoPathFromVideoID:videoID];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
 		NSLog(@"此视频下载过了!");
 		[self playVideoFromPath:path];
 	} else {
-		[self downLoadVideoWithVideoID:videoID];
+		[self downLoadVideoFromURL:url];
 	}
 }
 
 - (NSString *)videoPathFromVideoID:(NSString *)videoID
 {
 	NSString *fileName = [videoID stringByAppendingString:@".mp4"];
+	return [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];	
+}
+
+- (NSString *)videoImagePathFromImageID:(NSString *)imageID
+{
+	NSString *fileName = [imageID stringByAppendingString:@".jpg"];
 	return [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];	
 }
 
@@ -339,12 +360,12 @@
     [self dismissMoviePlayerViewControllerAnimated];
 }
 //将视频下载至temp目录，下载完成后开始播放
-- (void)downLoadVideoWithVideoID:(NSString *)videoID
+- (void)downLoadVideoFromURL:(NSURL *)videoURL
 {
-	NSString *videoURL = [kGetVideoURL stringByAppendingString:videoID];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:videoURL]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:videoURL];
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	
+	NSString *videoID = [videoURL lastPathComponent];
 	NSString *path = [self videoPathFromVideoID:videoID];
 	operation.outputStream = [NSOutputStream outputStreamToFileAtPath:path append:NO];
 	
@@ -359,6 +380,34 @@
 		NSLog(@"视频下载进度：%1.0f%%", (double)totalBytesRead / (double)totalBytesExpectedToRead * 100);
 	}];
 	
+	[operation start];
+}
+#define kImageWidth 97
+#define kImageHeight 66
+- (void)downLoadVideoPreviewImageFromURL:(NSURL *)url toCell:(UITableViewCell *)cell
+{
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	
+	AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:^UIImage *(UIImage *image) {
+		return image;
+	} success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			NSIndexPath *indexPath;
+			if ([cell isKindOfClass:[QuestionDetailCell class]]) {
+				QuestionDetailCell *questionCell = (QuestionDetailCell *)cell;
+				questionCell.videoPreview.image = image;
+				indexPath = [self.tableView indexPathForCell:questionCell];
+			} else {
+				AnswerCell *answerCell = (AnswerCell *)cell;
+				answerCell.videoPreview.image = image;
+				indexPath = [self.tableView indexPathForCell:answerCell];
+				NSURL *myURL = url;
+			}
+			[self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		});
+	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+		NSLog(@"图片下载失败");
+	}];
 	[operation start];
 }
 
@@ -385,5 +434,7 @@
 	MPMoviePlayerController *movieViewController = [[MPMoviePlayerController alloc] initWithContentURL:url];
 	return [movieViewController thumbnailImageAtTime:1 timeOption:MPMovieTimeOptionNearestKeyFrame];
 }
+
+
 
 @end

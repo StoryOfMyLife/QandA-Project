@@ -67,7 +67,9 @@
 {
 	NSArray *questions = [self fetchData:jsonData];
 	NSAssert(questions != nil, @"没有获取数据...");
-	[self.delegate fetchedData:questions];
+	if ([self.delegate respondsToSelector:@selector(fetchedData:)]) {
+		[self.delegate fetchedData:questions];
+	}
 	
 	NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
 	for (NSDictionary *question in questions) {

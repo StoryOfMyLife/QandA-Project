@@ -75,12 +75,13 @@
 
 - (void)loginToServerURL:(NSURL *)serverURL
 {
-	[[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:serverURL];
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	//上传信息反馈
 	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		NSLog(@"登陆成功");
 		//返回登陆信息：若成功，则返回key值；若失败，则返回usernameError或者passwordError，以此来判断
 		NSLog(@"返回的login信息为: %@", operation.responseString);
@@ -109,6 +110,7 @@
 			[self dismissView:nil];
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		NSLog(@"登陆出错: %@", error);
 	}];
 	[operation start];

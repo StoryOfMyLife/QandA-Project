@@ -2,7 +2,7 @@
 //  Video.m
 //  Q&A
 //
-//  Created by 刘廷勇 on 13-1-5.
+//  Created by 刘廷勇 on 13-4-1.
 //  Copyright (c) 2013年 刘廷勇. All rights reserved.
 //
 
@@ -13,14 +13,16 @@
 
 @implementation Video
 
-@dynamic videoID;
+@dynamic cameraInfo;
 @dynamic duration;
-@dynamic fileSize;
 @dynamic encode;
+@dynamic fileSize;
 @dynamic fileType;
 @dynamic mimeType;
-@dynamic cameraInfo;
-@dynamic tookFromQuestion;
+@dynamic videoID;
+@dynamic videoURL;
+@dynamic videoPreviewImageURL;
 @dynamic tookFromAnswer;
+@dynamic tookFromQuestion;
 
 @end

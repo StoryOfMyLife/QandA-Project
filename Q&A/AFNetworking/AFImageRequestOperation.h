@@ -22,6 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPRequestOperation.h"
+#import "UIImageView+AFNetworking.h"
 
 #import <Availability.h>
 

@@ -227,9 +227,11 @@
 		NSLog(@"返回的videoID为: %@", operation.responseString);
 		self.videoID = operation.responseString;
 		
-		NSURL *uploadURL = [NSURL URLWithString:kUpLoadImageURL];
-		[self uploadImage:self.imageData toServerURL:uploadURL withParameterPath:self.videoID];
-		
+		if (self.videoID) {
+			NSString *imageURL = [kUpLoadImageURL stringByAppendingString:self.videoID];
+			NSURL *uploadURL = [NSURL URLWithString:imageURL];
+			[self uploadImage:self.imageData toServerURL:uploadURL withParameterPath:nil];
+		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"上传出错: %@", error);
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -254,7 +256,6 @@
 	//上传信息反馈
 	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		NSLog(@"预览图上传成功");
 		NSLog(@"截图上传: %@", operation.responseString);
 		self.imageData = nil;
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
