@@ -202,7 +202,10 @@
 - (UIImage *)getThumbnailFromURL:(NSURL *)url
 {
 	MPMoviePlayerController *movieViewController = [[MPMoviePlayerController alloc] initWithContentURL:url];
-	return [movieViewController thumbnailImageAtTime:1 timeOption:MPMovieTimeOptionNearestKeyFrame];
+	UIImage *originImage = [movieViewController thumbnailImageAtTime:1 timeOption:MPMovieTimeOptionNearestKeyFrame];
+	NSData *imageData = UIImageJPEGRepresentation(originImage, 0);
+	UIImage *compressedImage = [UIImage imageWithData:imageData];
+	return compressedImage;
 }
 
 - (void)uploadVideo:(NSData *)videoData toServerURL:(NSURL *)serverURL withParameterPath:(NSString *)paramString

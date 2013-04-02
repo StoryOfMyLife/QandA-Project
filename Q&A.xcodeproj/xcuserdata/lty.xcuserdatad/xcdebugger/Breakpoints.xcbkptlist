@@ -173,11 +173,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/AnswersTableViewController.m"
-         timestampString = "386577600.543885"
+         timestampString = "386610510.996175"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "314"
-         endingLineNumber = "314"
+         startingLineNumber = "301"
+         endingLineNumber = "301"
          landmarkName = "-playVideoFromPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -277,11 +277,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQorAViewController.m"
-         timestampString = "386499785.661671"
+         timestampString = "386611420.896041"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "258"
-         endingLineNumber = "258"
+         startingLineNumber = "263"
+         endingLineNumber = "263"
          landmarkName = "-uploadImage:toServerURL:withParameterPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -290,38 +290,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQorAViewController.m"
-         timestampString = "386488830.049114"
+         timestampString = "386611420.896041"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "244"
-         endingLineNumber = "244"
+         startingLineNumber = "249"
+         endingLineNumber = "249"
          landmarkName = "-uploadImage:toServerURL:withParameterPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Q&amp;A/AnswersTableViewController.m"
-         timestampString = "386577600.543885"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "404"
-         endingLineNumber = "404"
-         landmarkName = "-downLoadVideoPreviewImageFromURL:toCell:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Q&amp;A/AnswersTableViewController.m"
-         timestampString = "386577600.543885"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "409"
-         endingLineNumber = "409"
-         landmarkName = "-downLoadVideoPreviewImageFromURL:toCell:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -329,11 +303,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/AnswersTableViewController.m"
-         timestampString = "386501992.564829"
+         timestampString = "386594342.524504"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "229"
-         endingLineNumber = "229"
+         startingLineNumber = "222"
+         endingLineNumber = "222"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -342,12 +316,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/AnswersTableViewController.m"
-         timestampString = "386577600.543885"
+         timestampString = "386610510.996175"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "389"
-         endingLineNumber = "389"
-         landmarkName = "-downLoadVideoPreviewImageFromURL:toCell:"
+         startingLineNumber = "351"
+         endingLineNumber = "351"
+         landmarkName = "-movieDidFinish:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
@@ -363,7 +337,7 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         symbolName = ""
+         symbolName = "NSKVODeallocateBreak"
          moduleName = "">
       </SymbolicBreakpoint>
    </SymbolicBreakpoints>

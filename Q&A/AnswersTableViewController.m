@@ -61,13 +61,6 @@
 	NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"RefreshView" owner:self options:nil];
     self.refreshView = [nibs objectAtIndex:0];
     [_refreshView setupWithOwner:self.tableView delegate:self];
-	
-//	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_bg"] forBarMetrics:UIBarMetricsDefault];
-//
-//	[self.navigationController.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"navbar_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 8, 14, 8)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//	[self.navigationController.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"navbar_button_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 8, 14, 8)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-//	[self.navigationController.navigationItem.backBarButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_backbutton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 15, 14, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//	[self.navigationController.navigationItem.backBarButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"navbar_backbutton_pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 10, 14, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -254,9 +247,7 @@
 		answerCell.createTime.text = [NSString stringWithFormat:@"日期: %@", [dateFormatter stringFromDate:answer.createTime]];
 		
 		answerCell.videoDuration.text = [NSString stringWithFormat:@"时长: %@", answer.answerVideo.duration];
-//		if (!answerCell.videoPreview.image ) {			
-//			[self downLoadVideoPreviewImageFromURL:[NSURL URLWithString:answer.answerVideo.videoPreviewImageURL] toCell:answerCell];
-//		}
+
 		answerCell.videoPreview.contentMode = UIViewContentModeScaleAspectFit;
 		answerCell.videoPreview.clipsToBounds = YES;
 		[answerCell.videoPreview setImageWithURL:[NSURL URLWithString:answer.answerVideo.videoPreviewImageURL] placeholderImage:[UIImage imageNamed:@"videoImage.jpg"]];
@@ -289,7 +280,6 @@
 	[self.downloadingIndicator startAnimating];
 	NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
 	Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
-	NSString *videoID = answer.answerVideo.videoID;
 	NSString *url = answer.answerVideo.videoURL;
 	[self playVideoWithVideoURL:[NSURL URLWithString:url]];
 }
@@ -299,7 +289,6 @@
 	self.currentSelectedCell = sender;
 	self.downloadingIndicator = sender.loadingIndicator;
 	[self.downloadingIndicator startAnimating];
-	NSString *videoID = self.question.questionVideo.videoID;
 	NSString *url = self.question.questionVideo.videoURL;
 	[self playVideoWithVideoURL:[NSURL URLWithString:url]];
 }
@@ -309,9 +298,7 @@
 - (void)playVideoFromPath:(NSString *)videoPath
 {
 	self.videoURL = [NSURL URLWithString:videoPath];
-	self.movieView = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
-	
-//	[self addThumbnailImageFromURL:[NSURL fileURLWithPath:videoPath] toCell:self.currentSelectedCell];
+	self.movieView.moviePlayer.contentURL = [NSURL fileURLWithPath:videoPath];
 	self.movieView.moviePlayer.shouldAutoplay = YES;
 	self.movieView.moviePlayer.repeatMode = MPMovieRepeatModeNone;
     [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -321,28 +308,40 @@
 	[self presentMoviePlayerViewControllerAnimated:self.movieView];
 }
 
+- (MPMoviePlayerViewController *)movieView
+{
+	if (!_movieView) {
+		_movieView = [[MPMoviePlayerViewController alloc] init];
+	}
+	return _movieView;
+}
+
 //对已经下载过的视频则直接播放，不重复下载
 - (void)playVideoWithVideoURL:(NSURL *)url
 {
-	NSString *videoID = [url lastPathComponent];
-	NSString *path = [self videoPathFromVideoID:videoID];
-	if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-		NSLog(@"此视频下载过了!");
-		[self playVideoFromPath:path];
-	} else {
-		[self downLoadVideoFromURL:url];
-	}
+	self.movieView.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
+	self.movieView.moviePlayer.contentURL = url;
+	self.movieView.moviePlayer.shouldAutoplay = YES;
+	self.movieView.moviePlayer.repeatMode = MPMovieRepeatModeNone;
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(movieDidFinish:) 
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification 
+                                               object:self.movieView.moviePlayer];
+	[self.movieView.moviePlayer prepareToPlay];
+	[self presentMoviePlayerViewControllerAnimated:self.movieView];
+//	NSString *videoID = [url lastPathComponent];
+//	NSString *path = [self videoPathFromVideoID:videoID];
+//	if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+//		NSLog(@"此视频下载过了!");
+//		[self playVideoFromPath:path];
+//	} else {
+//		[self downLoadVideoFromURL:url];
+//	}
 }
 
 - (NSString *)videoPathFromVideoID:(NSString *)videoID
 {
 	NSString *fileName = [videoID stringByAppendingString:@".mp4"];
-	return [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];	
-}
-
-- (NSString *)videoImagePathFromImageID:(NSString *)imageID
-{
-	NSString *fileName = [imageID stringByAppendingString:@".jpg"];
 	return [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];	
 }
 
@@ -353,11 +352,12 @@
 	[self.tableView setAllowsSelection:YES];
     NSLog(@"播放结束!");   
     MPMoviePlayerController *moviePlayer = [aNotification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
+	[[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:MPMoviePlayerPlaybackDidFinishNotification 
                                                   object:moviePlayer];
+
     [moviePlayer stop];
-    [self dismissMoviePlayerViewControllerAnimated];
+	[self dismissMoviePlayerViewControllerAnimated];
 }
 //将视频下载至temp目录，下载完成后开始播放
 - (void)downLoadVideoFromURL:(NSURL *)videoURL
@@ -380,34 +380,6 @@
 		NSLog(@"视频下载进度：%1.0f%%", (double)totalBytesRead / (double)totalBytesExpectedToRead * 100);
 	}];
 	
-	[operation start];
-}
-#define kImageWidth 97
-#define kImageHeight 66
-- (void)downLoadVideoPreviewImageFromURL:(NSURL *)url toCell:(UITableViewCell *)cell
-{
-	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	
-	AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:^UIImage *(UIImage *image) {
-		return image;
-	} success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			NSIndexPath *indexPath;
-			if ([cell isKindOfClass:[QuestionDetailCell class]]) {
-				QuestionDetailCell *questionCell = (QuestionDetailCell *)cell;
-				questionCell.videoPreview.image = image;
-				indexPath = [self.tableView indexPathForCell:questionCell];
-			} else {
-				AnswerCell *answerCell = (AnswerCell *)cell;
-				answerCell.videoPreview.image = image;
-				indexPath = [self.tableView indexPathForCell:answerCell];
-				NSURL *myURL = url;
-			}
-			[self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		});
-	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-		NSLog(@"图片下载失败");
-	}];
 	[operation start];
 }
 
