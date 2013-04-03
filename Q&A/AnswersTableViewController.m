@@ -319,24 +319,24 @@
 //对已经下载过的视频则直接播放，不重复下载
 - (void)playVideoWithVideoURL:(NSURL *)url
 {
-	self.movieView.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
-	self.movieView.moviePlayer.contentURL = url;
-	self.movieView.moviePlayer.shouldAutoplay = YES;
-	self.movieView.moviePlayer.repeatMode = MPMovieRepeatModeNone;
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(movieDidFinish:) 
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification 
-                                               object:self.movieView.moviePlayer];
-	[self.movieView.moviePlayer prepareToPlay];
-	[self presentMoviePlayerViewControllerAnimated:self.movieView];
-//	NSString *videoID = [url lastPathComponent];
-//	NSString *path = [self videoPathFromVideoID:videoID];
-//	if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-//		NSLog(@"此视频下载过了!");
-//		[self playVideoFromPath:path];
-//	} else {
-//		[self downLoadVideoFromURL:url];
-//	}
+//	self.movieView.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
+//	self.movieView.moviePlayer.contentURL = url;
+//	self.movieView.moviePlayer.shouldAutoplay = YES;
+//	self.movieView.moviePlayer.repeatMode = MPMovieRepeatModeNone;
+//    [[NSNotificationCenter defaultCenter] addObserver:self 
+//                                             selector:@selector(movieDidFinish:) 
+//                                                 name:MPMoviePlayerPlaybackDidFinishNotification 
+//                                               object:self.movieView.moviePlayer];
+//	[self.movieView.moviePlayer prepareToPlay];
+//	[self presentMoviePlayerViewControllerAnimated:self.movieView];
+	NSString *videoID = [url lastPathComponent];
+	NSString *path = [self videoPathFromVideoID:videoID];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+		NSLog(@"此视频下载过了!");
+		[self playVideoFromPath:path];
+	} else {
+		[self downLoadVideoFromURL:url];
+	}
 }
 
 - (NSString *)videoPathFromVideoID:(NSString *)videoID

@@ -102,14 +102,16 @@ static char kAFImageRequestOperationObjectKey;
     
     UIImage *cachedImage = [[[self class] af_sharedImageCache] cachedImageForRequest:urlRequest];
     if (cachedImage) {
-        self.image = cachedImage;
+		[self setImage:cachedImage withAnimationOption:UIViewAnimationOptionTransitionCrossDissolve];
+//        self.image = cachedImage;
         self.af_imageRequestOperation = nil;
         
         if (success) {
             success(nil, nil, cachedImage);
         }
     } else {
-        self.image = placeholderImage;
+		[self setImage:placeholderImage withAnimationOption:UIViewAnimationOptionTransitionCrossDissolve];
+//        self.image = placeholderImage;
         
         AFImageRequestOperation *requestOperation = [[AFImageRequestOperation alloc] initWithRequest:urlRequest];
         [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -117,7 +119,8 @@ static char kAFImageRequestOperationObjectKey;
                 if (success) {
                     success(operation.request, operation.response, responseObject);
                 } else {
-                    self.image = responseObject;
+					[self setImage:responseObject withAnimationOption:UIViewAnimationOptionTransitionCrossDissolve];
+//                    self.image = responseObject;
                 }
                 
                 self.af_imageRequestOperation = nil;
@@ -138,6 +141,13 @@ static char kAFImageRequestOperationObjectKey;
         
         [[[self class] af_sharedImageRequestOperationQueue] addOperation:self.af_imageRequestOperation];
     }
+}
+
+- (void)setImage:(UIImage *)image withAnimationOption:(UIViewAnimationOptions *)option
+{
+	[UIView transitionWithView:self duration:0.2 options:option animations:^{
+		self.image = image;
+	} completion:NULL];
 }
 
 - (void)cancelImageRequestOperation {
