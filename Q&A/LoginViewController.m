@@ -11,6 +11,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Defines.h"
+#import "JSON.h"
 
 @interface LoginViewController ()
 
@@ -102,11 +103,13 @@
 			
             [alert show];
 		} else {
+			
 			Account *account = [Account sharedAcount];
 			account.userID = self.username.text;
 			account.password = self.password.text;
 			account.loginedIn = YES;
 			account.accessToken = operation.responseString;
+			[self getUserTagsToAccount:account];
 			[self dismissView:nil];
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -114,6 +117,33 @@
 		NSLog(@"登陆出错: %@", error);
 	}];
 	[operation start];
+}
+
+- (void)getUserTagsToAccount:(Account *)account
+{
+	JSON *myJSON = [[JSON alloc] init];
+	NSString *urlStr = [kGetUserTags stringByAppendingString:account.userID];
+	[myJSON getJSONDataFromURL:urlStr success:^(NSData *data) {
+		NSData *tagsData = data;
+		NSDictionary *results = tagsData ? [NSJSONSerialization JSONObjectWithData:tagsData options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:nil] : nil;
+		NSArray *array = [results objectForKey:@"tags"];
+		//第一种排序
+		account.tags = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+			if ([obj1 length] > [obj2 length]) {
+				return (NSComparisonResult)NSOrderedDescending;
+			}
+			if ([obj1 length] < [obj2 length]) {
+				return (NSComparisonResult)NSOrderedAscending;
+			}
+			return (NSComparisonResult)NSOrderedSame;
+		}];
+		//第二种排序	
+		//	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"length" ascending:YES];
+		//										
+		//	[self.tags sortUsingDescriptors:@[sortDescriptor]];
+	} failure:^(NSString *err) {
+		NSLog(@"%@", err);
+	}];
 }
 
 - (void)didReceiveMemoryWarning

@@ -122,7 +122,7 @@
 		JSON *myJSON = [[JSON alloc] init];
 		myJSON.delegate = self;
 		NSString *url = [kGetQuestionURL stringByAppendingString:account.accessToken];
-		[myJSON getJSONDataFromURL:url];
+		[myJSON getJSONDataFromURL:url success:nil failure:nil];
 	}
 }
 

@@ -14,6 +14,7 @@
 #define USER_DEFAULT_KEY_USERID @"AccountUserID"
 #define USER_DEFAULT_KEY_ACCESSTOKEN @"AccountAccessToken"
 #define USER_DEFAULT_KEY_EXPIRE @"AccountExpire"
+#define USER_TAGS @"Tags"
 
 @interface Account()
 
@@ -80,6 +81,11 @@
     return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_ACCESSTOKEN];
 }
 
+- (NSArray *)tags
+{
+	return [[NSUserDefaults standardUserDefaults] arrayForKey:USER_TAGS];
+}
+
 - (BOOL)isloginedIn
 {
     return [[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULT_KEY_EXPIRE];
@@ -106,6 +112,13 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:accessToken forKey:USER_DEFAULT_KEY_ACCESSTOKEN];
     [userDefaults synchronize];
+}
+
+- (void)setTags:(NSArray *)tags
+{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:tags forKey:USER_TAGS];
+	[userDefaults synchronize];
 }
 
 - (void)setLoginedIn:(BOOL)loginedIn
@@ -135,6 +148,13 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults removeObjectForKey:USER_DEFAULT_KEY_ACCESSTOKEN];
+    [userDefaults synchronize];
+}
+
+- (void)removeTags
+{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:USER_TAGS];
     [userDefaults synchronize];
 }
 

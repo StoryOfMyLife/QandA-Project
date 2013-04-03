@@ -145,9 +145,12 @@ static char kAFImageRequestOperationObjectKey;
 
 - (void)setImage:(UIImage *)image withAnimationOption:(UIViewAnimationOptions *)option
 {
-	[UIView transitionWithView:self duration:0.2 options:option animations:^{
-		self.image = image;
-	} completion:NULL];
+	[UIView transitionWithView:self 
+					  duration:0.2
+					   options:option 
+					animations:^{
+						self.image = image;
+					} completion:NULL];
 }
 
 - (void)cancelImageRequestOperation {

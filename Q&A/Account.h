@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, getter = isloginedIn) BOOL loginedIn; 
 @property (nonatomic, strong) UIImage *userProfileImage;
 

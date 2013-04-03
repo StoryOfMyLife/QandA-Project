@@ -26,5 +26,6 @@
 #define kUploadAnswerURL @"http://59.64.176.73:8080/nesdu-webapp/api/answer/"
 #define kLoginURL @"http://59.64.176.73:8080/nesdu-webapp/api/auth/login?"
 #define kGetSearchResultURL @"http://59.64.176.73:8080/nesdu-webapp/api/question/pageByTitleLike/0?title="
+#define kGetUserTags @"http://59.64.176.73:8080/nesdu-webapp/api/auth?username="
 
 #endif

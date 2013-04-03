@@ -68,7 +68,7 @@
 	}
 }
 
-#pragma mark - JSON delegate
+#pragma mark - MyJSONDelegate
 - (void)fetchJSONFailed
 {
 	NSLog(@"获取JSON数据失败!");
@@ -83,11 +83,10 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		NSLog(@"获取JSON数据成功");
 		[self refreshFinished];
-	});	
-	
+	});		
 }
-
 #pragma mark - RefreshView method
+
 - (void)refreshViewDidCallBack {
     [self refresh];
 }
@@ -100,7 +99,10 @@
 		JSON *myJSON = [[JSON alloc] init];
 		myJSON.delegate = self;
 		NSString *url = [kGetQuestionURL stringByAppendingString:account.accessToken];
-		[myJSON getJSONDataFromURL:url];
+//		[myJSON getJSONDataFromURL:url];
+		[myJSON getJSONDataFromURL:url
+						   success:nil 
+						   failure:nil];
 	} else {
 		LoginViewController *loginView = [self.storyboard instantiateViewControllerWithIdentifier:@"login view"];
 		[self presentViewController:loginView animated:YES completion:NULL];

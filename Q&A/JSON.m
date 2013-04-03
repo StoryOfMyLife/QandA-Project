@@ -32,7 +32,7 @@
 //	dispatch_release(getJSONQ);
 }
 //用NSURLRequest可以设置超时
-- (void)getJSONDataFromURL:(NSString *)urlString
+- (void)getJSONDataFromURL:(NSString *)urlString success:(void (^)(NSData *data))successBlock failure:(void (^)(NSString *err))failureBlock
 {	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -42,21 +42,31 @@
 	[NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		if ([data length] > 0 && error == nil) {
-			[self saveData:data];
+			if (successBlock) {
+				successBlock(data);
+			} else {
+				[self saveData:data];
+			}
 		}
 		else if ([data length] == 0 && error == nil) {
-			//获取数据为空，报错
-//			[self.delegate fetchJSONFailed];
-			NSLog(@"数据为空");
-			if ([self.delegate respondsToSelector:@selector(fetchJSONFailed)]) {
-				[self.delegate fetchJSONFailed];
+			if (failureBlock) {
+				failureBlock(@"数据为空");
+			} else {
+				NSLog(@"数据为空");
+				if ([self.delegate respondsToSelector:@selector(fetchJSONFailed)]) {
+					[self.delegate fetchJSONFailed];
+				}
 			}
 		}
 		else if (error != nil) {
-			NSLog(@"Error happened : %@", error.localizedDescription);
-
-			if ([self.delegate respondsToSelector:@selector(fetchJSONFailed)]) {
-				[self.delegate fetchJSONFailed];
+			if (failureBlock) {
+				NSString *err = [NSString stringWithFormat:@"Error happened : %@", error.localizedDescription];
+				failureBlock(err);
+			} else {
+				NSLog(@"Error happened : %@", error.localizedDescription);
+				if ([self.delegate respondsToSelector:@selector(fetchJSONFailed)]) {
+					[self.delegate fetchJSONFailed];
+				}
 			}
 		}
 	}];

@@ -7,6 +7,8 @@
 //
 
 #import "AddingTagViewController.h"
+#import "Defines.h"
+#import "Account.h"
 
 #define kSelectionTagsMax 3
 
@@ -38,22 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	NSArray *array = @[@"招生", @"收费", @"学籍", @"选课", @"约考", @"支持服务", @"毕设", @"JAVA", @"大学英语", @"android入门", @"设计模式", @"数据结构", @"教育技术学", @"教育学", @"移动通信", @"通信原理", @"Linux入门", @"数字通信", @"模电", @"射频通信", @"多媒体技术", @"高等数学", @"大学语文", @"信息技术", @"教育心理学", @"操作系统", @"计算机网络", @"美术", @"学与教", @"教育心理学研究方法", @"photoshop", @"3D动画", @"网页设计", @"复变函数", @"模糊数学", @"实变函数", @"日语", @"法语", @"德语", @"矩阵论", @"线性代数", @"电信法", @"毛泽东思想", @"马克思主义哲学", @"经济学", @"机械", @"工程制图", @"会计", @"审计", @"化学"];
-//第一种排序
-	self.tags = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-		if ([obj1 length] > [obj2 length]) {
-			return (NSComparisonResult)NSOrderedDescending;
-		}
-		if ([obj1 length] < [obj2 length]) {
-			return (NSComparisonResult)NSOrderedAscending;
-		}
-		return (NSComparisonResult)NSOrderedSame;
-	}];
-//第二种排序	
-//	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"length" ascending:YES];
-//										
-//	[self.tags sortUsingDescriptors:@[sortDescriptor]];
+	Account *account = [Account sharedAcount];
+	self.tags = account.tags;
     [self.tableView setBackgroundView:nil];
 	[self.tableView setBackgroundColor:[UIColor whiteColor]];
 }

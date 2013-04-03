@@ -28,7 +28,10 @@
 */
 - (void)getJSONDataFromURL:(NSString *)url intoDocument:(UIManagedDocument *)document;
 
-- (void)getJSONDataFromURL:(NSString *)urlString;
+/*
+ 此方法当success或者failure为nil的时候，才会调用delegate
+ */
+- (void)getJSONDataFromURL:(NSString *)urlString success:(void (^)(NSData *data))successBlock failure:(void (^)(NSString *err))failureBlock;
 
 + (void)postJSONData:(NSData *)jsonData toServerURL:(NSURL *)serverURL;
 
