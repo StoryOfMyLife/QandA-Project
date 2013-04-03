@@ -12,6 +12,7 @@
 #define USER_DEFAULT_KEY_MAIL @"AccountMail"
 #define USER_DEFAULT_KEY_PASSWORD @"AccountPassword"
 #define USER_DEFAULT_KEY_USERID @"AccountUserID"
+#define USER_DEFAULT_KEY_USERNAME @"AccountUserName"
 #define USER_DEFAULT_KEY_ACCESSTOKEN @"AccountAccessToken"
 #define USER_DEFAULT_KEY_EXPIRE @"AccountExpire"
 #define USER_TAGS @"Tags"
@@ -76,6 +77,11 @@
     return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_USERID];
 }
 
+- (NSString *)username
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_USERNAME];
+}
+
 - (NSString *)accessToken
 {
     return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_ACCESSTOKEN];
@@ -104,6 +110,13 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:userID forKey:USER_DEFAULT_KEY_USERID];
+    [userDefaults synchronize];
+}
+
+- (void)setUsername:(NSString *)username
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:username forKey:USER_DEFAULT_KEY_USERNAME];
     [userDefaults synchronize];
 }
 
@@ -141,6 +154,13 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults removeObjectForKey:USER_DEFAULT_KEY_USERID];
+    [userDefaults synchronize];
+}
+
+- (void)removeUsername
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:USER_DEFAULT_KEY_USERNAME];
     [userDefaults synchronize];
 }
 

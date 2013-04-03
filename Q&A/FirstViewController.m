@@ -169,13 +169,16 @@
     QuestionTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"first table view"];
     switch (index) {
         case 0:
-            vc.flag = 0;
+			vc.flag = 0;
+            vc.predicate = [NSPredicate predicateWithFormat:@"answerCount > 0"];
             break;
         case 1:
-            vc.flag = 1;
+			vc.flag = 1;
+            vc.predicate = nil;
             break;
 		case 2:
 			vc.flag = 2;
+			vc.predicate = [NSPredicate predicateWithFormat:@"answerCount = 0"];
 		default:
 			break;
     }

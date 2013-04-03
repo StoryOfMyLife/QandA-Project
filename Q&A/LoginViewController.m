@@ -103,13 +103,12 @@
 			
             [alert show];
 		} else {
-			
 			Account *account = [Account sharedAcount];
 			account.userID = self.username.text;
 			account.password = self.password.text;
 			account.loginedIn = YES;
 			account.accessToken = operation.responseString;
-			[self getUserTagsToAccount:account];
+			[self getUserInfoToAccount:account];
 			[self dismissView:nil];
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -119,7 +118,7 @@
 	[operation start];
 }
 
-- (void)getUserTagsToAccount:(Account *)account
+- (void)getUserInfoToAccount:(Account *)account
 {
 	JSON *myJSON = [[JSON alloc] init];
 	NSString *urlStr = [kGetUserTags stringByAppendingString:account.userID];
@@ -127,6 +126,8 @@
 		NSData *tagsData = data;
 		NSDictionary *results = tagsData ? [NSJSONSerialization JSONObjectWithData:tagsData options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:nil] : nil;
 		NSArray *array = [results objectForKey:@"tags"];
+		NSString *username = [results objectForKey:@"name"];
+		account.username = username;
 		//第一种排序
 		account.tags = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
 			if ([obj1 length] > [obj2 length]) {

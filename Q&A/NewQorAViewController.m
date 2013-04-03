@@ -104,11 +104,12 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有视频" message:@"请先录制视频" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
 		[alert show];
 	} else {
+		NSArray *tags = [self.tags count] > 0 ? self.tags : @[];
 		NSDictionary *questionDic = @{@"title" : self.questionTextView.text, 
 									  @"video" : @{@"id" : self.videoID}, 
 									  @"author" : @"lty",
 									  @"authorName" : @"刘廷勇", 
-									  @"tags" : self.tags};
+									  @"tags" : tags};
 		NSError *err = nil;
 		NSData *newQuestion = [NSJSONSerialization dataWithJSONObject:questionDic options:NSJSONWritingPrettyPrinted error:&err];
 

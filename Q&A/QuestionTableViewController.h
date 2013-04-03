@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreDataTableViewController.h"
 #import "QuestionCell.h"
 
-@interface QuestionTableViewController : CoreDataTableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface QuestionTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSInteger flag;
+
+@property (nonatomic ,strong) NSPredicate *predicate;
 
 @end

@@ -104,19 +104,6 @@
 	[super viewDidUnload]; 
 }
 
-
-#pragma mark - JSON delegate
-- (void)fetchJSONFailed
-{
-
-}
-
-- (void)fetchJSONDidFinished
-{
-
-	
-}
-
 - (void)fetchedData:(NSArray *)array
 {
 	NSMutableArray *questions = [NSMutableArray array];
@@ -129,7 +116,6 @@
 	}
 	self.searchResult = questions;
 }
-
 
 - (void)searchWithKeywords:(NSString *)keyword
 {

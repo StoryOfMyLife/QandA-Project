@@ -94,6 +94,10 @@
 			}
 			question.answers = answersSet;
 			question.answerCount = [NSNumber numberWithInteger:[[data valueForKey:@"countAnswer"] integerValue]];
+			question.lastAnswerAuthor = [data valueForKey:@"lastAnswerAuthor"];
+			NSTimeInterval answerTimeInterval = [[data valueForKey:@"answerTime"] doubleValue] / 1000;
+			NSDate *answerTime = [NSDate dateWithTimeIntervalSince1970:answerTimeInterval];
+			question.answerTime = answerTime;
 			[[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 		}
     }

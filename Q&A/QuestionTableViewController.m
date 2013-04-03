@@ -22,16 +22,40 @@
 
 @property (nonatomic) CGPoint currentScrollOffset;
 
+@property (nonatomic, strong) NSArray *questions;
+
 @end
 
 @implementation QuestionTableViewController
+
+- (void)setPredicate:(NSPredicate *)predicate
+{
+	if (_predicate != predicate) {
+		_predicate = predicate;
+	}
+	self.questions = [Question MR_findAllSortedBy:@"createTime" ascending:NO withPredicate:_predicate];
+}
+
+- (void)setQuestions:(NSArray *)questions
+{
+	if (_questions != questions) {
+		_questions = questions;
+		[self.tableView reloadData];
+	}
+}
+
+- (void)setRefreshView:(RefreshView *)refreshView
+{
+	if (_refreshView != refreshView) {
+		_refreshView = refreshView;
+		[_refreshView setupWithOwner:self.tableView delegate:self];
+	}
+}
 
 #pragma mark - view life cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.debug = NO;		
-	[self setupFetchedResultsController];	
 	
 	//加载下拉刷新view
 	NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"RefreshView" owner:self options:nil];
@@ -60,14 +84,6 @@
 	[super viewDidUnload]; 
 }
 
-- (void)setRefreshView:(RefreshView *)refreshView
-{
-	if (_refreshView != refreshView) {
-		_refreshView = refreshView;
-		[_refreshView setupWithOwner:self.tableView delegate:self];
-	}
-}
-
 #pragma mark - MyJSONDelegate
 - (void)fetchJSONFailed
 {
@@ -82,6 +98,7 @@
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
 		NSLog(@"获取JSON数据成功");
+		self.questions = [Question MR_findAllSortedBy:@"createTime" ascending:NO withPredicate:self.predicate];
 		[self refreshFinished];
 	});		
 }
@@ -99,7 +116,6 @@
 		JSON *myJSON = [[JSON alloc] init];
 		myJSON.delegate = self;
 		NSString *url = [kGetQuestionURL stringByAppendingString:account.accessToken];
-//		[myJSON getJSONDataFromURL:url];
 		[myJSON getJSONDataFromURL:url
 						   success:nil 
 						   failure:nil];
@@ -160,36 +176,17 @@
 	return YES;
 }
 
-#pragma mark - --
+#pragma mark - UITableView delegate
 - (IBAction)swipeBack:(id)sender
 {
 //	NSLog(@"%@", [[self.navigationController viewControllers] description]);
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)setupFetchedResultsController
-{
-	//这里会将EntityName设置为navigationBar的title
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Question"];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createTime"
-																					 ascending:NO 
-																					  selector:nil]];
-//	request.fetchLimit = 10;
-	if (self.flag == 2) {
-		request.predicate = [NSPredicate predicateWithFormat:@"answerCount = 0"];
-	} else if (self.flag == 0) {
-		request.predicate = [NSPredicate predicateWithFormat:@"answerCount > 0"];
-	}
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]
-                                                                          sectionNameKeyPath:nil
-                                                                                   cacheName:nil];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	NSIndexPath *index = [self.tableView indexPathForCell:sender];
-	Question *question = [self.fetchedResultsController objectAtIndexPath:index];
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+	Question *question = self.questions[indexPath.row];
 	if ([segue.identifier isEqualToString:@"push to detail"])
 	{
 		AnswersTableViewController *detailView = segue.destinationViewController;
@@ -197,14 +194,27 @@
 	}
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [self.questions count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"first cell";
     QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
 	UIImageView *tablecellBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_bg"]];
 	[cell setBackgroundView:tablecellBackgroundView];
+	
 	UIImageView *tablecellSelectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_selected_bg"]];
 	[cell setSelectedBackgroundView:tablecellSelectedBackgroundView];
+	
 	[self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -212,18 +222,18 @@
 - (void)configureCell:(QuestionCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
 	// Configure the cell...
-	Question *question = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	Question *question = self.questions[indexPath.row];
 	cell.questionTitle.text = question.title;
 	cell.questionID.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
-	cell.questionKeywords.text = question.tags;
+	cell.questionKeywords.text = [question.tags isEqualToString:@"【】"] ? nil : question.tags;
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	NSString *createDate = [dateFormatter stringFromDate:question.createTime];
-	cell.questionAskedFrom.text = [NSString stringWithFormat:@"提问者: %@  %@", question.author, createDate];
+	cell.questionAskedFrom.text = [NSString stringWithFormat:@"提问: %@  %@", question.author, createDate];
 	
 	NSString *answerDate = [dateFormatter stringFromDate:question.answerTime];
-	cell.questionAnsweredFrom.text = [NSString stringWithFormat:@"回答者: %@  %@", question.lastAnswerAuthor, answerDate];
+	cell.questionAnsweredFrom.text = [NSString stringWithFormat:@"最后回答: %@  %@", question.lastAnswerAuthor, answerDate];
 	cell.answerCount.text = [NSString stringWithFormat:@"回复: %d", [question.answerCount intValue]];
 }
 
@@ -232,19 +242,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) 
-    {
-        Question *selectedPerson  = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        // Remove the person
-        [selectedPerson MR_deleteInContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-        
-        [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];		
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
