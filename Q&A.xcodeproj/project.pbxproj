@@ -153,6 +153,8 @@
 		09B9A58216B9030A000E83B8 /* navbar_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 09B9A57A16B9030A000E83B8 /* navbar_button.png */; };
 		09C16C221696BF2F00647ED7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C16C211696BF2F00647ED7 /* SystemConfiguration.framework */; };
 		09C2F1EE16B8103000AE7964 /* login_bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 09C2F1ED16B8103000AE7964 /* login_bg1.png */; };
+		09D8BF60170DE0CA0038074E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D8BF5F170DE0CA0038074E /* MBProgressHUD.m */; };
+		09D8BF63170DE6CF0038074E /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 09D8BF62170DE6CF0038074E /* 37x-Checkmark.png */; };
 		09E189F3168B45B700E262CD /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E189F2168B45B700E262CD /* GCPlaceholderTextView.m */; };
 		09F1A41A16DE20B000E4E5A6 /* UITabBarController+HideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F1A41916DE20B000E4E5A6 /* UITabBarController+HideTabBar.m */; };
 		09F84F1C16E588A7005804C1 /* AddingTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F84F1B16E588A7005804C1 /* AddingTagViewController.m */; };
@@ -378,6 +380,9 @@
 		09B9A57A16B9030A000E83B8 /* navbar_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_button.png; sourceTree = "<group>"; };
 		09C16C211696BF2F00647ED7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		09C2F1ED16B8103000AE7964 /* login_bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bg1.png; sourceTree = "<group>"; };
+		09D8BF5E170DE0CA0038074E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		09D8BF5F170DE0CA0038074E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		09D8BF62170DE6CF0038074E /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
 		09E189E6168A000300E262CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		09E189F1168B45B700E262CD /* GCPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlaceholderTextView.h; sourceTree = "<group>"; };
 		09E189F2168B45B700E262CD /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
@@ -705,6 +710,7 @@
 		0938DA6A16A6C4F70093608C /* Third APIs */ = {
 			isa = PBXGroup;
 			children = (
+				09D8BF61170DE0D20038074E /* MBProgressHUD */,
 				09ACC0F61702D99A00871A0D /* MagicalRecord */,
 				091D58BD16B5601400D07D84 /* RefreshView */,
 				091DA6531685E55000BC4D11 /* SVStatusHUD */,
@@ -987,6 +993,16 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		09D8BF61170DE0D20038074E /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				09D8BF62170DE6CF0038074E /* 37x-Checkmark.png */,
+				09D8BF5E170DE0CA0038074E /* MBProgressHUD.h */,
+				09D8BF5F170DE0CA0038074E /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		09E189EF168B459500E262CD /* textView with placeholder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1126,6 +1142,7 @@
 				0956724A16FE138800D56F93 /* ProfileSelected@2x.png in Resources */,
 				0956724B16FE138800D56F93 /* ProfileNormal@2x.png in Resources */,
 				0915FF9C17056BA4006A4BB8 /* videoImage.jpg in Resources */,
+				09D8BF63170DE6CF0038074E /* 37x-Checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1207,6 +1224,7 @@
 				09ACC14A1702D99A00871A0D /* MagicalRecord+ShorthandSupport.m in Sources */,
 				09ACC14B1702D99A00871A0D /* MagicalRecord.m in Sources */,
 				0949EBBB17096A9D0034C9F4 /* Video.m in Sources */,
+				09D8BF60170DE0CA0038074E /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

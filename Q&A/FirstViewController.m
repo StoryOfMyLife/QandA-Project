@@ -38,6 +38,7 @@
 //	NSLog(@"%f,%f,%f,%f", view.frame.origin.y, view.frame.size.height, self.questionScrollView.frame.origin.y, self.questionScrollView.frame.size.height);
     self.questionScrollView.showsHorizontalScrollIndicator = NO;
     self.questionScrollView.showsVerticalScrollIndicator = NO;
+	self.questionScrollView.bounces = NO;
     self.questionScrollView.scrollsToTop = NO;
     self.questionScrollView.delegate = self;
 	

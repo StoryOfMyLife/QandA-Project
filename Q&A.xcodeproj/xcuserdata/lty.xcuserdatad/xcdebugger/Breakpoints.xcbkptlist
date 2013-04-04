@@ -134,11 +134,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/FirstViewController.m"
-         timestampString = "385828360.747892"
+         timestampString = "386679748.315044"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "101"
-         endingLineNumber = "101"
+         startingLineNumber = "102"
+         endingLineNumber = "102"
          landmarkName = "-pageValueDidChange:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -147,11 +147,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/QuestionTableViewController.m"
-         timestampString = "386673089.386415"
+         timestampString = "386676342.781589"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "161"
-         endingLineNumber = "161"
+         startingLineNumber = "162"
+         endingLineNumber = "162"
          landmarkName = "-scrollViewDidScroll:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -186,11 +186,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQorAViewController.m"
-         timestampString = "386673301.30491"
+         timestampString = "386787423.354013"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "133"
-         endingLineNumber = "133"
+         startingLineNumber = "135"
+         endingLineNumber = "135"
          landmarkName = "-imagePickerControllerDidCancel:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -212,11 +212,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/QuestionTableViewController.m"
-         timestampString = "386673089.386415"
+         timestampString = "386676342.781589"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
+         startingLineNumber = "115"
+         endingLineNumber = "115"
          landmarkName = "-refresh"
          landmarkType = "5">
       </FileBreakpoint>
@@ -264,24 +264,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/NewQorAViewController.m"
-         timestampString = "386673301.30491"
+         timestampString = "386789391.064848"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "264"
-         endingLineNumber = "264"
-         landmarkName = "-uploadImage:toServerURL:withParameterPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Q&amp;A/NewQorAViewController.m"
-         timestampString = "386673301.30491"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "250"
-         endingLineNumber = "250"
+         startingLineNumber = "278"
+         endingLineNumber = "278"
          landmarkName = "-uploadImage:toServerURL:withParameterPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -329,11 +316,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Q&amp;A/FirstViewController.m"
-         timestampString = "386672333.099014"
+         timestampString = "386679748.315044"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "169"
-         endingLineNumber = "169"
+         startingLineNumber = "170"
+         endingLineNumber = "170"
          landmarkName = "-viewControllerForSegmentIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -348,6 +335,19 @@
          startingLineNumber = "88"
          endingLineNumber = "88"
          landmarkName = "+questionWithInfo:inManagedObjectContext:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Q&amp;A/NewQorAViewController.m"
+         timestampString = "386789580.597107"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "249"
+         endingLineNumber = "249"
+         landmarkName = "-uploadVideo:toServerURL:withParameterPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

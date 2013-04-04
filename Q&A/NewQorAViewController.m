@@ -15,15 +15,17 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Defines.h"
 #import "JSON.h"
-#import <AVFoundation/AVFoundation.h>
+#import "MBProgressHUD.h"
 
-@interface NewQorAViewController () 
+@interface NewQorAViewController () <MBProgressHUDDelegate>
 
-@property (strong, nonatomic) NSData *imageData;
+@property (nonatomic, strong) NSData *imageData;
 
-@property (strong, nonatomic) NSData *videoData;
+@property (nonatomic, strong) NSData *videoData;
 
-@property (weak, nonatomic) IBOutlet UILabel *tagsLabel;
+@property (nonatomic, weak) IBOutlet UILabel *tagsLabel;
+
+@property (nonatomic, strong) MBProgressHUD *progressHUD;
 
 @end
 
@@ -59,12 +61,12 @@
 	[self.questionTableCell setBackgroundView:[[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"textview_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(39, 104, 39, 104)]]];
 	UIImageView *tableBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg"]];
 	[self.tableView setBackgroundView:tableBackgroundView];
+	[self.questionTextView becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	[self.questionTextView becomeFirstResponder];
 }
 
 #pragma mark - navbar button method
@@ -221,7 +223,10 @@
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	//上传进度
 	[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-		NSLog(@"视频上传进度：%1.0f%%", (double)totalBytesWritten / (double)totalBytesExpectedToWrite * 100);
+		double uploadProgress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+		self.progressHUD.progress = uploadProgress;
+		self.progressHUD.detailsLabelText = [NSString stringWithFormat:@"%1.0f%%", uploadProgress * 100];
+		NSLog(@"视频上传进度：%1.0f%%", uploadProgress * 100);
 	}];
 	//上传信息反馈
 	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -241,6 +246,14 @@
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	}];
 	[operation start];
+	
+	self.progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	self.progressHUD.mode = MBProgressHUDModeDeterminate;
+	self.progressHUD.minSize = CGSizeMake(135.f, 135.f);
+	self.progressHUD.delegate = self;
+	self.progressHUD.labelText = @"视频上传中...";
+	self.progressHUD.yOffset = -50;
+	self.progressHUD.dimBackground = YES;
 }
 
 - (void)uploadImage:(NSData *)imageData toServerURL:(NSURL *)serverURL withParameterPath:(NSString *)paramString
@@ -255,18 +268,33 @@
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	//上传进度
 	[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-		NSLog(@"预览图上传进度：%1.0f%%", (double)totalBytesWritten / (double)totalBytesExpectedToWrite * 100);
+		double uploadProgress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+		NSLog(@"预览图上传进度：%1.0f%%", uploadProgress * 100);
 	}];
 	//上传信息反馈
 	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		NSLog(@"截图上传: %@", operation.responseString);
 		self.imageData = nil;
+		{
+			self.progressHUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+			self.progressHUD.mode = MBProgressHUDModeCustomView;
+			self.progressHUD.detailsLabelText = @"";
+			self.progressHUD.labelText = @"完成";
+			[self.progressHUD hide:YES afterDelay:2];
+		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"上传出错: %@", error);
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	}];
 	[operation start];
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+	[self.progressHUD removeFromSuperview];
+	self.progressHUD = nil;
+	[self.questionTextView becomeFirstResponder];
 }
 
 
@@ -281,6 +309,7 @@
 	[self setQuestionTableCell:nil];
 	[self setTagsLabel:nil];
 	[self setTags:nil];
+	[self setProgressHUD:nil];
 	[super viewDidUnload];
 }
 @end

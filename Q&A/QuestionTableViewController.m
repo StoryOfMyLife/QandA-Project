@@ -67,6 +67,7 @@
 	self.currentScrollOffset = self.tableView.contentOffset;
 	
 	self.tableView.showsVerticalScrollIndicator = NO;
+//	[self refresh];
 }
 
 - (void)didReceiveMemoryWarning

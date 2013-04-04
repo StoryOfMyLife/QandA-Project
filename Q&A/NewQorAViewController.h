@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/UTCoreTypes.h>
+#import <AVFoundation/AVFoundation.h>
 #import "GCPlaceholderTextView.h"
 #import "CameraViewController.h"
 
