@@ -85,9 +85,11 @@
 {
 	self.movieView = nil;
 	self.refreshView = nil;
-	self.downloadingIndicator = nil;
 	self.fetchedResultsController = nil;
 	self.question = nil;
+	self.videoURL = nil;
+	self.currentSelectedCell = nil;
+	self.previewImages = nil;
 	[super viewDidUnload];
 }
 
@@ -248,7 +250,7 @@
 		
 		answerCell.videoDuration.text = [NSString stringWithFormat:@"时长: %@", answer.answerVideo.duration];
 
-		answerCell.videoPreview.contentMode = UIViewContentModeScaleAspectFit;
+		answerCell.videoPreview.contentMode = UIViewContentModeScaleAspectFill;
 		answerCell.videoPreview.clipsToBounds = YES;
 		[answerCell.videoPreview setImageWithURL:[NSURL URLWithString:answer.answerVideo.videoPreviewImageURL] placeholderImage:[UIImage imageNamed:@"videoImage.jpg"]];
 	}

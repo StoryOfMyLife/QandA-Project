@@ -595,7 +595,7 @@
                                         </view>
                                         <color key="backgroundColor" red="0.27444795572516467" green="0.4927725290721835" blue="0.73692602039999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <segue destination="mqE-8E-T4O" kind="modal" identifier="relogin" id="lT9-Jw-CoC"/>
+                                            <segue destination="mqE-8E-T4O" kind="modal" identifier="relogin" modalTransitionStyle="crossDissolve" id="lT9-Jw-CoC"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1273,15 +1273,129 @@
         <image name="textbox.png" width="272" height="35"/>
         <image name="third.png" width="24" height="24"/>
     </resources>
+    <classes>
+        <class className="AddingTagViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddingTagViewController.h"/>
+        </class>
+        <class className="AnswerCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="videoDuration" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="videoPreview" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="AnswersTableViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="swipeBack:"/>
+            </relationships>
+        </class>
+        <class className="CoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="CustomizedNavigation" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomizedNavigation.h"/>
+        </class>
+        <class className="FirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pageValueDidChange:" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="myView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="questionScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="GCPlaceholderTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GCPlaceholderTextView.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NewQorAViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewQorAViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="sendAnswer:"/>
+                <relationship kind="action" name="sendQuestion:"/>
+                <relationship kind="action" name="videoRecord:"/>
+                <relationship kind="outlet" name="questionTableCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="questionTextView" candidateClass="GCPlaceholderTextView"/>
+                <relationship kind="outlet" name="tagsLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ProfileView" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileView.h"/>
+        </class>
+        <class className="QuestionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="answerCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="questionAnsweredFrom" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="questionAskedFrom" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="questionID" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="questionKeywords" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="questionTitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="QuestionDetailCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionDetailCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="createTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="videoDuration" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="videoPreview" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="QuestionTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="swipeBack:"/>
+            </relationships>
+        </class>
+        <class className="SDSegmentedControl" superclassName="UISegmentedControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
+        </class>
+        <class className="SearchTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="SettingsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
+        </class>
+        <class className="TabBarViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarViewController.h"/>
+        </class>
+        <class className="ThirdTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ThirdTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editProfileImage"/>
+                <relationship kind="outlet" name="profileView" candidateClass="ProfileView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5gb-h3-pjT"/>
         <segue reference="lT9-Jw-CoC"/>
+        <segue reference="sww-8O-upa"/>
+        <segue reference="5gb-h3-pjT"/>
         <segue reference="efw-5m-gLM"/>
-        <segue reference="wpf-Rf-FfI"/>
     </inferredMetricsTieBreakers>
 </document>

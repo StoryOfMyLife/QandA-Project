@@ -16,6 +16,7 @@
 #import "Defines.h"
 #import "JSON.h"
 #import "MBProgressHUD.h"
+#import "Account.h"
 
 @interface NewQorAViewController () <MBProgressHUDDelegate>
 
@@ -82,10 +83,13 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有视频" message:@"请先录制视频" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
 		[alert show];
 	} else {
+		Account *account = [Account sharedAcount];
+		NSString *author = account.userID;
+		NSString *authorName = account.username;
 		NSDictionary *answerDic = @{@"title" : self.questionTextView.text, 
 									@"video" : @{@"id" : self.videoID}, 
-									@"author" : @"lty",
-									@"authorName" : @"刘廷勇"};
+									@"author" : author,
+									@"authorName" : authorName};
 		
 		NSError *err = nil;
 		NSData *newAnswer = [NSJSONSerialization dataWithJSONObject:answerDic options:NSJSONWritingPrettyPrinted error:&err];
@@ -107,10 +111,14 @@
 		[alert show];
 	} else {
 		NSArray *tags = [self.tags count] > 0 ? self.tags : @[];
+		
+		Account *account = [Account sharedAcount];
+		NSString *author = account.userID;
+		NSString *authorName = account.username;
 		NSDictionary *questionDic = @{@"title" : self.questionTextView.text, 
 									  @"video" : @{@"id" : self.videoID}, 
-									  @"author" : @"lty",
-									  @"authorName" : @"刘廷勇", 
+									  @"author" : author,
+									  @"authorName" : authorName,
 									  @"tags" : tags};
 		NSError *err = nil;
 		NSData *newQuestion = [NSJSONSerialization dataWithJSONObject:questionDic options:NSJSONWritingPrettyPrinted error:&err];
@@ -252,8 +260,9 @@
 	self.progressHUD.minSize = CGSizeMake(135.f, 135.f);
 	self.progressHUD.delegate = self;
 	self.progressHUD.labelText = @"视频上传中...";
-	self.progressHUD.yOffset = -50;
+//	self.progressHUD.yOffset = -50;
 	self.progressHUD.dimBackground = YES;
+	[self.tableView setUserInteractionEnabled:NO];
 }
 
 - (void)uploadImage:(NSData *)imageData toServerURL:(NSURL *)serverURL withParameterPath:(NSString *)paramString
@@ -292,6 +301,7 @@
 
 - (void)hudWasHidden:(MBProgressHUD *)hud
 {
+	[self.tableView setUserInteractionEnabled:YES];
 	[self.progressHUD removeFromSuperview];
 	self.progressHUD = nil;
 	[self.questionTextView becomeFirstResponder];
@@ -310,6 +320,8 @@
 	[self setTagsLabel:nil];
 	[self setTags:nil];
 	[self setProgressHUD:nil];
+	[self setImageData:nil];
+	[self setVideoData:nil];
 	[super viewDidUnload];
 }
 @end

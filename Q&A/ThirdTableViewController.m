@@ -10,7 +10,6 @@
 #import "QuestionTableViewController.h"
 #import "SettingsTableViewController.h"
 #import "LoginViewController.h"
-#import "UITabBarController+HideTabBar.h"
 #import "Account.h"
 #import "ProfileView.h"
 #import "CameraViewController.h"
@@ -76,6 +75,8 @@
 
 - (void)viewDidUnload {
 	[self setProfileView:nil];
+	[self setCameraViewController:nil];
+	[self setAccount:nil];
 	[super viewDidUnload];
 }
 

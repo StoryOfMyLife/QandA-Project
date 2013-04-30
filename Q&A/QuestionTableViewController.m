@@ -16,6 +16,8 @@
 #import "UITabBarController+HideTabBar.h"
 #import "LoginViewController.h"
 
+#define kNumberOfPage 5
+
 @interface QuestionTableViewController () <UIScrollViewDelegate, MyJSONDelegate, RefreshViewDelegate>
 
 @property (strong, nonatomic) RefreshView *refreshView;
@@ -27,6 +29,8 @@
 @end
 
 @implementation QuestionTableViewController
+
+static int page = 1;
 
 - (void)setPredicate:(NSPredicate *)predicate
 {
@@ -81,6 +85,8 @@
 {
 //	self.fetchedResultsController = nil;
 	self.refreshView = nil;
+	self.predicate = nil;
+	self.questions = nil;
 	//	[self removeFromParentViewController];
 	[super viewDidUnload]; 
 }
@@ -197,7 +203,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.questions count];
+	return self.questions.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -205,24 +211,44 @@
 	return 1;
 }
 
+- (void)loadMore
+{
+	page++;
+	[self.tableView reloadData];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"first cell";
-    QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	
+	static NSString *CellIdentifier = @"first cell";
+	QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	[self configureCell:cell atIndexPath:indexPath];
+//	if (indexPath.row == page * kNumberOfPage - 1 || indexPath.row == [self.questions count]) {
+//		[self loadMore];
+//	}
+	static NSUInteger row = 0;
+    if (indexPath.row >= row) {
+        cell.alpha = 0;
+        cell.transform = CGAffineTransformMakeScale(0.9, 0.9);
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            cell.alpha = 1;
+            cell.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+			//
+        }];
+    }
+    row = indexPath.row;
+	return cell;
+}
+
+- (void)configureCell:(QuestionCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+	// Configure the cell...
 	UIImageView *tablecellBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_bg"]];
 	[cell setBackgroundView:tablecellBackgroundView];
 	
 	UIImageView *tablecellSelectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_selected_bg"]];
 	[cell setSelectedBackgroundView:tablecellSelectedBackgroundView];
 	
-	[self configureCell:cell atIndexPath:indexPath];
-    return cell;
-}
-
-- (void)configureCell:(QuestionCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-	// Configure the cell...
 	Question *question = self.questions[indexPath.row];
 	cell.questionTitle.text = question.title;
 	cell.questionID.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];

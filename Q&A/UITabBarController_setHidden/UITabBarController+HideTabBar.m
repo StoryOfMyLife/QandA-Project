@@ -28,6 +28,7 @@
 		contentView.frame.size.height > self.view.bounds.size.height - tabbarFrame.size.height) {
 		tabbarFrame.origin.y = self.view.bounds.size.height - tabbarFrame.size.height;
 		self.tabBar.frame = tabbarFrame;
+		self.tabBar.alpha = 1;
 		contentView.frame = CGRectMake(self.view.bounds.origin.x,
 									   self.view.bounds.origin.y,
 									   self.view.bounds.size.width,
