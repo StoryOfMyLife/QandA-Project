@@ -30,5 +30,7 @@
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
+- (IBAction)playVideo:(id)sender;
+
 @property (weak, nonatomic) id <QuestionDetailCellDelegate> delegate;
 @end

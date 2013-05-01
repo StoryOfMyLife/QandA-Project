@@ -62,7 +62,7 @@
 		question.questionID = questionID;
 		question.createTime = createTime;
 		question.updateTime = updateTime;
-		question.tags = keywords;
+		question.tags = tagsString;//keywords;
 		question.answerCount = [NSNumber numberWithInteger:answerCount];
 		question.answerTime = answerTime;
 		question.lastAnswerAuthor = lastAnswerAuthor;

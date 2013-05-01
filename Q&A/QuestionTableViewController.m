@@ -15,6 +15,7 @@
 #import "SVStatusHUD.h"
 #import "UITabBarController+HideTabBar.h"
 #import "LoginViewController.h"
+#import "TagView.h"
 
 #define kNumberOfPage 5
 
@@ -154,17 +155,19 @@ static int page = 1;
 {
     [_refreshView scrollViewDidScroll:scrollView];
 	
-	if (scrollView.dragging) {
+	if (scrollView.dragging && [self.parentViewController.navigationItem.title isEqualToString:@"我的关注"]) {
 		//只有内容超过屏幕大小时，才启动tabbar隐藏
 		if (scrollView.contentSize.height > scrollView.frame.size.height) {
 			if (scrollView.contentOffset.y > self.currentScrollOffset.y &&
 				scrollView.contentOffset.y > 0) {
 				scrollView.superview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 //				[self makeTabbarHidden:YES animated:YES];
+				[self.navigationController setNavigationBarHidden:YES animated:YES];
 				[self.tabBarController makeTabbarInvisible:YES animated:YES];
 			} else if (scrollView.contentOffset.y < self.currentScrollOffset.y &&
 					   scrollView.contentOffset.y < scrollView.contentSize.height - scrollView.frame.size.height) {
 //				[self makeTabbarHidden:NO animated:YES];
+				[self.navigationController setNavigationBarHidden:NO animated:YES];
 				[self.tabBarController makeTabbarInvisible:NO animated:YES];
 			}
 			self.currentScrollOffset = scrollView.contentOffset;
@@ -193,7 +196,7 @@ static int page = 1;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-	Question *question = self.questions[indexPath.row];
+	Question *question = self.questions[indexPath.section];
 	if ([segue.identifier isEqualToString:@"push to detail"])
 	{
 		AnswersTableViewController *detailView = segue.destinationViewController;
@@ -203,12 +206,12 @@ static int page = 1;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return self.questions.count;
+	return 1;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 1;
+	return self.questions.count;
 }
 
 - (void)loadMore
@@ -225,10 +228,10 @@ static int page = 1;
 //	if (indexPath.row == page * kNumberOfPage - 1 || indexPath.row == [self.questions count]) {
 //		[self loadMore];
 //	}
-	static NSUInteger row = 0;
-    if (indexPath.row >= row) {
+	static NSUInteger section = 0;
+    if (indexPath.section >= section) {
         cell.alpha = 0;
-        cell.transform = CGAffineTransformMakeScale(0.9, 0.9);
+        cell.transform = CGAffineTransformMakeScale(1.1, 1.1);
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             cell.alpha = 1;
             cell.transform = CGAffineTransformIdentity;
@@ -236,26 +239,34 @@ static int page = 1;
 			//
         }];
     }
-    row = indexPath.row;
+    section = indexPath.section;
 	return cell;
 }
 
 - (void)configureCell:(QuestionCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
 	// Configure the cell...
-	UIImageView *tablecellBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_bg"]];
-	[cell setBackgroundView:tablecellBackgroundView];
+//	UIImageView *tablecellBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_bg"]];
+//	[cell setBackgroundView:tablecellBackgroundView];
+//	
+//	UIImageView *tablecellSelectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_selected_bg"]];
+//	[cell setSelectedBackgroundView:tablecellSelectedBackgroundView];
 	
-	UIImageView *tablecellSelectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_selected_bg"]];
-	[cell setSelectedBackgroundView:tablecellSelectedBackgroundView];
-	
-	Question *question = self.questions[indexPath.row];
+	Question *question = self.questions[indexPath.section];
 	cell.questionTitle.text = question.title;
-	cell.questionID.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+	cell.questionID.text = [NSString stringWithFormat:@"%d", indexPath.section + 1];
 	cell.questionKeywords.text = [question.tags isEqualToString:@"【】"] ? nil : question.tags;
+//	NSArray *tags = [question.tags componentsSeparatedByString:@","];
+//	
+//	CGPoint point = CGPointMake(35, 31);
+//	for (NSString *tag in tags) {
+//		TagView *tagView = [[TagView alloc] initWithTitle:tag atPoint:point];
+//		[cell addSubview:tagView];
+//		point.x += tagView.frame.size.width;
+//	}
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+	[dateFormatter setDateFormat:@"MM-dd HH:mm"];
 	NSString *createDate = [dateFormatter stringFromDate:question.createTime];
 	cell.questionAskedFrom.text = [NSString stringWithFormat:@"提问: %@  %@", question.author, createDate];
 	
@@ -273,7 +284,7 @@ static int page = 1;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 100;
+	return 190;
 }
 
 @end
