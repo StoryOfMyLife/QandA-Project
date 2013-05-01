@@ -239,7 +239,9 @@
 		questionDetailCell.videoDuration.text = [NSString stringWithFormat:@"时长: %@", self.question.questionVideo.duration];
 		questionDetailCell.videoPreview.contentMode = UIViewContentModeScaleAspectFill;
 		questionDetailCell.videoPreview.clipsToBounds = YES;
-		[questionDetailCell.videoPreview setImageWithURL:[NSURL URLWithString:self.question.questionVideo.videoPreviewImageURL] placeholderImage:[UIImage imageNamed:@"videoImage.jpg"]];
+		if (!questionDetailCell.videoPreview.image) {
+			[questionDetailCell.videoPreview setImageWithURL:[NSURL URLWithString:self.question.questionVideo.videoPreviewImageURL] placeholderImage:[UIImage imageNamed:@"videoImage.jpg"]];
+		}
 	} else if ([cell isKindOfClass:[AnswerCell class]]) {
 		AnswerCell *answerCell = (AnswerCell *)cell;
 		NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
@@ -252,7 +254,9 @@
 
 		answerCell.videoPreview.contentMode = UIViewContentModeScaleAspectFill;
 		answerCell.videoPreview.clipsToBounds = YES;
-		[answerCell.videoPreview setImageWithURL:[NSURL URLWithString:answer.answerVideo.videoPreviewImageURL] placeholderImage:[UIImage imageNamed:@"videoImage.jpg"]];
+		if (!answerCell.videoPreview.image) {
+			[answerCell.videoPreview setImageWithURL:[NSURL URLWithString:answer.answerVideo.videoPreviewImageURL] placeholderImage:[UIImage imageNamed:@"videoImage.jpg"]];
+		}
 	}
 }
 

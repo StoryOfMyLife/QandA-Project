@@ -9,6 +9,7 @@
 #import "QuestionTableViewController.h"
 #import "AnswersTableViewController.h"
 #import "Question.h"
+#import "Video.h"
 #import "RefreshView.h"
 #import "JSON.h"
 #import "Defines.h"
@@ -16,6 +17,7 @@
 #import "UITabBarController+HideTabBar.h"
 #import "LoginViewController.h"
 #import "TagView.h"
+#import "AFImageRequestOperation.h"
 
 #define kNumberOfPage 5
 
@@ -73,6 +75,11 @@ static int page = 1;
 	
 	self.tableView.showsVerticalScrollIndicator = NO;
 //	[self refresh];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -273,6 +280,12 @@ static int page = 1;
 	NSString *answerDate = [dateFormatter stringFromDate:question.answerTime];
 	cell.questionAnsweredFrom.text = [NSString stringWithFormat:@"最后回答: %@  %@", question.lastAnswerAuthor, answerDate];
 	cell.answerCount.text = [NSString stringWithFormat:@"回复: %d", [question.answerCount intValue]];
+	
+	cell.videoPreview.contentMode = UIViewContentModeScaleAspectFill;
+	cell.videoPreview.clipsToBounds = YES;
+	if (!cell.videoPreview.image) {
+		[cell.videoPreview setImageWithURL:[NSURL URLWithString:question.questionVideo.videoPreviewImageURL] placeholderImage:[UIImage imageNamed:@"videoImage.jpg"]];
+	}
 }
 
 #pragma mark - Table view delegate
