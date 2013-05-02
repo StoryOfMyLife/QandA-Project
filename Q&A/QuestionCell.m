@@ -24,6 +24,17 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+	if (selected) {
+		[self.playButton setHighlighted:NO];
+	}
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+	[super setHighlighted:highlighted animated:animated];
+	if (highlighted) {
+		[self.playButton setHighlighted:NO];
+	}
 }
 
 @end

@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *questionAnsweredFrom;
 @property (strong, nonatomic) IBOutlet UILabel *answerCount;
 @property (weak, nonatomic) IBOutlet UIImageView *videoPreview;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 @end

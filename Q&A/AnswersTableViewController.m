@@ -20,6 +20,7 @@
 #import "JSON.h"
 #import "SVStatusHUD.h"
 #import "Account.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AnswersTableViewController () <AnswerCellDelegate, QuestionDetailCellDelegate, MyJSONDelegate>
 
@@ -231,12 +232,19 @@
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"]; 
 	
+	UIImageView *tablecellBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"ContentList"] resizableImageWithCapInsets:UIEdgeInsetsMake(36, 18, 36, 18)]];	
+	UIImageView *tablecellSelectedBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"ContentList_HL"] resizableImageWithCapInsets:UIEdgeInsetsMake(36, 18, 36, 18)]];
+	
+	
 	if ([cell isKindOfClass:[QuestionDetailCell class]]) {
 		QuestionDetailCell *questionDetailCell = (QuestionDetailCell *)cell;
+				
 		questionDetailCell.title.text = [NSString stringWithFormat:@"问题: %@", self.question.title];
 		questionDetailCell.author.text = [NSString stringWithFormat:@"作者: %@", self.question.author];
 		questionDetailCell.createTime.text = [NSString stringWithFormat:@"日期: %@", [dateFormatter stringFromDate:self.question.createTime]];
 		questionDetailCell.videoDuration.text = [NSString stringWithFormat:@"时长: %@", self.question.questionVideo.duration];
+		
+		questionDetailCell.videoPreview.layer.cornerRadius = 10;
 		questionDetailCell.videoPreview.contentMode = UIViewContentModeScaleAspectFill;
 		questionDetailCell.videoPreview.clipsToBounds = YES;
 		if (!questionDetailCell.videoPreview.image) {
@@ -244,6 +252,7 @@
 		}
 	} else if ([cell isKindOfClass:[AnswerCell class]]) {
 		AnswerCell *answerCell = (AnswerCell *)cell;
+				
 		NSIndexPath *index = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
 		Answer *answer = [self.fetchedResultsController objectAtIndexPath:index];
 		answerCell.author.text = [NSString stringWithFormat:@"作者: %@", answer.author];
@@ -252,6 +261,7 @@
 		
 		answerCell.videoDuration.text = [NSString stringWithFormat:@"时长: %@", answer.answerVideo.duration];
 
+		answerCell.videoPreview.layer.cornerRadius = 10;
 		answerCell.videoPreview.contentMode = UIViewContentModeScaleAspectFill;
 		answerCell.videoPreview.clipsToBounds = YES;
 		if (!answerCell.videoPreview.image) {

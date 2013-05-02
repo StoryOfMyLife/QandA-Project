@@ -18,6 +18,7 @@
 #import "LoginViewController.h"
 #import "TagView.h"
 #import "AFImageRequestOperation.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define kNumberOfPage 5
 
@@ -253,11 +254,11 @@ static int page = 1;
 - (void)configureCell:(QuestionCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
 	// Configure the cell...
-//	UIImageView *tablecellBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_bg"]];
-//	[cell setBackgroundView:tablecellBackgroundView];
-//	
-//	UIImageView *tablecellSelectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tablecell_selected_bg"]];
-//	[cell setSelectedBackgroundView:tablecellSelectedBackgroundView];
+	UIImageView *tablecellBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"ContentList"] resizableImageWithCapInsets:UIEdgeInsetsMake(36, 18, 36, 18)]];
+	[cell setBackgroundView:tablecellBackgroundView];
+	
+	UIImageView *tablecellSelectedBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"ContentList_HL"] resizableImageWithCapInsets:UIEdgeInsetsMake(36, 18, 36, 18)]];
+	[cell setSelectedBackgroundView:tablecellSelectedBackgroundView];
 	
 	Question *question = self.questions[indexPath.section];
 	cell.questionTitle.text = question.title;
@@ -280,7 +281,7 @@ static int page = 1;
 	NSString *answerDate = [dateFormatter stringFromDate:question.answerTime];
 	cell.questionAnsweredFrom.text = [NSString stringWithFormat:@"最后回答: %@  %@", question.lastAnswerAuthor, answerDate];
 	cell.answerCount.text = [NSString stringWithFormat:@"回复: %d", [question.answerCount intValue]];
-	
+	cell.videoPreview.layer.cornerRadius = 10;
 	cell.videoPreview.contentMode = UIViewContentModeScaleAspectFill;
 	cell.videoPreview.clipsToBounds = YES;
 	if (!cell.videoPreview.image) {
@@ -297,7 +298,18 @@ static int page = 1;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 190;
+	return 200;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return section == 0 ? 10 : 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return 1;
+}
+
 
 @end

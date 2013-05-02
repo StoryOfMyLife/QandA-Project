@@ -170,21 +170,21 @@
                                             <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1030" contentMode="left" text="【教务，支持服务，入学】" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GZI-p9-aZc">
-                                            <rect key="frame" x="35" y="134" width="259" height="20"/>
+                                            <rect key="frame" x="35" y="138" width="259" height="20"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1040" contentMode="left" text="发布人：LiLei 学生 2010/09/15 23:15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YIQ-6u-s7i">
-                                            <rect key="frame" x="8" y="153" width="280" height="20"/>
+                                            <rect key="frame" x="8" y="156" width="280" height="20"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1050" contentMode="left" text="最后回答：HanHan 教师 2012/09/16 08:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ox9-vx-aCp">
-                                            <rect key="frame" x="8" y="168" width="280" height="20"/>
+                                            <rect key="frame" x="8" y="171" width="280" height="20"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -204,7 +204,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </label>
-                                        <imageView contentMode="scaleToFill" id="6aU-pN-E2h">
+                                        <imageView clipsSubviews="YES" contentMode="scaleToFill" id="6aU-pN-E2h">
                                             <rect key="frame" x="70" y="38" width="160" height="96"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -224,6 +224,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="answerCount" destination="9Sx-zC-eso" id="1RT-ZW-xf0"/>
+                                    <outlet property="playButton" destination="BJa-S9-yYI" id="Bbc-hL-nBW"/>
                                     <outlet property="questionAnsweredFrom" destination="Ox9-vx-aCp" id="v6M-ZN-o3v"/>
                                     <outlet property="questionAskedFrom" destination="YIQ-6u-s7i" id="wy0-6t-lAT"/>
                                     <outlet property="questionID" destination="mdx-4o-NaE" id="xAM-kE-Qiq"/>
@@ -256,18 +257,18 @@
         <scene sceneID="0wp-6r-mf2">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="V4x-2J-qPi" customClass="AnswersTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pb7-xw-MZH">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="pb7-xw-MZH">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <gestureRecognizers/>
                         <color key="separatorColor" red="0.79581871811224492" green="0.79581871811224492" blue="0.79581871811224492" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="top cell" rowHeight="155" id="dRl-yO-f9q" customClass="QuestionDetailCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="155"/>
+                                <rect key="frame" x="0.0" y="46" width="320" height="156"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
+                                    <rect key="frame" x="10" y="1" width="300" height="154"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView contentMode="scaleToFill" id="P0d-7X-nmV">
@@ -275,7 +276,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="问题：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RRt-Ac-L2b">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
+                                            <rect key="frame" x="20" y="0.0" width="260" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -332,14 +333,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="detail cell" rowHeight="80" id="KGR-oy-AsA" customClass="AnswerCell">
-                                <rect key="frame" x="0.0" y="177" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="202" width="320" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                    <rect key="frame" x="10" y="0.0" width="300" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView contentMode="scaleToFill" id="qAP-KT-MBZ">
-                                            <rect key="frame" x="10" y="7" width="97" height="66"/>
+                                            <rect key="frame" x="7" y="7" width="97" height="66"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="作者：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Iau-3o-opP">
@@ -368,7 +369,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
                                         <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cu1-4B-BQg">
-                                            <rect key="frame" x="36" y="17" width="45" height="45"/>
+                                            <rect key="frame" x="33" y="17" width="45" height="45"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="boldSystem" size="button"/>
@@ -1345,6 +1346,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="answerCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="questionAnsweredFrom" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="questionAskedFrom" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="questionID" candidateClass="UILabel"/>
